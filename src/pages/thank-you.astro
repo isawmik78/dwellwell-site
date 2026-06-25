@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Thank you · DwellWell Property Care"
+  description="Thank you. Your request has been received by DwellWell."
+  active=""
+  noindex={true}
+>
+  <main class="ty">
+    <section class="ty__inner">
+      <div class="ty__check">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#4A8BB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 6.5"></path></svg>
+      </div>
+      <div class="ty__eyebrow">
+        <span class="ty__rule"></span>
+        <span class="ty__label">Request received</span>
+        <span class="ty__rule"></span>
+      </div>
+      <h1 class="ty__title">Thank you. Your request is in.</h1>
+      <p class="ty__lead">A member of our team will review your request and be in touch.</p>
+      <p class="ty__note">Emergency and urgent requests receive a same-business-day acknowledgement.</p>
+      <a class="ty__back" href="/">Back to home →</a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .ty { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 72px); background: var(--cool-white); }
+  .ty__inner { max-width: 680px; width: 100%; margin: 0 auto; padding: clamp(64px, 12vw, 128px) clamp(20px, 5vw, 40px); text-align: center; }
+  .ty__check { width: 64px; height: 64px; border-radius: 8px; background: var(--midnight); display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; }
+  .ty__eyebrow { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 18px; }
+  .ty__rule { width: 24px; height: 1px; background: var(--steel-blue); }
+  .ty__label { font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cool-slate); }
+  .ty__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 6vw, 52px); line-height: 1.15; color: var(--midnight); margin: 0 0 18px; }
+  .ty__lead { font-size: 17px; line-height: 1.65; color: var(--midnight); margin: 0 auto 14px; max-width: 54ch; }
+  .ty__note { font-size: 15px; line-height: 1.65; color: var(--cool-slate); margin: 0 auto 36px; max-width: 52ch; }
+  .ty__back { display: inline-block; font-weight: 500; font-size: 14px; letter-spacing: 0.02em; color: var(--steel-blue-text); text-decoration: none; border-bottom: 1px solid var(--steel-blue); padding-bottom: 2px; }
+  .ty__back:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 3px; }
+</style>

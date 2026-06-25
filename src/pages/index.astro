@@ -1,0 +1,250 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cover from '../components/Cover.astro';
+
+// Section 3: the documented work-order sequence.
+const steps: { title: string; desc: string }[] = [
+  { title: 'Submit a work order', desc: 'You send the request through one channel.' },
+  { title: 'DwellWell assesses & assigns', desc: 'We scope the job and assign a vetted contractor.' },
+  { title: 'Quote sent for approval', desc: 'You review and approve the cost before any work begins.' },
+  { title: 'Contractor dispatched', desc: 'The assigned contractor is scheduled and sent on site.' },
+  { title: 'Work completed & documented', desc: 'The job is carried out and recorded with photos and notes.' },
+  { title: 'Closeout record & invoice issued', desc: 'You receive a complete record and a single invoice.' },
+  { title: 'Follow-up if an issue arises', desc: 'We remain the point of contact until it is resolved.' },
+];
+---
+<Layout
+  title="DwellWell Property Care"
+  description="DwellWell coordinates property maintenance from intake to closeout. One point of contact, vetted contractors, every job documented."
+  active="home"
+>
+  <Cover
+    eyebrow="Managed property maintenance & preservation"
+    title="Property care, professionally managed."
+    sub="DwellWell coordinates property maintenance from intake to closeout.<br>One contact. Vetted contractors. Every job documented."
+    titleWidth="15ch"
+    subWidth="58ch"
+    minHeight="clamp(520px, 64vw, 680px)"
+    padTop="clamp(64px, 9vw, 108px)"
+    padBottom="clamp(96px, 12vw, 144px)"
+  >
+    <a class="btn btn--primary" href="/contact">Start a conversation</a>
+    <a class="btn btn--secondary" href="/contact">Request service</a>
+  </Cover>
+
+  <main>
+    <!-- 2 · SERVICES OVERVIEW STRIP -->
+    <section class="container section">
+      <div class="section-head section-head--mb">
+        <span class="section-head__rule"></span>
+        <div>
+          <div class="eyebrow" style="margin-bottom:12px;"><span class="eyebrow__label">Two service lines</span></div>
+          <h2 class="h2" style="max-width:20ch;">One operator for both sides of the property</h2>
+        </div>
+      </div>
+
+      <div class="cards-2">
+        <a class="svc-card" href="/services/residential-maintenance">
+          <div class="svc-card__icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#4A8BB5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v9h14v-9"></path><path d="M10 19v-5h4v5"></path></svg>
+          </div>
+          <div>
+            <span class="svc-card__kicker">Residential</span>
+            <h3 class="h3" style="margin-bottom:10px;">Residential Property Maintenance</h3>
+            <p class="muted">General handyman and maintenance for occupied homes, rentals, and multi-unit properties.</p>
+          </div>
+          <span class="link-arrow">View services →</span>
+        </a>
+
+        <a class="svc-card" href="/services/property-preservation">
+          <div class="svc-card__icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#4A8BB5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v5c0 4.5 3.2 7.8 8 9.5 4.8-1.7 8-5 8-9.5V6z"></path><path d="M9 11.5 11 13.5 15.5 9"></path></svg>
+          </div>
+          <div>
+            <span class="svc-card__kicker">Preservation</span>
+            <h3 class="h3" style="margin-bottom:10px;">Property Preservation</h3>
+            <p class="muted">Securing, winterisation, debris removal, cleaning, and condition reporting for vacant assets.</p>
+          </div>
+          <span class="link-arrow">View services →</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- 3 · HOW IT WORKS -->
+    <section class="container section">
+      <div class="section-head" style="margin-bottom:14px;">
+        <span class="section-head__rule"></span>
+        <div>
+          <div class="eyebrow" style="margin-bottom:12px;"><span class="eyebrow__label">How it works</span></div>
+          <h2 class="h2" style="max-width:22ch;">A coordinated process, intake to closeout</h2>
+        </div>
+      </div>
+      <p class="lead-indent">Every work order moves through the same documented sequence. You stay with one point of contact the whole way.</p>
+
+      <div class="spine">
+        {steps.map((step, i) => (
+          <div class="spine__row">
+            <div class="spine__rail">
+              <div class="spine__num"><span>{i + 1}</span></div>
+              {i < steps.length - 1 && <div class="spine__line"></div>}
+            </div>
+            <div class="spine__body">
+              <h3 class="h3" style="font-size:20px;margin:6px 0;">{step.title}</h3>
+              <p class="muted" style="max-width:52ch;">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="pullquote">
+        <p>You deal with us. Not the contractor.</p>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- 4 · WHY DWELLWELL -->
+    <section class="container section">
+      <div class="section-head" style="margin-bottom:44px;">
+        <span class="section-head__rule"></span>
+        <div>
+          <div class="eyebrow" style="margin-bottom:12px;"><span class="eyebrow__label">Why DwellWell</span></div>
+          <h2 class="h2" style="max-width:20ch;">The operator model, applied to property care</h2>
+        </div>
+      </div>
+
+      <div class="cards-4">
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#4A8BB5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12a7 7 0 0 1 14 0"></path><rect x="3.5" y="12" width="3.5" height="6" rx="1.5"></rect><rect x="17" y="12" width="3.5" height="6" rx="1.5"></rect><path d="M19 18v.5a3 3 0 0 1-3 3h-3"></path></svg>
+          </div>
+          <h3 class="h3" style="font-size:20px;margin-bottom:8px;">One point of contact</h3>
+          <p class="muted">Every request, update, and invoice runs through DwellWell.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#4A8BB5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v5c0 4.5 3.2 7.8 8 9.5 4.8-1.7 8-5 8-9.5V6z"></path><path d="M9 11.5 11 13.5 15.5 9"></path></svg>
+          </div>
+          <h3 class="h3" style="font-size:20px;margin-bottom:8px;">Accountability owned by DwellWell</h3>
+          <p class="muted">We own the outcome. Work is coordinated, not simply referred out.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#4A8BB5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H6V4"></path><path d="M14 3v4h4"></path><path d="M9.5 12h5"></path><path d="M9.5 15.5h5"></path></svg>
+          </div>
+          <h3 class="h3" style="font-size:20px;margin-bottom:8px;">Every job documented</h3>
+          <p class="muted">Photos, notes, and a closeout record on every work order.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#4A8BB5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+          </div>
+          <h3 class="h3" style="font-size:20px;margin-bottom:8px;">Coverage across the US</h3>
+          <p class="muted">Multi-state and expanding, confirmed case by case.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · COVERAGE STATEMENT -->
+    <section class="container" style="padding:0 var(--gutter) clamp(56px,9vw,96px);">
+      <div class="coverage">
+        <div style="flex:1 1 320px;">
+          <div class="eyebrow" style="margin-bottom:14px;"><span class="eyebrow__label">Coverage</span></div>
+          <p class="coverage__lead">Multi-state coverage across the US, and expanding.</p>
+          <p class="muted" style="max-width:54ch;">Service availability depends on location and contractor coverage. Contact us to confirm your area.</p>
+        </div>
+        <div style="flex:0 0 auto;">
+          <a class="btn btn--secondary" href="/contact">Confirm your area</a>
+        </div>
+      </div>
+    </section>
+
+    {/* 6 · TESTIMONIALS: built into the layout but hidden at launch (no placeholder logos).
+        Restore this block when real quotes exist.
+    <section class="container section">
+      <div class="section-head section-head--mb">
+        <span class="section-head__rule"></span>
+        <div>
+          <div class="eyebrow"><span class="eyebrow__label">What partners say</span></div>
+          <h2 class="h2">In their words</h2>
+        </div>
+      </div>
+      <div class="cards-2">
+        <figure class="quote">
+          <blockquote>Quote to be added at launch.</blockquote>
+          <figcaption>Name, Role, Company</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>Quote to be added at launch.</blockquote>
+          <figcaption>Name, Role, Company</figcaption>
+        </figure>
+      </div>
+    </section>
+    */}
+  </main>
+
+  <!-- 7 · FINAL CTA STRIP (Cool White band, Steel Blue emphasis divider) -->
+  <section class="final-cta">
+    <div class="container final-cta__inner">
+      <div style="flex:1 1 420px;">
+        <h2 class="h2" style="max-width:20ch;">Ready to simplify maintenance across your portfolio?</h2>
+      </div>
+      <div class="final-cta__btns">
+        <a class="btn btn--primary" href="/contact">Start a conversation</a>
+        <a class="btn btn--secondary" href="/contact">Request service</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section { padding: clamp(56px, 9vw, 96px) var(--gutter); }
+  .section-head--mb { margin-bottom: 36px; }
+  .divider { height: 0.5px; background: var(--steel-grey); }
+  .muted { font-size: 15px; line-height: 1.6; color: var(--cool-slate); margin: 0; }
+  .lead-indent { font-size: 16px; line-height: 1.65; color: var(--cool-slate); margin: 0 0 44px; max-width: 60ch; padding-left: 32px; }
+  .link-arrow { font-weight: 500; font-size: 14px; color: var(--steel-blue-text); margin-top: auto; }
+
+  /* Card grids */
+  .cards-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .cards-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: 20px; }
+
+  /* Service line cards */
+  .svc-card {
+    display: flex; flex-direction: column; gap: 22px;
+    padding: 30px; background: var(--cool-white);
+    border: 1px solid var(--steel-grey); border-radius: 8px;
+    text-decoration: none; transition: border-color 0.15s, transform 0.15s;
+  }
+  .svc-card:hover { border-color: var(--steel-blue); transform: translateY(-2px); }
+  .svc-card:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+  .svc-card__icon { width: 56px; height: 56px; border-radius: 8px; background: var(--midnight); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .svc-card__kicker { display: block; font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cool-slate); margin-bottom: 8px; }
+
+  /* How-it-works spine */
+  .spine { max-width: 760px; }
+  .spine__row { display: flex; gap: 24px; align-items: stretch; }
+  .spine__rail { flex: 0 0 48px; display: flex; flex-direction: column; align-items: center; }
+  .spine__num { width: 48px; height: 48px; border-radius: 8px; background: var(--midnight); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .spine__num span { font-weight: 600; font-size: 18px; color: var(--cool-white); }
+  .spine__line { width: 1px; flex: 1 1 auto; min-height: 18px; background: var(--steel-grey); margin-top: 4px; }
+  .spine__body { padding-bottom: 28px; }
+
+  .pullquote { margin-top: 8px; border-left: 2px solid var(--steel-blue); padding: 6px 0 6px 24px; max-width: 640px; }
+  .pullquote p { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.4vw, 30px); line-height: 1.25; color: var(--midnight); margin: 0; }
+
+  /* Why-DwellWell features */
+  .feature { padding: 28px; background: var(--cool-white); border: 1px solid var(--steel-grey); border-radius: 8px; }
+  .feature__icon { width: 56px; height: 56px; border-radius: 8px; background: var(--midnight); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+
+  /* Coverage callout (the page's one Steel Blue advisory border) */
+  .coverage { border: 0.5px solid var(--steel-blue); border-radius: 8px; padding: clamp(28px, 4vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; }
+  .coverage__lead { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.2vw, 30px); line-height: 1.25; color: var(--midnight); margin: 0 0 12px; max-width: 24ch; }
+
+  /* Final CTA band */
+  .final-cta { background: var(--cool-white); border-top: 1px solid var(--steel-blue); }
+  .final-cta__inner { padding: clamp(56px, 9vw, 88px) var(--gutter); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; }
+  .final-cta__btns { display: flex; flex-wrap: wrap; gap: 14px; flex: 0 0 auto; }
+</style>

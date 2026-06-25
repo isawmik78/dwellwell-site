@@ -1,0 +1,89 @@
+/* ===========================================================================
+   DwellWell design tokens: defined ONCE, inherited by every page/component.
+   Brand colours are locked. Do not introduce off-palette colours, gradients,
+   or arbitrary tints.
+   =========================================================================== */
+:root {
+  /* --- Brand palette (locked) --------------------------------------------- */
+  --midnight: #101E31;       /* headings, nav, footer, dark surfaces, PRIMARY button fill, body text on light */
+  --steel-blue: #4A8BB5;     /* accent only: rules, underlines, borders, display text >=24px, non-text UI */
+  --cool-white: #F2F4F7;     /* brand white: page/composition background (never #FFFFFF) */
+  --cool-slate: #57657A;     /* supporting copy, subheadings, metadata, nav labels */
+  --steel-grey: #D8E0EA;     /* borders, dividers, rules; reversed supporting copy on dark */
+
+  /* Steel Blue (Text): the ONLY colour for normal-size hyperlink text on
+     light surfaces (5.0:1 AA). Part of the locked system (see chat1.md); the
+     approved Home/About/Contact markup uses it for every in-copy link, so it
+     ships as a token here. Flag if you want links re-pointed to Midnight. */
+  --steel-blue-text: #3A6E91;
+
+  /* --- Typography --------------------------------------------------------- */
+  --font-display: 'Cormorant Garamond', Georgia, serif;  /* H1/H2, wordmark, display >=24px */
+  --font-body: 'Inter', system-ui, sans-serif;           /* everything else */
+
+  /* --- Layout & spacing --------------------------------------------------- */
+  --max-width: 1248px;                    /* desktop max content width */
+  --gutter: clamp(20px, 5vw, 96px);       /* page side padding */
+}
+
+/* --- Resets / base ------------------------------------------------------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--cool-white);
+  color: var(--midnight);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--steel-blue); color: var(--cool-white); }
+
+/* Shared centred content container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ===========================================================================
+   Shared primitives: reused across pages so the system stays consistent.
+   =========================================================================== */
+
+/* Buttons (4px radius). Primary = Midnight fill; Secondary = Steel Blue
+   outline. These are the LIGHT-surface variants. Dark-field (hero) buttons
+   carry their own on-dark text colour in the Cover component. */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 12px 26px;
+  border-radius: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s;
+}
+.btn:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+.btn--primary { color: var(--cool-white); background: var(--midnight); border: none; }
+.btn--primary:hover { opacity: 0.9; }
+.btn--secondary { color: var(--steel-blue-text); background: transparent; border: 1px solid var(--steel-blue); }
+.btn--secondary:hover { background: rgba(74, 139, 181, 0.1); }
+
+/* Eyebrow: a 24px horizontal Steel Blue rule preceding an uppercase label. */
+.eyebrow { display: flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--steel-blue); flex: 0 0 auto; }
+.eyebrow__label { font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cool-slate); }
+.eyebrow--dark .eyebrow__label { color: var(--steel-grey); }
+
+/* Section heading opened by a vertical Steel Blue rule. */
+.section-head { display: flex; gap: 16px; align-items: flex-start; }
+.section-head__rule { width: 1px; align-self: stretch; min-height: 52px; background: var(--steel-blue); flex: 0 0 auto; }
+.h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(30px, 4.3vw, 40px); line-height: 1.2; color: var(--midnight); margin: 0; }
+.h3 { font-family: var(--font-body); font-weight: 600; font-size: 22px; line-height: 1.35; letter-spacing: -0.01em; color: var(--midnight); margin: 0; }

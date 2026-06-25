@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import Nav, { type NavKey } from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: NavKey;
+  noindex?: boolean;
+}
+const { title, description, active = '', noindex = false } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <!-- Locked type system: load EXACTLY these weights, nothing else. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Logo sprite: placed once per document, referenced by <use>.
+         Paths inlined directly in each symbol (single <use> level) so the
+         fill overrides render reliably across browsers. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="dw-icon-square-dark" viewBox="0 0 50 50">
+          <rect x="0" y="0" width="50" height="50" rx="12.5" fill="#101E31"></rect>
+          <path fill="#F2F4F7" d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"></path>
+          <path fill="#4A8BB5" d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"></path>
+        </symbol>
+        <symbol id="dw-icon-bare-reversed" viewBox="0 0 50 50">
+          <path fill="#F2F4F7" d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"></path>
+          <path fill="#4A8BB5" d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"></path>
+        </symbol>
+      </defs>
+    </svg>
+
+    <Nav active={active} />
+    <slot />
+    <Footer />
+    <WhatsAppFab />
+  </body>
+</html>

@@ -1,0 +1,111 @@
+---
+/**
+ * Dark Field cover / hero. Carries the locked 2.8.B "Truncated Descent" motif
+ * (exact SVG transform), the eyebrow, H1, optional sub-line, and an optional
+ * CTA row (via the default slot). Closes with a 1px Steel Blue rule over an
+ * 18px Cool White bar, exiting to the page body.
+ *
+ * Motif and base treatment are identical across every hero; only sizing and
+ * copy vary, so those are props.
+ */
+interface Props {
+  eyebrow: string;
+  title: string;
+  /** Optional sub-line. HTML allowed (e.g. <br>). */
+  sub?: string;
+  titleWidth?: string;
+  subWidth?: string;
+  minHeight?: string;
+  padTop?: string;
+  padBottom?: string;
+}
+const {
+  eyebrow,
+  title,
+  sub,
+  titleWidth = '16ch',
+  subWidth = '58ch',
+  minHeight = 'clamp(420px, 50vw, 540px)',
+  padTop = 'clamp(64px, 9vw, 104px)',
+  padBottom = 'clamp(80px, 11vw, 128px)',
+} = Astro.props;
+const hasCta = Astro.slots.has('default');
+---
+<section
+  class="cover"
+  style={`min-height:${minHeight};padding:${padTop} 0 ${padBottom};`}
+>
+  <svg class="cover__motif" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(-176.18,-434.30) scale(3.1)">
+      <path
+        d="M190.95,391.71 L289.09,216.80 L387.22,391.71"
+        fill="none"
+        stroke="#F2F4F7"
+        stroke-opacity="0.05"
+        stroke-width="29"
+        stroke-linejoin="miter"
+        stroke-linecap="square"
+      ></path>
+    </g>
+  </svg>
+
+  <div class="cover__content container">
+    <div class="eyebrow eyebrow--dark" style="margin-bottom:22px;">
+      <span class="eyebrow__label">{eyebrow}</span>
+    </div>
+    <h1 class="cover__title" style={`max-width:${titleWidth};`}>{title}</h1>
+    {sub && <p class="cover__sub" style={`max-width:${subWidth};margin-bottom:${hasCta ? '36px' : '0'};`} set:html={sub} />}
+    {hasCta && <div class="cover__cta"><slot /></div>}
+  </div>
+
+  <div class="cover__base">
+    <div class="cover__rule"></div>
+    <div class="cover__bar"></div>
+  </div>
+</section>
+
+<style>
+  .cover {
+    position: relative;
+    background: var(--midnight);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover__motif { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cover__content { position: relative; z-index: 2; width: 100%; }
+  .cover__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(36px, 6.2vw, 56px);
+    line-height: 1.15;
+    color: var(--cool-white);
+    margin: 0 0 20px;
+  }
+  .cover__sub {
+    font-weight: 400;
+    font-size: clamp(15px, 1.6vw, 17px);
+    line-height: 1.65;
+    color: var(--cool-white);
+    margin: 0;
+  }
+  .cover__cta { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  /* Base: 1px Steel Blue rule over an 18px Cool White bar (exit to body). */
+  .cover__base { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; }
+  .cover__rule { height: 1px; background: var(--steel-blue); }
+  .cover__bar { height: 18px; background: var(--cool-white); }
+
+  /* Hero CTAs sit on the Dark Field, so labels are Cool White (never Steel
+     Blue text on dark). Both carry a Steel Blue ring. */
+  .cover__cta :global(.btn--primary),
+  .cover__cta :global(.btn--secondary) {
+    color: var(--cool-white);
+    border: 1px solid var(--steel-blue);
+  }
+  .cover__cta :global(.btn--primary) { background: var(--midnight); }
+  .cover__cta :global(.btn--primary:hover) { opacity: 0.88; }
+  .cover__cta :global(.btn--secondary) { background: transparent; }
+  .cover__cta :global(.btn--secondary:hover) { background: rgba(74, 139, 181, 0.14); }
+</style>

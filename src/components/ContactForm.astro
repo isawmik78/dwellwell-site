@@ -1,0 +1,168 @@
+---
+// Form 2 (General / Contact) as an interactive island.
+// Required: Full name, Email, Message.
+// Optional: Phone, State/ZIP, Service category, Photos (max 3 files, 5MB each).
+// Validation and the inline thank-you behaviour are preserved here. Submit is
+// wired to a PLACEHOLDER handler (see FORM_ENDPOINT in the script below): until
+// a real backend is configured the form delivers nothing, and that state is
+// surfaced via a console warning rather than faked silently.
+---
+<div class="cf" data-contact-form>
+  <form class="cf__form" novalidate data-form>
+    <label class="cf__field">
+      <span class="cf__label">Full name <span class="cf__req">*</span></span>
+      <input class="cf__input" type="text" name="fullName" required autocomplete="name" />
+    </label>
+
+    <div class="cf__row">
+      <label class="cf__field">
+        <span class="cf__label">Email <span class="cf__req">*</span></span>
+        <input class="cf__input" type="email" name="email" required autocomplete="email" />
+      </label>
+      <label class="cf__field">
+        <span class="cf__label">Phone <span class="cf__opt">(optional)</span></span>
+        <input class="cf__input" type="tel" name="phone" autocomplete="tel" />
+      </label>
+    </div>
+
+    <div class="cf__row">
+      <label class="cf__field">
+        <span class="cf__label">State / ZIP <span class="cf__opt">(optional)</span></span>
+        <input class="cf__input" type="text" name="stateZip" autocomplete="postal-code" />
+      </label>
+      <label class="cf__field">
+        <span class="cf__label">Service category <span class="cf__opt">(optional)</span></span>
+        <select class="cf__input cf__select" name="serviceCategory">
+          <option value="">Select one</option>
+          <option value="Residential">Residential maintenance</option>
+          <option value="Preservation">Property preservation</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </label>
+    </div>
+
+    <label class="cf__field">
+      <span class="cf__label">Photos <span class="cf__opt">(optional, up to 3 files, 5MB each)</span></span>
+      <input class="cf__input cf__file" type="file" name="photos" accept="image/*" multiple data-file />
+      <span class="cf__error" data-file-error hidden></span>
+    </label>
+
+    <label class="cf__field">
+      <span class="cf__label">Message <span class="cf__req">*</span></span>
+      <textarea class="cf__input cf__textarea" name="message" rows="5" required></textarea>
+    </label>
+
+    <button class="cf__submit" type="submit">Send message</button>
+  </form>
+
+  <!-- Inline thank-you (shown on successful submit) -->
+  <div class="cf__thanks" data-thanks hidden>
+    <div class="cf__check">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#4A8BB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 6.5"></path></svg>
+    </div>
+    <h3 class="h3" style="font-family:var(--font-display);font-weight:600;font-size:clamp(24px,3.4vw,30px);">Thank you. Your request is in.</h3>
+    <p class="muted" style="margin:0 0 6px;">A member of our team will review your request and be in touch.</p>
+    <p class="muted">Emergency and urgent requests receive a same-business-day acknowledgement.</p>
+  </div>
+</div>
+
+<style>
+  .cf__form { border: 0.5px solid var(--steel-grey); border-radius: 8px; padding: clamp(24px, 4vw, 36px); background: var(--cool-white); display: flex; flex-direction: column; gap: 20px; }
+  .cf__field { display: flex; flex-direction: column; gap: 7px; }
+  .cf__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+  .cf__label { font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cool-slate); }
+  .cf__req { color: var(--steel-blue-text); }
+  .cf__opt { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--cool-slate); }
+  .cf__input {
+    font-family: var(--font-body); font-size: 15px; color: var(--midnight);
+    background: var(--cool-white); border: 1px solid var(--steel-grey);
+    border-radius: 4px; padding: 11px 13px;
+  }
+  .cf__input:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 1px; border-color: var(--steel-blue); }
+  .cf__select { appearance: none; -webkit-appearance: none; }
+  .cf__textarea { line-height: 1.55; resize: vertical; }
+  .cf__file { font-size: 14px; color: var(--cool-slate); border-style: dashed; cursor: pointer; }
+  .cf__error { font-size: 13px; color: var(--steel-blue-text); }
+  .cf__input.is-invalid { border-color: var(--steel-blue-text); }
+  .cf__submit {
+    align-self: flex-start; font-family: var(--font-body); font-weight: 500; font-size: 14px;
+    letter-spacing: 0.02em; color: var(--cool-white); background: var(--midnight);
+    border: none; padding: 12px 26px; border-radius: 4px; cursor: pointer; transition: opacity 0.15s;
+  }
+  .cf__submit:hover { opacity: 0.9; }
+  .cf__submit:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+
+  .cf__thanks { border: 0.5px solid var(--steel-blue); border-radius: 8px; padding: clamp(28px, 4vw, 40px); background: var(--cool-white); }
+  .cf__check { width: 56px; height: 56px; border-radius: 8px; background: var(--midnight); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+  .cf__thanks .muted { font-size: 15px; line-height: 1.6; color: var(--cool-slate); }
+  .cf__thanks .h3 { margin: 0 0 14px; color: var(--midnight); }
+</style>
+
+<script>
+  // TODO (deploy): wire a real form backend here. Set FORM_ENDPOINT to your
+  // Formspree / Web3Forms endpoint (or a serverless function URL) that emails
+  // info@dwellwellpropertycare.com, stores a backup record, and runs spam
+  // protection. While this is empty, NOTHING is delivered: the submit is a
+  // placeholder and that is reported to the console (not faked silently).
+  const FORM_ENDPOINT = '';
+
+  const root = document.querySelector('[data-contact-form]');
+  if (root) {
+    const form = root.querySelector('[data-form]');
+    const thanks = root.querySelector('[data-thanks]');
+    const fileInput = root.querySelector('[data-file]');
+    const fileError = root.querySelector('[data-file-error]');
+
+    const MAX_FILES = 3;
+    const MAX_BYTES = 5 * 1024 * 1024;
+    let fileInvalid = false;
+
+    const setFileError = (msg) => {
+      fileInvalid = !!msg;
+      fileError.textContent = msg;
+      fileError.hidden = !msg;
+      fileInput.classList.toggle('is-invalid', !!msg);
+    };
+
+    fileInput.addEventListener('change', () => {
+      const files = Array.from(fileInput.files || []);
+      if (files.length > MAX_FILES) {
+        fileInput.value = '';
+        setFileError('Please attach no more than 3 files.');
+      } else if (files.some((f) => f.size > MAX_BYTES)) {
+        fileInput.value = '';
+        setFileError('Each file must be 5MB or smaller.');
+      } else {
+        setFileError('');
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (fileInvalid) return;
+      if (!form.reportValidity()) return; // native required-field validation
+
+      if (FORM_ENDPOINT) {
+        try {
+          const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+          if (!res.ok) throw new Error('Submit failed: ' + res.status);
+        } catch (err) {
+          console.error('[DwellWell] Contact form submit failed.', err);
+          setFileError('Something went wrong sending your message. Please email info@dwellwellpropertycare.com.');
+          return;
+        }
+      } else {
+        // No backend wired yet: do not pretend the message was delivered.
+        console.warn(
+          '[DwellWell] Contact form submitted, but FORM_ENDPOINT is not configured. ' +
+            'No message was delivered. Set FORM_ENDPOINT in ContactForm.astro to wire a backend.'
+        );
+      }
+
+      // Inline thank-you (preserves the design behaviour).
+      form.hidden = true;
+      thanks.hidden = false;
+      thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+</script>

@@ -1,0 +1,97 @@
+---
+/**
+ * Midnight Dark Field footer. Inherited by every page.
+ * Reversed logo, Company / Services / Contact columns, brand line, legal row.
+ * Supporting copy on dark is Steel Grey (never Cool Slate).
+ */
+---
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__lockup">
+          <svg viewBox="0 0 50 50" class="footer__mark"><use href="#dw-icon-bare-reversed" /></svg>
+          <span class="footer__rule"></span>
+          <span class="footer__lockup-text">
+            <span class="footer__word">DwellWell</span>
+            <span class="footer__desc">Property Care LLC</span>
+          </span>
+        </div>
+        <p class="footer__blurb">DwellWell coordinates property maintenance and preservation from intake to closeout. One point of contact, vetted contractors, every job documented.</p>
+        <p class="footer__tagline">Coordinated from intake to closeout.</p>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Company</h2>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="/">Home</a></li>
+          <li><a class="footer__link" href="/about">About</a></li>
+          <li><a class="footer__link" href="/resources">Resources</a></li>
+          <li><a class="footer__link" href="/join-as-contractor">Join as Contractor</a></li>
+          <li><a class="footer__link" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Services</h2>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="/services/residential-maintenance">Residential maintenance</a></li>
+          <li><a class="footer__link" href="/services/property-preservation">Property preservation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Contact</h2>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="mailto:info@dwellwellpropertycare.com">info@dwellwellpropertycare.com</a></li>
+          <li class="footer__muted">Clients: [TBD]</li>
+          <li class="footer__muted">Vendors: [TBD]</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__legal">
+      <a class="footer__legal-link" href="#">Privacy Policy</a>
+      <span class="footer__dot">·</span>
+      <a class="footer__legal-link" href="#">Terms of Service</a>
+      <span class="footer__dot">·</span>
+      <a class="footer__legal-link" href="#">Service Terms</a>
+      <span class="footer__dot">·</span>
+      <a class="footer__legal-link" href="#">Coverage &amp; Limitations</a>
+      <span class="footer__dot">·</span>
+      <span class="footer__muted">© DwellWell Property Care LLC</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { background: var(--midnight); color: var(--steel-grey); padding: clamp(56px, 8vw, 80px) 0 36px; font-family: var(--font-body); }
+  .footer__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter); }
+  .footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px 32px; }
+
+  .footer__brand { grid-column: 1 / -1; max-width: 520px; }
+  .footer__lockup { display: flex; align-items: center; gap: 13px; margin-bottom: 18px; }
+  .footer__mark { width: 42px; height: 42px; display: block; flex: 0 0 auto; }
+  .footer__rule { width: 1px; align-self: stretch; margin: 4px 0; background: var(--steel-blue); }
+  .footer__lockup-text { display: flex; flex-direction: column; line-height: 1; }
+  .footer__word { font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--cool-white); }
+  .footer__desc { font-weight: 400; font-size: 10.5px; letter-spacing: 0.04em; color: var(--steel-grey); margin-top: 3px; white-space: nowrap; }
+  .footer__blurb { font-size: 14px; line-height: 1.6; color: var(--steel-grey); margin: 0 0 16px; max-width: 46ch; }
+  .footer__tagline { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--cool-white); margin: 0; }
+
+  .footer__heading { font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel-grey); margin: 0 0 14px; }
+  .footer__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .footer__link { font-size: 14px; color: var(--cool-white); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; }
+  .footer__link:hover { border-color: var(--steel-blue); }
+  .footer__link:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 3px; }
+  .footer__muted { font-size: 14px; color: var(--steel-grey); }
+
+  .footer__divider { height: 1px; background: var(--steel-blue); margin: 36px 0 22px; }
+
+  .footer__legal { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; font-size: 12.5px; color: var(--steel-grey); }
+  .footer__legal-link { color: var(--cool-white); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer__legal-link:hover { border-color: var(--steel-blue); }
+  .footer__dot { color: var(--cool-slate); }
+</style>

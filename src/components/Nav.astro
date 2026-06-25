@@ -1,0 +1,281 @@
+---
+/**
+ * Sticky top navigation. Inherited by every page.
+ * `active` drives the per-page active state (Cool Slate -> Midnight label +
+ * Steel Blue underline) and sets aria-current="page" on the matching link.
+ */
+export type NavKey = 'home' | 'about' | 'services' | 'resources' | 'contractor' | 'contact' | '';
+
+interface Props {
+  active?: NavKey;
+}
+const { active = '' } = Astro.props;
+
+const links: { key: NavKey; label: string; href: string }[] = [
+  { key: 'home', label: 'Home', href: '/' },
+  { key: 'about', label: 'About', href: '/about' },
+  // 'services' rendered separately (dropdown)
+  { key: 'resources', label: 'Resources', href: '/resources' },
+  { key: 'contractor', label: 'Join as Contractor', href: '/join-as-contractor' },
+  { key: 'contact', label: 'Contact', href: '/contact' },
+];
+const isActive = (k: NavKey) => active === k;
+---
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/" aria-label="DwellWell Property Care home">
+      <svg viewBox="0 0 50 50" class="nav__logo-mark"><use href="#dw-icon-square-dark" /></svg>
+      <span class="nav__logo-rule"></span>
+      <span class="nav__logo-text">
+        <span class="nav__logo-word">DwellWell</span>
+        <span class="nav__logo-desc">Property Care LLC</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="/" class:list={[{ 'is-active': isActive('home') }]} aria-current={isActive('home') ? 'page' : undefined}>Home</a>
+      <a class="nav__link" href="/about" class:list={[{ 'is-active': isActive('about') }]} aria-current={isActive('about') ? 'page' : undefined}>About</a>
+
+      <span class="nav__services" data-services>
+        <button
+          type="button"
+          class="nav__link nav__services-btn"
+          class:list={[{ 'is-active': isActive('services') }]}
+          aria-current={isActive('services') ? 'page' : undefined}
+          aria-haspopup="true"
+          aria-expanded="false"
+          data-services-btn
+        >Services <span class="nav__caret" aria-hidden="true">▾</span></button>
+        <div class="nav__dropdown" data-services-menu>
+          <a class="nav__dropdown-item" href="/services/residential-maintenance">
+            <span class="nav__dropdown-title">Residential Property Maintenance</span>
+            <span class="nav__dropdown-desc">General handyman &amp; maintenance for occupied homes</span>
+          </a>
+          <a class="nav__dropdown-item" href="/services/property-preservation">
+            <span class="nav__dropdown-title">Property Preservation</span>
+            <span class="nav__dropdown-desc">Securing, winterisation, cleanouts &amp; condition reporting</span>
+          </a>
+        </div>
+      </span>
+
+      <a class="nav__link" href="/resources" class:list={[{ 'is-active': isActive('resources') }]} aria-current={isActive('resources') ? 'page' : undefined}>Resources</a>
+      <a class="nav__link" href="/join-as-contractor" class:list={[{ 'is-active': isActive('contractor') }]} aria-current={isActive('contractor') ? 'page' : undefined}>Join as Contractor</a>
+      <a class="nav__link" href="/contact" class:list={[{ 'is-active': isActive('contact') }]} aria-current={isActive('contact') ? 'page' : undefined}>Contact</a>
+      <a class="nav__cta" href="/contact">Start a conversation</a>
+    </nav>
+
+    <!-- Mobile burger -->
+    <button type="button" class="nav__burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile" data-burger>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile panel -->
+  <div class="nav__mobile" id="nav-mobile" data-mobile hidden>
+    <a class="nav__mobile-link" href="/" aria-current={isActive('home') ? 'page' : undefined}>Home</a>
+    <a class="nav__mobile-link" href="/about" aria-current={isActive('about') ? 'page' : undefined}>About</a>
+    <button type="button" class="nav__mobile-link nav__mobile-services-btn" aria-expanded="false" data-mobile-services-btn>
+      Services <span class="nav__caret" aria-hidden="true">▾</span>
+    </button>
+    <div class="nav__mobile-sub" data-mobile-services-menu hidden>
+      <a href="/services/residential-maintenance">Residential Property Maintenance</a>
+      <a href="/services/property-preservation">Property Preservation</a>
+    </div>
+    <a class="nav__mobile-link" href="/resources" aria-current={isActive('resources') ? 'page' : undefined}>Resources</a>
+    <a class="nav__mobile-link" href="/join-as-contractor" aria-current={isActive('contractor') ? 'page' : undefined}>Join as Contractor</a>
+    <a class="nav__mobile-link" href="/contact" aria-current={isActive('contact') ? 'page' : undefined}>Contact</a>
+    <a class="nav__mobile-cta" href="/contact">Start a conversation</a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(242, 244, 247, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid var(--steel-grey);
+    font-family: var(--font-body);
+  }
+  .nav__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  /* Logo lockup */
+  .nav__logo { display: flex; align-items: center; gap: 13px; text-decoration: none; flex: 0 0 auto; }
+  .nav__logo:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 4px; border-radius: 4px; }
+  .nav__logo-mark { width: 42px; height: 42px; display: block; flex: 0 0 auto; }
+  .nav__logo-rule { width: 1px; align-self: stretch; margin: 6px 0; background: var(--steel-blue); }
+  .nav__logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .nav__logo-word { font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--midnight); letter-spacing: 0.005em; }
+  .nav__logo-desc { font-weight: 400; font-size: 10.5px; letter-spacing: 0.04em; color: var(--cool-slate); margin-top: 3px; white-space: nowrap; }
+
+  /* Desktop links */
+  .nav__links { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); }
+  .nav__link {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--cool-slate);
+    text-decoration: none;
+    padding: 6px 0;
+    border: none;
+    background: none;
+    border-bottom: 1.5px solid transparent;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .nav__link:hover { color: var(--midnight); border-color: var(--steel-blue); }
+  .nav__link:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 3px; border-radius: 2px; }
+  .nav__link.is-active { color: var(--midnight); border-color: var(--steel-blue); }
+
+  .nav__services { position: relative; display: inline-flex; }
+  .nav__services-btn { display: inline-flex; align-items: center; gap: 6px; }
+  .nav__caret { font-size: 9px; line-height: 1; }
+
+  .nav__dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 288px;
+    background: var(--cool-white);
+    border: 0.5px solid var(--steel-grey);
+    border-radius: 8px;
+    box-shadow: 0 18px 44px rgba(16, 30, 49, 0.14);
+    padding: 8px;
+    z-index: 60;
+    display: none;
+  }
+  .nav__services.is-open .nav__dropdown { display: block; }
+  .nav__dropdown-item { display: block; padding: 13px 16px; border-radius: 4px; text-decoration: none; }
+  .nav__dropdown-item:hover { background: var(--steel-grey); }
+  .nav__dropdown-title { display: block; font-weight: 600; font-size: 14px; color: var(--midnight); letter-spacing: -0.01em; }
+  .nav__dropdown-desc { display: block; font-size: 12px; color: var(--cool-slate); margin-top: 3px; }
+
+  /* Primary CTA */
+  .nav__cta {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--cool-white);
+    background: var(--midnight);
+    padding: 10px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-left: 6px;
+    transition: opacity 0.15s;
+  }
+  .nav__cta:hover { opacity: 0.9; }
+  .nav__cta:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+
+  /* Burger */
+  .nav__burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .nav__burger span { display: block; height: 1.5px; background: var(--midnight); border-radius: 2px; }
+  .nav__burger:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; border-radius: 4px; }
+
+  /* Mobile panel */
+  .nav__mobile { border-top: 0.5px solid var(--steel-grey); background: var(--cool-white); padding: 8px var(--gutter) 24px; }
+  .nav__mobile-link {
+    display: block;
+    width: 100%;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--midnight);
+    text-decoration: none;
+    padding: 14px 0;
+    border: none;
+    border-bottom: 0.5px solid var(--steel-grey);
+    background: none;
+    cursor: pointer;
+    text-align: left;
+  }
+  .nav__mobile-services-btn { display: flex; align-items: center; justify-content: space-between; }
+  .nav__mobile-services-btn .nav__caret { font-size: 11px; color: var(--cool-slate); }
+  .nav__mobile-sub { padding: 6px 0 6px 16px; border-bottom: 0.5px solid var(--steel-grey); border-left: 1px solid var(--steel-blue); margin: 0 0 0 2px; }
+  .nav__mobile-sub a { display: block; font-size: 14px; color: var(--cool-slate); text-decoration: none; padding: 9px 0; }
+  .nav__mobile-cta {
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--cool-white);
+    background: var(--midnight);
+    padding: 13px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 16px;
+  }
+
+  /* Desktop / mobile switch at 920px (matches the prototype's breakpoint) */
+  @media (max-width: 919px) {
+    .nav__links { display: none; }
+    .nav__burger { display: flex; }
+  }
+  @media (min-width: 920px) {
+    .nav__mobile { display: none !important; }
+  }
+</style>
+
+<script>
+  // Services dropdown (desktop): hover + click + keyboard, with outside-click / Escape close.
+  const wrap = document.querySelector('[data-services]');
+  const btn = document.querySelector('[data-services-btn]');
+  if (wrap && btn) {
+    const open = () => { wrap.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); };
+    const close = () => { wrap.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
+    const toggle = () => (wrap.classList.contains('is-open') ? close() : open());
+    wrap.addEventListener('mouseenter', open);
+    wrap.addEventListener('mouseleave', close);
+    btn.addEventListener('click', (e) => { e.preventDefault(); toggle(); });
+    document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  }
+
+  // Mobile menu
+  const burger = document.querySelector('[data-burger]');
+  const mobile = document.querySelector('[data-mobile]');
+  if (burger && mobile) {
+    burger.addEventListener('click', () => {
+      const isOpen = !mobile.hidden;
+      mobile.hidden = isOpen;
+      burger.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+
+  // Mobile services sub-menu
+  const mBtn = document.querySelector('[data-mobile-services-btn]');
+  const mMenu = document.querySelector('[data-mobile-services-menu]');
+  if (mBtn && mMenu) {
+    mBtn.addEventListener('click', () => {
+      const isOpen = !mMenu.hidden;
+      mMenu.hidden = isOpen;
+      mBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+</script>

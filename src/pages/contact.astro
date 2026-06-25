@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cover from '../components/Cover.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+<Layout
+  title="Contact · DwellWell Property Care"
+  description="Contact DwellWell. Email info@dwellwellpropertycare.com, call our client or vendor lines, or send a message. Emergency and urgent requests receive a same-business-day acknowledgement."
+  active="contact"
+>
+  <Cover
+    eyebrow="Contact"
+    title="Start a conversation."
+    sub="Tell us what you need handled. We coordinate maintenance and preservation from intake to closeout, and we are the single point of contact throughout."
+    titleWidth="16ch"
+    subWidth="56ch"
+    minHeight="clamp(360px, 42vw, 460px)"
+    padTop="clamp(64px, 9vw, 96px)"
+    padBottom="clamp(64px, 9vw, 104px)"
+  />
+
+  <main>
+    <section class="container" style="padding:clamp(56px,9vw,96px) var(--gutter) clamp(64px,9vw,96px);">
+      <div class="contact-grid">
+        <!-- LEFT: reach us -->
+        <div>
+          <div class="eyebrow" style="margin-bottom:24px;"><span class="eyebrow__label">Reach us directly</span></div>
+
+          <div class="reach">
+            <div class="reach__row">
+              <div class="reach__label">Email</div>
+              <a class="reach__email" href="mailto:info@dwellwellpropertycare.com">info@dwellwellpropertycare.com</a>
+            </div>
+            <div class="reach__row">
+              <div class="reach__label">Clients / Property Managers</div>
+              <div class="reach__value">[TBD]</div>
+            </div>
+            <div class="reach__row">
+              <div class="reach__label">Vendors / Contractors</div>
+              <div class="reach__value">[TBD]</div>
+            </div>
+          </div>
+
+          <a class="wa-link" href="#" aria-label="Message DwellWell on WhatsApp">
+            <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><path fill="#3A6E91" d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.5 2.1 7.9L.5 31.5l7.8-2c2.3 1.3 5 1.9 7.7 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.5 0-4.9-.7-7-1.9l-.5-.3-4.6 1.2 1.2-4.5-.3-.5C3.4 20.7 2.7 18.4 2.7 16 2.7 8.7 8.7 2.7 16 2.7S29.3 8.7 29.3 16 23.3 28.8 16 28.8zm8.2-9.9c-.4-.2-2.6-1.3-3-1.4-.4-.1-.7-.2-1 .2s-1.1 1.4-1.4 1.7c-.2.3-.5.3-.9.1-.4-.2-1.9-.7-3.6-2.2-1.3-1.2-2.2-2.6-2.5-3-.3-.4 0-.7.2-.9.2-.2.4-.5.6-.8.2-.3.3-.5.4-.8.1-.3 0-.6 0-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.7-1-.7h-.8c-.3 0-.8.1-1.2.5-.4.4-1.6 1.5-1.6 3.7s1.6 4.3 1.9 4.6c.2.3 3.2 4.9 7.7 6.8 1.1.5 1.9.8 2.6 1 1.1.3 2.1.3 2.9.2.9-.1 2.6-1.1 3-2.1.4-1 .4-1.9.3-2.1-.1-.2-.4-.3-.8-.5z"></path></svg>
+            Message us on WhatsApp
+          </a>
+
+          <div class="response">
+            <div class="response__label">Response</div>
+            <p class="response__text">Emergency and urgent requests receive a same-business-day acknowledgement.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: form -->
+        <div>
+          <div class="eyebrow" style="margin-bottom:24px;"><span class="eyebrow__label">Send a message</span></div>
+          <ContactForm />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(36px, 5vw, 64px); align-items: start; }
+
+  .reach { display: flex; flex-direction: column; margin-bottom: 28px; }
+  .reach__row { padding: 18px 0; border-bottom: 0.5px solid var(--steel-grey); }
+  .reach__label { font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cool-slate); margin-bottom: 6px; }
+  .reach__email { font-size: 16px; color: var(--steel-blue-text); text-decoration: none; border-bottom: 1px solid var(--steel-blue); padding-bottom: 1px; }
+  .reach__email:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 3px; }
+  .reach__value { font-size: 16px; color: var(--midnight); }
+
+  .wa-link {
+    display: inline-flex; align-items: center; gap: 11px;
+    font-weight: 500; font-size: 14px; letter-spacing: 0.02em; color: var(--steel-blue-text);
+    background: transparent; border: 1px solid var(--steel-blue); padding: 11px 20px;
+    border-radius: 4px; text-decoration: none; margin-bottom: 28px; transition: background 0.15s;
+  }
+  .wa-link:hover { background: rgba(74, 139, 181, 0.1); }
+  .wa-link:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+
+  .response { border: 0.5px solid var(--steel-blue); border-radius: 8px; padding: 20px 22px; }
+  .response__label { font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cool-slate); margin-bottom: 8px; }
+  .response__text { font-size: 15px; line-height: 1.6; color: var(--midnight); margin: 0; }
+</style>
