@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="services" hint-size="100%,72px"></dc-import>
+  <dc-import name="ServiceDetail"
+    svc-name="{{ svcName }}" descr="{{ descr }}" who-needs="{{ whoNeeds }}"
+    line-label="{{ lineLabel }}" line-href="{{ lineHref }}" includes="{{ includes }}"
+    hint-size="100%,1000px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      svcName: "Landscaping & Exterior Maintenance",
+      lineLabel: "Residential maintenance",
+      lineHref: "Residential-Maintenance.dc.html",
+      descr: "Exterior upkeep that protects curb appeal and the condition of the grounds. DwellWell coordinates lawn care, trimming, planting, and seasonal maintenance across residential property. Each visit is documented from request to closeout.",
+      whoNeeds: "Homeowners, landlords, and property managers who want the grounds and exterior of residential property maintained consistently.",
+      includes: ["Lawn mowing and edging","Tree and shrub trimming","Planting and bed maintenance","Seasonal cleanup","Curb-appeal upkeep","Recurring grounds service"]
+    };
+  }
+}
+</script>
+</body>
+</html>

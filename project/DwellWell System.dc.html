@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <g id="dw-form-d"><path d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"></path></g>
+  <g id="dw-form-w"><path d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"></path></g>
+  <symbol id="dw-icon-square-dark" viewBox="0 0 50 50"><rect x="0" y="0" width="50" height="50" rx="12.5" fill="#101E31"></rect><path fill="#F2F4F7" d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"></path><path fill="#4A8BB5" d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"></path></symbol>
+  <symbol id="dw-icon-square-light" viewBox="0 0 50 50"><rect x="0" y="0" width="50" height="50" rx="12.5" fill="#F2F4F7"></rect><path fill="#101E31" d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"></path><path fill="#4A8BB5" d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"></path></symbol>
+  <symbol id="dw-icon-bare-reversed" viewBox="0 0 50 50"><path fill="#F2F4F7" d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"></path><path fill="#4A8BB5" d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"></path></symbol>
+</defs></svg>
+
+<div style="background:#F2F4F7;color:#101E31;font-family:'Inter',system-ui,sans-serif;font-weight:400;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;position:relative;overflow-x:hidden;">
+
+  <!-- ============ STICKY NAV ============ -->
+  <header data-screen-label="Global nav" style="position:sticky;top:0;z-index:50;background:rgba(242,244,247,0.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:0.5px solid #D8E0EA;">
+    <div style="max-width:1248px;margin:0 auto;padding:0 clamp(20px,5vw,96px);height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+
+      <!-- Logo lockup (R1 — Primary, light nav) -->
+      <a href="#" aria-label="DwellWell Property Care home" style="display:flex;align-items:center;gap:13px;text-decoration:none;flex:0 0 auto;" style-focus="outline:2px solid #4A8BB5;outline-offset:4px;border-radius:4px;">
+        <svg viewBox="0 0 50 50" style="width:42px;height:42px;display:block;flex:0 0 auto;"><use href="#dw-icon-square-dark"></use></svg>
+        <span style="width:1px;align-self:stretch;margin:6px 0;background:#4A8BB5;"></span>
+        <span style="display:flex;flex-direction:column;line-height:1;">
+          <span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px;color:#101E31;letter-spacing:0.005em;">DwellWell</span>
+          <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:10.5px;letter-spacing:0.04em;color:#57657A;margin-top:3px;">Property Care LLC</span>
+        </span>
+      </a>
+
+      <!-- DESKTOP NAV -->
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);">
+          <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#57657A;text-decoration:none;padding:6px 0;border-bottom:1.5px solid transparent;transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Home</a>
+          <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#57657A;text-decoration:none;padding:6px 0;border-bottom:1.5px solid transparent;transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">About</a>
+
+          <span style="position:relative;display:inline-flex;" onMouseEnter="{{ openServices }}" onMouseLeave="{{ closeServices }}">
+            <button type="button" onClick="{{ toggleServices }}" style="display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#57657A;background:none;border:none;border-bottom:1.5px solid transparent;padding:6px 0;cursor:pointer;transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Services <span style="font-size:9px;line-height:1;">▾</span></button>
+            <sc-if value="{{ servicesOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);min-width:288px;background:#F2F4F7;border:0.5px solid #D8E0EA;border-radius:8px;box-shadow:0 18px 44px rgba(16,30,49,0.14);padding:8px;z-index:60;">
+                <a href="#" style="display:block;padding:13px 16px;border-radius:4px;text-decoration:none;" style-hover="background:#D8E0EA;">
+                  <span style="display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;color:#101E31;letter-spacing:-0.01em;">Residential Property Maintenance</span>
+                  <span style="display:block;font-size:12px;color:#57657A;margin-top:3px;">General handyman &amp; maintenance for occupied homes</span>
+                </a>
+                <a href="#" style="display:block;padding:13px 16px;border-radius:4px;text-decoration:none;" style-hover="background:#D8E0EA;">
+                  <span style="display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;color:#101E31;letter-spacing:-0.01em;">Property Preservation</span>
+                  <span style="display:block;font-size:12px;color:#57657A;margin-top:3px;">Securing, winterisation, cleanouts &amp; condition reporting</span>
+                </a>
+              </div>
+            </sc-if>
+          </span>
+
+          <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#57657A;text-decoration:none;padding:6px 0;border-bottom:1.5px solid transparent;transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Resources</a>
+          <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#57657A;text-decoration:none;padding:6px 0;border-bottom:1.5px solid transparent;transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Join as Contractor</a>
+          <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#57657A;text-decoration:none;padding:6px 0;border-bottom:1.5px solid transparent;transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Contact</a>
+
+          <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#F2F4F7;background:#101E31;padding:10px 22px;border-radius:4px;text-decoration:none;margin-left:6px;transition:opacity .15s;" style-hover="opacity:0.9;" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">Start a conversation</a>
+        </nav>
+      </sc-if>
+
+      <!-- MOBILE: hamburger -->
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ toggleMobile }}" aria-label="Toggle menu" style="display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:10px;" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;border-radius:4px;">
+          <span style="display:block;height:1.5px;background:#101E31;border-radius:2px;"></span>
+          <span style="display:block;height:1.5px;background:#101E31;border-radius:2px;"></span>
+          <span style="display:block;height:1.5px;background:#101E31;border-radius:2px;"></span>
+        </button>
+      </sc-if>
+    </div>
+
+    <!-- MOBILE PANEL -->
+    <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="border-top:0.5px solid #D8E0EA;background:#F2F4F7;padding:8px clamp(20px,5vw,96px) 24px;">
+        <a href="#" style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;border-bottom:0.5px solid #D8E0EA;">Home</a>
+        <a href="#" style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;border-bottom:0.5px solid #D8E0EA;">About</a>
+        <button type="button" onClick="{{ toggleMobileServices }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:#101E31;background:none;border:none;border-bottom:0.5px solid #D8E0EA;padding:14px 0;cursor:pointer;text-align:left;">Services <span style="font-size:11px;color:#57657A;">▾</span></button>
+        <sc-if value="{{ mobileServicesOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:6px 0 6px 16px;border-bottom:0.5px solid #D8E0EA;border-left:1px solid #4A8BB5;margin:0 0 0 2px;">
+            <a href="#" style="display:block;font-size:14px;color:#57657A;text-decoration:none;padding:9px 0;">Residential Property Maintenance</a>
+            <a href="#" style="display:block;font-size:14px;color:#57657A;text-decoration:none;padding:9px 0;">Property Preservation</a>
+          </div>
+        </sc-if>
+        <a href="#" style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;border-bottom:0.5px solid #D8E0EA;">Resources</a>
+        <a href="#" style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;border-bottom:0.5px solid #D8E0EA;">Join as Contractor</a>
+        <a href="#" style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;">Contact</a>
+        <a href="#" style="display:block;text-align:center;font-family:'Inter',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#F2F4F7;background:#101E31;padding:13px 22px;border-radius:4px;text-decoration:none;margin-top:16px;">Start a conversation</a>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- ============ DARK FIELD HERO (locked 2.8.B Truncated Descent) ============ -->
+  <section data-screen-label="Hero — Dark Field" style="position:relative;background:#101E31;overflow:hidden;min-height:clamp(500px,62vw,660px);display:flex;flex-direction:column;justify-content:center;padding:clamp(64px,9vw,104px) 0 clamp(96px,12vw,140px);">
+    <!-- Locked motif 2.8.B — Truncated Descent (from the W), Cool White 5% -->
+    <svg viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;">
+      <g transform="translate(-176.18,-434.30) scale(3.1)">
+        <path d="M190.95,391.71 L289.09,216.80 L387.22,391.71" fill="none" stroke="#F2F4F7" stroke-opacity="0.05" stroke-width="29" stroke-linejoin="miter" stroke-linecap="square"></path>
+      </g>
+    </svg>
+
+    <div style="position:relative;z-index:2;max-width:1248px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,96px);">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+        <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+        <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#D8E0EA;">Managed property maintenance</span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(36px,6.2vw,56px);line-height:1.15;color:#F2F4F7;margin:0 0 20px;max-width:15ch;">Property care, professionally managed.</h1>
+      <p style="font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#F2F4F7;margin:0 0 36px;max-width:56ch;">DwellWell coordinates property maintenance from intake to closeout. One contact. Vetted contractors. Every job documented.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;">
+        <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#F2F4F7;background:#101E31;border:1px solid #4A8BB5;padding:12px 26px;border-radius:4px;text-decoration:none;transition:opacity .15s;" style-hover="opacity:0.88;" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">Start a conversation</a>
+        <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#F2F4F7;background:transparent;border:1px solid #4A8BB5;padding:12px 26px;border-radius:4px;text-decoration:none;transition:background .15s;" style-hover="background:rgba(74,139,181,0.14);" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">Request service</a>
+      </div>
+    </div>
+
+    <!-- Base: 1px Steel Blue rule above 18px Cool White bar -->
+    <div style="position:absolute;left:0;right:0;bottom:0;z-index:2;">
+      <div style="height:1px;background:#4A8BB5;"></div>
+      <div style="height:18px;background:#F2F4F7;"></div>
+    </div>
+  </section>
+
+  <!-- ============ FOUNDATIONS BODY ============ -->
+  <main style="background:#F2F4F7;">
+
+    <!-- SERVICES OVERVIEW — Precision-Square tiles -->
+    <section data-screen-label="Services — Precision-Square tiles" style="max-width:1248px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,96px) clamp(32px,5vw,56px);">
+      <div style="display:flex;gap:16px;align-items:flex-start;margin-bottom:40px;">
+        <span style="width:1px;align-self:stretch;min-height:48px;background:#4A8BB5;flex:0 0 auto;"></span>
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+            <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;">Two service lines</span>
+          </div>
+          <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(30px,4.3vw,40px);line-height:1.2;color:#101E31;margin:0;max-width:18ch;">Service coordination and dispatch</h2>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+        <!-- Tile 1 -->
+        <a href="#" style="display:flex;flex-direction:column;gap:20px;padding:28px;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:8px;text-decoration:none;transition:border-color .15s,transform .15s;" style-hover="border-color:#4A8BB5;transform:translateY(-2px);" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">
+          <div style="width:56px;height:56px;border-radius:8px;background:#101E31;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg viewBox="0 0 50 50" style="width:34px;height:34px;"><use href="#dw-form-w" fill="#4A8BB5"></use></svg>
+          </div>
+          <div>
+            <span style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;margin-bottom:8px;">Residential</span>
+            <h3 style="font-family:'Inter',sans-serif;font-weight:600;font-size:22px;line-height:1.35;letter-spacing:-0.01em;color:#101E31;margin:0 0 10px;">Residential Property Maintenance</h3>
+            <p style="font-size:14px;line-height:1.6;color:#57657A;margin:0;">General handyman and maintenance work for occupied homes, rentals, and multi-unit properties.</p>
+          </div>
+          <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#3A6E91;margin-top:auto;">View services →</span>
+        </a>
+
+        <!-- Tile 2 -->
+        <a href="#" style="display:flex;flex-direction:column;gap:20px;padding:28px;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:8px;text-decoration:none;transition:border-color .15s,transform .15s;" style-hover="border-color:#4A8BB5;transform:translateY(-2px);" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">
+          <div style="width:56px;height:56px;border-radius:8px;background:#101E31;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg viewBox="0 0 50 50" style="width:34px;height:34px;"><use href="#dw-form-w" fill="#4A8BB5"></use></svg>
+          </div>
+          <div>
+            <span style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;margin-bottom:8px;">Preservation</span>
+            <h3 style="font-family:'Inter',sans-serif;font-weight:600;font-size:22px;line-height:1.35;letter-spacing:-0.01em;color:#101E31;margin:0 0 10px;">Property Preservation</h3>
+            <p style="font-size:14px;line-height:1.6;color:#57657A;margin:0;">Securing, board-up, winterisation, debris removal, cleaning, and condition reporting for vacant assets.</p>
+          </div>
+          <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#3A6E91;margin-top:auto;">View services →</span>
+        </a>
+
+        <!-- Tile 3 (process feature block) -->
+        <div style="display:flex;flex-direction:column;gap:20px;padding:28px;background:#101E31;border:1px solid #101E31;border-radius:8px;">
+          <div style="width:56px;height:56px;border-radius:8px;background:#F2F4F7;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg viewBox="0 0 50 50" style="width:34px;height:34px;"><use href="#dw-form-d" fill="#101E31"></use><use href="#dw-form-w" fill="#4A8BB5"></use></svg>
+          </div>
+          <div>
+            <span style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#D8E0EA;margin-bottom:8px;">Operator of record</span>
+            <h3 style="font-family:'Inter',sans-serif;font-weight:600;font-size:22px;line-height:1.35;letter-spacing:-0.01em;color:#F2F4F7;margin:0 0 10px;">You deal with us — not the contractor</h3>
+            <p style="font-size:14px;line-height:1.6;color:#D8E0EA;margin:0;">Intake to closeout under one point of contact. Every job documented and closed with a complete record.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 0.5px Steel Grey divider -->
+    <div style="max-width:1248px;margin:0 auto;"><div style="height:0.5px;background:#D8E0EA;margin:0 clamp(20px,5vw,96px);"></div></div>
+
+    <!-- SYSTEM REFERENCE -->
+    <section data-screen-label="System reference" style="max-width:1248px;margin:0 auto;padding:clamp(48px,7vw,80px) clamp(20px,5vw,96px);">
+      <div style="display:flex;gap:16px;align-items:flex-start;margin-bottom:44px;">
+        <span style="width:1px;align-self:stretch;min-height:48px;background:#4A8BB5;flex:0 0 auto;"></span>
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+            <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;">Global design system</span>
+          </div>
+          <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(30px,4.3vw,40px);line-height:1.2;color:#101E31;margin:0;max-width:18ch;">Tokens, type &amp; components</h2>
+        </div>
+      </div>
+
+      <!-- COLOUR -->
+      <div style="margin-bottom:48px;">
+        <h3 style="font-family:'Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;color:#101E31;margin:0 0 18px;">Colour — five locked</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;">
+          <div style="border:0.5px solid #D8E0EA;border-radius:8px;overflow:hidden;background:#F2F4F7;">
+            <div style="height:72px;background:#101E31;"></div>
+            <div style="padding:12px 14px;"><div style="font-family:'Inter',sans-serif;font-weight:600;font-size:13px;color:#101E31;">Midnight</div><div style="font-family:monospace;font-size:11.5px;color:#57657A;margin-top:3px;">#101E31</div></div>
+          </div>
+          <div style="border:0.5px solid #D8E0EA;border-radius:8px;overflow:hidden;background:#F2F4F7;">
+            <div style="height:72px;background:#4A8BB5;"></div>
+            <div style="padding:12px 14px;"><div style="font-family:'Inter',sans-serif;font-weight:600;font-size:13px;color:#101E31;">Steel Blue</div><div style="font-family:monospace;font-size:11.5px;color:#57657A;margin-top:3px;">#4A8BB5</div></div>
+          </div>
+          <div style="border:0.5px solid #D8E0EA;border-radius:8px;overflow:hidden;background:#F2F4F7;">
+            <div style="height:72px;background:#3A6E91;"></div>
+            <div style="padding:12px 14px;"><div style="font-family:'Inter',sans-serif;font-weight:600;font-size:13px;color:#101E31;">Steel Blue (Text)</div><div style="font-family:monospace;font-size:11.5px;color:#57657A;margin-top:3px;">#3A6E91</div></div>
+          </div>
+          <div style="border:0.5px solid #D8E0EA;border-radius:8px;overflow:hidden;background:#F2F4F7;">
+            <div style="height:72px;background:#57657A;"></div>
+            <div style="padding:12px 14px;"><div style="font-family:'Inter',sans-serif;font-weight:600;font-size:13px;color:#101E31;">Cool Slate</div><div style="font-family:monospace;font-size:11.5px;color:#57657A;margin-top:3px;">#57657A</div></div>
+          </div>
+          <div style="border:0.5px solid #D8E0EA;border-radius:8px;overflow:hidden;background:#F2F4F7;">
+            <div style="height:72px;background:#F2F4F7;border-bottom:0.5px solid #D8E0EA;"></div>
+            <div style="padding:12px 14px;"><div style="font-family:'Inter',sans-serif;font-weight:600;font-size:13px;color:#101E31;">Cool White</div><div style="font-family:monospace;font-size:11.5px;color:#57657A;margin-top:3px;">#F2F4F7</div></div>
+          </div>
+          <div style="border:0.5px solid #D8E0EA;border-radius:8px;overflow:hidden;background:#F2F4F7;">
+            <div style="height:72px;background:#D8E0EA;"></div>
+            <div style="padding:12px 14px;"><div style="font-family:'Inter',sans-serif;font-weight:600;font-size:13px;color:#101E31;">Steel Grey</div><div style="font-family:monospace;font-size:11.5px;color:#57657A;margin-top:3px;">#D8E0EA</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TYPE + BUTTONS / COMPONENTS, two columns -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;">
+
+        <!-- TYPE -->
+        <div>
+          <h3 style="font-family:'Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;color:#101E31;margin:0 0 18px;">Typography</h3>
+          <div style="border:0.5px solid #D8E0EA;border-radius:8px;background:#F2F4F7;padding:24px;display:flex;flex-direction:column;gap:20px;">
+            <div>
+              <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:40px;line-height:1.15;color:#101E31;">Display &amp; H1</div>
+              <div style="font-size:12px;color:#57657A;margin-top:4px;">Cormorant Garamond 600 · 56 / 36px · LH 1.15</div>
+            </div>
+            <div style="height:0.5px;background:#D8E0EA;"></div>
+            <div>
+              <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:30px;line-height:1.2;color:#101E31;">Section heading — H2</div>
+              <div style="font-size:12px;color:#57657A;margin-top:4px;">Cormorant Garamond 600 · 40 / 30px · LH 1.20</div>
+            </div>
+            <div style="height:0.5px;background:#D8E0EA;"></div>
+            <div>
+              <div style="font-family:'Inter',sans-serif;font-weight:600;font-size:22px;line-height:1.35;letter-spacing:-0.01em;color:#101E31;">Subsection — H3</div>
+              <div style="font-size:12px;color:#57657A;margin-top:4px;">Inter 600 · 22 / 20px · tracking −0.01em</div>
+            </div>
+            <div style="height:0.5px;background:#D8E0EA;"></div>
+            <div>
+              <div style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;">Label / H4 — Inter 500 uppercase</div>
+              <div style="font-size:12px;color:#57657A;margin-top:6px;">12px · LH 1.40</div>
+            </div>
+            <div style="height:0.5px;background:#D8E0EA;"></div>
+            <div>
+              <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:16px;line-height:1.65;color:#101E31;max-width:60ch;">Body — Inter Regular at 16px, line-height 1.65, capped at 72 characters. The reading colour is Midnight on Cool White at 15.2:1.</div>
+              <div style="font-size:12px;color:#57657A;margin-top:8px;">Inter 400 · 16px · LH 1.65 · max 72ch</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUTTONS + COMPONENTS -->
+        <div>
+          <h3 style="font-family:'Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;color:#101E31;margin:0 0 18px;">Buttons &amp; components</h3>
+          <div style="border:0.5px solid #D8E0EA;border-radius:8px;background:#F2F4F7;padding:24px;display:flex;flex-direction:column;gap:26px;">
+
+            <div>
+              <div style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;margin-bottom:14px;">Buttons · 4px radius</div>
+              <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
+                <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#F2F4F7;background:#101E31;padding:10px 22px;border-radius:4px;text-decoration:none;transition:opacity .15s;" style-hover="opacity:0.9;" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">Start a conversation</a>
+                <a href="#" style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#3A6E91;background:transparent;border:1px solid #4A8BB5;padding:10px 22px;border-radius:4px;text-decoration:none;transition:background .15s;" style-hover="background:rgba(74,139,181,0.1);" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">Request service</a>
+              </div>
+              <div style="font-size:12px;color:#57657A;margin-top:12px;">Primary = Midnight fill + Cool White · Secondary = Steel Blue outline + #3A6E91 label</div>
+            </div>
+
+            <div style="height:0.5px;background:#D8E0EA;"></div>
+
+            <div>
+              <div style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;margin-bottom:14px;">Tags / chips · 2px radius · labels only</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:10px;letter-spacing:0.04em;padding:4px 9px;border-radius:2px;background:#D8E0EA;color:#101E31;">RESIDENTIAL</span>
+                <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:10px;letter-spacing:0.04em;padding:4px 9px;border-radius:2px;background:#D8E0EA;color:#101E31;">PRESERVATION</span>
+                <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:10px;letter-spacing:0.04em;padding:4px 9px;border-radius:2px;background:#101E31;color:#F2F4F7;">DOCUMENTED</span>
+              </div>
+            </div>
+
+            <div style="height:0.5px;background:#D8E0EA;"></div>
+
+            <div>
+              <div style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;margin-bottom:14px;">Callout boxes · transparent fill</div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="border:0.5px solid #D8E0EA;border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.55;color:#101E31;">Neutral callout — 0.5px Steel Grey border. Repeatable structural note.</div>
+                <div style="border:0.5px solid #4A8BB5;border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.55;color:#101E31;">Advisory callout — Steel Blue border, max one per page.</div>
+              </div>
+            </div>
+
+            <div style="height:0.5px;background:#D8E0EA;"></div>
+
+            <div>
+              <div style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;margin-bottom:14px;">Radius family</div>
+              <div style="display:flex;flex-wrap:wrap;gap:22px;">
+                <div style="text-align:center;"><svg viewBox="0 0 50 50" style="width:48px;height:48px;display:block;margin:0 auto 8px;"><use href="#dw-icon-square-dark"></use></svg><div style="font-size:11px;color:#57657A;">Icon · 25%</div></div>
+                <div style="text-align:center;"><div style="width:48px;height:48px;border-radius:8px;background:#101E31;margin:0 auto 8px;"></div><div style="font-size:11px;color:#57657A;">Square · 8px</div></div>
+                <div style="text-align:center;"><div style="width:48px;height:48px;border-radius:4px;background:#4A8BB5;margin:0 auto 8px;"></div><div style="font-size:11px;color:#57657A;">Button · 4px</div></div>
+                <div style="text-align:center;"><div style="width:48px;height:48px;border-radius:2px;background:#D8E0EA;margin:0 auto 8px;"></div><div style="font-size:11px;color:#57657A;">Chip · 2px</div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER (Dark Field) ============ -->
+  <footer data-screen-label="Footer — Dark Field" style="background:#101E31;color:#D8E0EA;padding:clamp(56px,8vw,80px) 0 36px;">
+    <div style="max-width:1248px;margin:0 auto;padding:0 clamp(20px,5vw,96px);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px 32px;">
+
+        <div style="grid-column:1 / -1;max-width:520px;">
+          <div style="display:flex;align-items:center;gap:13px;margin-bottom:18px;">
+            <svg viewBox="0 0 50 50" style="width:42px;height:42px;display:block;"><use href="#dw-icon-bare-reversed"></use></svg>
+            <span style="width:1px;align-self:stretch;margin:4px 0;background:#4A8BB5;"></span>
+            <span style="display:flex;flex-direction:column;line-height:1;">
+              <span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px;color:#F2F4F7;">DwellWell</span>
+              <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:10.5px;letter-spacing:0.04em;color:#D8E0EA;margin-top:3px;">Property Care LLC</span>
+            </span>
+          </div>
+          <p style="font-size:14px;line-height:1.6;color:#D8E0EA;margin:0 0 16px;max-width:46ch;">DwellWell coordinates property maintenance and preservation from intake to closeout — one point of contact, vetted contractors, every job documented.</p>
+          <p style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:20px;color:#F2F4F7;margin:0;">Coordinated from intake to closeout.</p>
+        </div>
+
+        <div>
+          <h4 style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#D8E0EA;margin:0 0 14px;">Company</h4>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li><a href="#" style="font-size:14px;color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;" style-hover="border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">Home</a></li>
+            <li><a href="#" style="font-size:14px;color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;" style-hover="border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">About</a></li>
+            <li><a href="#" style="font-size:14px;color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;" style-hover="border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">Resources</a></li>
+            <li><a href="#" style="font-size:14px;color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;" style-hover="border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">Join as Contractor</a></li>
+            <li><a href="#" style="font-size:14px;color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;" style-hover="border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#D8E0EA;margin:0 0 14px;">Services</h4>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li><a href="#" style="font-size:14px;color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;" style-hover="border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">Residential maintenance</a></li>
+            <li><a href="#" style="font-size:14px;color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;" style-hover="border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">Property preservation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-family:'Inter',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#D8E0EA;margin:0 0 14px;">Contact</h4>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+            <li><a href="mailto:info@dwellwellpropertycare.com" style="font-size:14px;color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;" style-hover="border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">info@dwellwellpropertycare.com</a></li>
+            <li style="font-size:14px;color:#D8E0EA;">Clients: <span style="color:#D8E0EA;">[TBD]</span></li>
+            <li style="font-size:14px;color:#D8E0EA;">Vendors: <span style="color:#D8E0EA;">[TBD]</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- One emphasis divider (Steel Blue) -->
+      <div style="height:1px;background:#4A8BB5;margin:36px 0 22px;"></div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;font-size:12.5px;color:#D8E0EA;">
+        <a href="#" style="color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;" style-hover="border-color:#4A8BB5;">Privacy Policy</a>
+        <span style="color:#57657A;">·</span>
+        <a href="#" style="color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;" style-hover="border-color:#4A8BB5;">Terms of Service</a>
+        <span style="color:#57657A;">·</span>
+        <a href="#" style="color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;" style-hover="border-color:#4A8BB5;">Service Terms</a>
+        <span style="color:#57657A;">·</span>
+        <a href="#" style="color:#F2F4F7;text-decoration:none;border-bottom:1px solid transparent;" style-hover="border-color:#4A8BB5;">Coverage &amp; Limitations</a>
+        <span style="color:#57657A;">·</span>
+        <span style="color:#D8E0EA;">© DwellWell Property Care LLC</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ FLOATING WHATSAPP ============ -->
+  <a href="#" aria-label="Chat with DwellWell on WhatsApp" style="position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:60;width:56px;height:56px;border-radius:14px;background:#101E31;border:1px solid #4A8BB5;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 24px rgba(16,30,49,0.28);transition:transform .15s;" style-hover="transform:translateY(-2px);" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">
+    <svg viewBox="0 0 32 32" style="width:28px;height:28px;" aria-hidden="true"><path fill="#F2F4F7" d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.5 2.1 7.9L.5 31.5l7.8-2c2.3 1.3 5 1.9 7.7 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.5 0-4.9-.7-7-1.9l-.5-.3-4.6 1.2 1.2-4.5-.3-.5C3.4 20.7 2.7 18.4 2.7 16 2.7 8.7 8.7 2.7 16 2.7S29.3 8.7 29.3 16 23.3 28.8 16 28.8zm8.2-9.9c-.4-.2-2.6-1.3-3-1.4-.4-.1-.7-.2-1 .2s-1.1 1.4-1.4 1.7c-.2.3-.5.3-.9.1-.4-.2-1.9-.7-3.6-2.2-1.3-1.2-2.2-2.6-2.5-3-.3-.4 0-.7.2-.9.2-.2.4-.5.6-.8.2-.3.3-.5.4-.8.1-.3 0-.6 0-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.7-1-.7h-.8c-.3 0-.8.1-1.2.5-.4.4-1.6 1.5-1.6 3.7s1.6 4.3 1.9 4.6c.2.3 3.2 4.9 7.7 6.8 1.1.5 1.9.8 2.6 1 1.1.3 2.1.3 2.9.2.9-.1 2.6-1.1 3-2.1.4-1 .4-1.9.3-2.1-.1-.2-.4-.3-.8-.5z"></path></svg>
+  </a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    narrow: (typeof window !== 'undefined' && window.innerWidth < 920),
+    servicesOpen: false,
+    mobileOpen: false,
+    mobileServicesOpen: false
+  };
+  componentDidMount() {
+    this._onResize = () => {
+      const n = window.innerWidth < 920;
+      if (n !== this.state.narrow) this.setState({ narrow: n, mobileOpen: false, servicesOpen: false });
+    };
+    window.addEventListener('resize', this._onResize);
+  }
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+  renderVals() {
+    return {
+      narrow: this.state.narrow,
+      wide: !this.state.narrow,
+      servicesOpen: this.state.servicesOpen,
+      mobileOpen: this.state.mobileOpen,
+      mobileServicesOpen: this.state.mobileServicesOpen,
+      openServices: () => this.setState({ servicesOpen: true }),
+      closeServices: () => this.setState({ servicesOpen: false }),
+      toggleServices: () => this.setState(s => ({ servicesOpen: !s.servicesOpen })),
+      toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen })),
+      toggleMobileServices: () => this.setState(s => ({ mobileServicesOpen: !s.mobileServicesOpen }))
+    };
+  }
+}
+</script>
+</body>
+</html>

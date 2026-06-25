@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DwellWell — Brand Guidelines v2.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Compliant load: exactly Cormorant Garamond 600 + Inter 400/500/600. No Inter 300, no 700, no variable fonts. -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --midnight:#101E31; --steel-blue:#4A8BB5; --cool-slate:#57657A; --cool-white:#F2F4F7; --steel-grey:#D8E0EA;
+    --link-blue:#3A6E91; /* Steel Blue (Text): AA-compliant text-link variant of Steel Blue on light surfaces — not a sixth brand colour */
+    --ser:'Cormorant Garamond', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'SF Mono','Cascadia Code','Fira Code', ui-monospace, monospace;
+    /* DOCUMENTATION CHROME ONLY — not brand colours; never used in any brand application */
+    --doc-green:#2F7A55; --doc-green-bg:#EAF4EE; --doc-green-line:#BFE0CC;
+    --doc-amber:#9A6B16; --doc-amber-bg:#FBF3E2; --doc-amber-line:#EAD7A8;
+    --doc-red:#B4453A; --doc-paper:#FBFCFD; --doc-hair:#E4E9F0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  body{margin:0; background:var(--doc-paper); color:var(--midnight); font-family:var(--sans); font-weight:400; line-height:1.65; font-size:16px; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3,h4{margin:0; font-weight:600;}
+  .h2{font-family:var(--ser); font-weight:600; font-size:40px; line-height:1.2; letter-spacing:.01em;}
+  .h3{font-family:var(--sans); font-weight:600; font-size:22px; line-height:1.35; letter-spacing:-.01em;}
+  .h4{font-family:var(--sans); font-weight:600; font-size:15px;}
+  .label{font-family:var(--sans); font-weight:500; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--cool-slate);}
+  p{margin:0 0 14px;} a{color:var(--link-blue); text-decoration:underline; text-underline-offset:2px;} .dark a,.cover a,.foot a,.darkpanel a{color:var(--cool-white); text-decoration-color:var(--steel-blue);}
+  code,.mono{font-family:var(--mono); font-size:.85em;} strong{font-weight:600;} em{font-style:italic;}
+
+  /* COVER */
+  .cover{background:var(--midnight); color:var(--cool-white); padding:96px 0 70px; position:relative; overflow:hidden;}
+  .cover .wrap{position:relative; z-index:2;}
+  .cover-eyebrow{font-weight:500; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--steel-grey); margin-bottom:32px;}
+  .cover-title{font-family:var(--ser); font-weight:600; font-size:56px; line-height:1.08; margin-bottom:12px;}
+  .cover-sub{font-weight:400; font-size:15px; line-height:1.7; color:var(--steel-grey); max-width:540px; margin-bottom:44px;}
+  .cover-meta{display:flex; flex-wrap:wrap; gap:30px 52px; border-top:1px solid rgba(216,224,234,.22); padding-top:26px;}
+  .cover-meta .val{font-weight:500; font-size:14px; color:var(--cool-white); margin-top:5px;}
+  .cover-motif{position:absolute; inset:0; z-index:1; pointer-events:none;}
+
+  /* NAV */
+  .navbar{position:sticky; top:0; z-index:40; background:rgba(251,252,253,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--doc-hair);}
+  .navbar .wrap{display:flex; align-items:center; justify-content:space-between; height:54px; gap:18px;}
+  .nav-id{font-family:var(--ser); font-weight:600; font-size:18px;}
+  .nav-id span{font-family:var(--sans); font-weight:500; font-size:11px; letter-spacing:.04em; color:var(--cool-slate); margin-left:8px;}
+  .nav-links{display:flex; gap:17px; overflow-x:auto;}
+  .nav-links a{font-weight:500; font-size:12.5px; color:var(--cool-slate); text-decoration:none; white-space:nowrap; padding:4px 0; border-bottom:1.5px solid transparent;}
+  .nav-links a:hover{color:var(--midnight); border-color:var(--steel-blue);}
+  @media(max-width:780px){.nav-links{display:none;}}
+
+  /* SECTIONS */
+  section{padding:66px 0 8px; border-top:1px solid var(--doc-hair);}
+  .sec-num{font-weight:600; font-size:12px; letter-spacing:.16em; color:var(--steel-blue); margin-bottom:10px;}
+  .sec-title{font-family:var(--ser); font-weight:600; font-size:40px; line-height:1.1; margin-bottom:14px;}
+  .sec-intro{font-size:16px; color:var(--cool-slate); max-width:780px; margin-bottom:32px;}
+  .block{margin:0 0 38px;}
+  .opener{display:flex; gap:14px; align-items:flex-start; margin:0 0 14px;}
+  .opener::before{content:""; flex:0 0 auto; width:1px; background:var(--steel-blue); align-self:stretch; min-height:24px;}
+  .opener h3{margin:0;}
+  .block-sub{color:var(--cool-slate); margin-bottom:16px; max-width:800px;}
+
+  /* PANELS */
+  .panel{border-radius:8px; padding:15px 18px; margin:16px 0; font-size:14px; border:1px solid; line-height:1.6;}
+  .panel .pl{font-weight:600; font-size:11px; letter-spacing:.13em; text-transform:uppercase; display:block; margin-bottom:6px;}
+  .locked{background:var(--doc-green-bg); border-color:var(--doc-green-line); color:#1d3d2c;} .locked .pl{color:var(--doc-green);}
+  .open{background:var(--doc-amber-bg); border-color:var(--doc-amber-line); color:#5e470f;} .open .pl{color:var(--doc-amber);}
+
+  /* TABLES */
+  table{width:100%; border-collapse:collapse; margin:14px 0 8px; font-size:13.5px;}
+  th,td{text-align:left; padding:9px 12px; vertical-align:top; border-bottom:.5px solid var(--steel-grey);}
+  th{font-weight:600; font-size:12px; color:var(--midnight); background:#F4F6F9; border-bottom:1px solid var(--steel-grey);}
+  td.k{font-weight:500; color:var(--midnight); width:26%;} td{color:var(--midnight);}
+  .small{font-size:12.5px; color:var(--cool-slate);}
+
+  /* SWATCHES */
+  .swatches{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:14px; margin:14px 0;}
+  .sw{border:1px solid var(--doc-hair); border-radius:8px; overflow:hidden; background:#fff;}
+  .sw .chip{height:76px;} .sw .meta{padding:11px 13px;}
+  .sw .nm{font-weight:600; font-size:14px;} .sw .hx{font-family:var(--mono); font-size:11.5px; color:var(--cool-slate); margin-top:3px;}
+  .sw .rl{font-size:11.5px; color:var(--cool-slate); margin-top:6px;}
+
+  /* TYPE SPECIMENS */
+  .spec{border:1px solid var(--doc-hair); border-radius:8px; padding:17px 20px; margin:12px 0; background:#fff;}
+  .spec .sl{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:8px;}
+  .spec .meta{font-size:12.5px; color:var(--cool-slate);}
+
+  /* CARDS / GRID */
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:14px;} @media(max-width:680px){.two{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--doc-hair); border-radius:8px; padding:15px 17px; background:#fff; font-size:13.5px; line-height:1.55;}
+  .card .tag{font-weight:600; font-size:11px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:7px;}
+  .do{border-left:3px solid var(--doc-green);} .do .tag{color:var(--doc-green);}
+  .dont{border-left:3px solid var(--doc-red);} .dont .tag{color:var(--doc-red);}
+  .quote{font-family:var(--sans); font-weight:400; font-size:14.5px; line-height:1.55; color:var(--midnight); margin:0 0 8px;}
+  .anno{font-size:12.5px; color:var(--cool-slate); margin:0;}
+  ul.clean{margin:8px 0 14px; padding-left:18px;} ul.clean li{margin-bottom:5px;}
+
+  /* PILLS / CHIPS */
+  .pill{display:inline-block; font-weight:500; font-size:11px; letter-spacing:.04em; padding:3px 9px; border-radius:2px; margin:2px 4px 2px 0;}
+  .pill.neutral{background:var(--steel-grey); color:var(--midnight);}
+  .pill.active{background:var(--midnight); color:var(--cool-white);}
+  .pill.secondary{background:#fff; color:var(--cool-slate); border:1px solid var(--steel-grey);}
+
+  /* PRINCIPLE / REGISTER */
+  .principle{border:1px solid var(--doc-hair); border-left:3px solid var(--steel-blue); border-radius:8px; padding:16px 18px; margin:12px 0; background:#fff;}
+  .principle .pn{font-weight:600; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--steel-blue);}
+  .principle .pt{font-family:var(--ser); font-size:24px; margin:2px 0 8px;}
+  .reg{border:1px solid var(--doc-hair); border-radius:8px; padding:16px 18px; margin:12px 0; background:#fff;}
+  .reg .rc{display:inline-block; font-weight:600; font-size:11px; letter-spacing:.1em; background:var(--midnight); color:var(--cool-white); padding:3px 9px; border-radius:2px; margin-right:8px;}
+  .reg .rt{font-weight:600; font-size:14px;}
+  .reg dl{display:grid; grid-template-columns:120px 1fr; gap:4px 14px; margin:12px 0 0; font-size:13px;}
+  .reg dt{font-weight:500; color:var(--cool-slate);} .reg dd{margin:0; color:var(--midnight);}
+  .reg .ex{margin-top:10px; padding:10px 12px; background:#F4F6F9; border-radius:6px; font-style:italic; font-size:13px;}
+  @media(max-width:560px){.reg dl{grid-template-columns:1fr;} .reg dt{margin-top:6px;}}
+
+  /* ── LOGO LOCKUPS ── */
+  .lkgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; margin:16px 0;}
+  .lkcell{border:1px solid var(--doc-hair); border-radius:8px; overflow:hidden; background:#fff;}
+  .lkstage{padding:30px 26px; display:flex; align-items:center; justify-content:center; min-height:128px;}
+  .lkstage.light{background:var(--cool-white);}
+  .lkstage.dark{background:var(--midnight);}
+  .lkcap{padding:11px 15px; border-top:1px solid var(--doc-hair); font-size:12.5px;}
+  .lkcap b{font-weight:600;} .lkcap span{color:var(--cool-slate);}
+  /* horizontal lockup */
+  .lk{display:flex; align-items:center; gap:14px;}
+  .lk img,.lk svg{display:block; height:52px; width:52px;}
+  .lk .rule{width:1px; align-self:stretch; min-height:46px; background:var(--steel-blue);}
+  .lk .wm .nm{font-family:var(--ser); font-weight:600; font-size:30px; line-height:1; letter-spacing:.005em;}
+  .lk .wm .ds{font-family:var(--sans); font-weight:400; font-size:12px; letter-spacing:.02em; margin-top:3px;}
+  .lkstage.light .nm{color:var(--midnight);} .lkstage.light .ds{color:var(--cool-slate);}
+  .lkstage.dark .nm{color:var(--cool-white);} .lkstage.dark .ds{color:var(--steel-grey);}
+  /* contained badge */
+  .badge{background:var(--midnight); border-radius:8px; padding:22px 26px;}
+  /* stacked */
+  .lk.stacked{flex-direction:column; gap:10px; text-align:center;}
+  .lk.stacked .rule{display:none;}
+  .lk.stacked img,.lk.stacked svg{height:56px; width:56px;}
+  .lk.stacked .nm{font-size:26px;}
+  /* compact */
+  .lk.compact img,.lk.compact svg{height:34px; width:34px;} .lk.compact .rule{min-height:30px;} .lk.compact .nm{font-size:21px;} .lk.compact .ds{font-size:10px;}
+  /* wordmark only */
+  .wmonly .nm{font-family:var(--ser); font-weight:600; font-size:34px; line-height:1;}
+  .wmonly .ds{font-family:var(--sans); font-weight:400; font-size:13px; letter-spacing:.02em; margin-top:4px;}
+  .clearbox{outline:1px dashed var(--steel-blue); outline-offset:0;}
+
+  /* ── SHAPE DEMOS ── */
+  .demo-row{display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end; margin:14px 0;}
+  .ps{width:72px; height:72px; border-radius:8px;} .ps-lab{font-size:11.5px; color:var(--cool-slate); text-align:center; margin-top:7px;}
+  .ps.outline{background:var(--cool-white); border:1px solid var(--steel-grey);}
+  .ps.structural{background:var(--steel-grey);}
+  .ps.accent{background:var(--midnight);}
+  .ps.emphasis{background:var(--steel-blue);}
+  .radii{display:flex; gap:22px; flex-wrap:wrap; margin:14px 0;}
+  .radii .ri{text-align:center; font-size:11.5px; color:var(--cool-slate); max-width:110px;}
+  .radii .box{width:60px; height:60px; background:var(--midnight); margin:0 auto 8px;}
+  .radii .box.icn{background:transparent; padding:0;} .radii .box.icn img,.radii .box.icn svg{width:60px; height:60px; display:block;}
+  .ruledemo{border:1px solid var(--doc-hair); border-radius:8px; padding:18px 20px; background:#fff; margin:10px 0; font-size:13.5px;}
+  .rd-open{display:flex; gap:12px; align-items:flex-start;}
+  .rd-open .vbar{width:1px; background:var(--steel-blue); align-self:stretch; min-height:40px;}
+  .rd-eyebrow{display:flex; align-items:center; gap:8px; font-weight:600; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--cool-slate);}
+  .rd-eyebrow::before{content:""; width:24px; height:1px; background:var(--steel-blue);}
+  .divline{height:0; border-top:.5px solid var(--steel-grey); margin:14px 0;}
+  .divline.blue{border-top-color:var(--steel-blue);}
+  .darkstrip{background:var(--midnight); border-radius:8px; padding:20px; margin:10px 0; color:var(--cool-white);}
+  .darkstrip .dl40{height:0; border-top:.5px solid rgba(242,244,247,.4); margin:14px 0;}
+  .darkstrip .dl100{height:0; border-top:1px solid var(--cool-white); margin:14px 0;}
+  .callout{border:.5px solid var(--steel-grey); border-radius:8px; padding:14px 16px; font-size:13.5px; margin:8px 0;}
+  .callout.adv{border-color:var(--steel-blue);}
+  .inset{background:rgba(216,224,234,.4); border-radius:8px; padding:14px 16px; font-size:13.5px; margin:8px 0;}
+  .motif-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin:14px 0;}
+  .darkpanel{position:relative; background:var(--midnight); border-radius:8px; overflow:hidden; aspect-ratio:2/1;}
+  .darkpanel svg{position:absolute; inset:0; width:100%; height:100%;}
+  .darkpanel .cap{position:absolute; left:7%; bottom:18%; color:var(--cool-white); z-index:2;}
+  .darkpanel .cap .eb{font-weight:600; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--steel-grey); margin-bottom:8px;}
+  .darkpanel .cap .hd{font-family:var(--ser); font-weight:600; font-size:24px; line-height:1.15;}
+  .darkpanel .base{position:absolute; left:0; right:0; bottom:0; z-index:3;}
+  .darkpanel .base .rule{height:1px; background:var(--steel-blue);} .darkpanel .base .bar{height:12px; background:var(--cool-white);}
+  .motifcard{border:1px solid var(--doc-hair); border-radius:8px; padding:16px; background:#fff;}
+  .demo-note{font-size:12px; color:var(--cool-slate); margin-top:8px;}
+  .legend{display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:var(--cool-slate); margin:8px 0 0;}
+  .legend i{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px;}
+
+  footer{background:var(--midnight); color:var(--steel-grey); margin-top:56px; padding:40px 0;}
+  footer .wrap{font-size:13px;} footer .ft-line{font-family:var(--ser); font-weight:600; font-size:18px; color:var(--cool-white); margin-bottom:8px;}
+  @media print{.navbar{position:static;} section{break-inside:avoid-page;} .lkcell,.spec,.principle,.reg,.card{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<!-- DwellWell mark sprite: form paths lifted from the supplied DwellWell_Master_Logo.svg; container geometry corrected in-document to rx=12.5 (25% of the 50-unit box) per Locked Decision 3-B. The supplied master file remains deprecated for production export until reissued with this corrected radius. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <g id="dw-form-d"><path d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"/></g>
+  <g id="dw-form-w"><path d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"/></g>
+  <symbol id="dw-icon-square-dark" viewBox="0 0 50 50"><rect x="0" y="0" width="50" height="50" rx="12.5" fill="#101E31"/><use href="#dw-form-d" fill="#F2F4F7"/><use href="#dw-form-w" fill="#4A8BB5"/></symbol>
+  <symbol id="dw-icon-square-light" viewBox="0 0 50 50"><rect x="0" y="0" width="50" height="50" rx="12.5" fill="#F2F4F7"/><use href="#dw-form-d" fill="#101E31"/><use href="#dw-form-w" fill="#4A8BB5"/></symbol>
+  <symbol id="dw-icon-bare-midnight-reversed" viewBox="0 0 50 50"><use href="#dw-form-d" fill="#F2F4F7"/><use href="#dw-form-w" fill="#4A8BB5"/></symbol>
+  <!-- unused contained single-ink/black symbols removed in v2.5 (single-ink uses the bare monogram) -->
+  <symbol id="dw-icon-bare-midnight" viewBox="0 0 50 50"><use href="#dw-form-d" fill="#101E31"/><use href="#dw-form-w" fill="#101E31"/></symbol>
+  <symbol id="dw-icon-bare-black" viewBox="0 0 50 50"><use href="#dw-form-d" fill="#000000"/><use href="#dw-form-w" fill="#000000"/></symbol>
+</defs></svg>
+
+
+<!-- COVER -->
+<header class="cover">
+  <svg class="cover-motif" viewBox="0 0 1080 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(560 -50) scale(1.7)">
+      <path d="M181.19,59.35 c0,0,164.89,0,164.45,0 c-0.44,0,126.02,25.83,124.12,151.22 c-1.26,76.24,-44.74,117.19,-70.88,136.73" fill="none" stroke="#F2F4F7" stroke-opacity="0.07" stroke-width="34" stroke-linecap="square"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="cover-eyebrow">DwellWell Property Care LLC · Master Brand Reference</div>
+    <h1 class="cover-title">Brand Guidelines</h1>
+    <p class="cover-sub">The single authoritative reference for the DwellWell brand — foundation, verbal identity, colour, typography, logo, and design architecture. Supersedes the Logo Rulebook, Typography System, Shapes Library, and Brand Voice &amp; Tone Guide.</p>
+    <div class="cover-meta">
+      <div><div class="label">Version</div><div class="val">2.5 · June 2026</div></div>
+      <div><div class="label">Status</div><div class="val">Active — Governing</div></div>
+      <div><div class="label">Entity</div><div class="val">DwellWell Property Care LLC</div></div>
+      <div><div class="label">Classification</div><div class="val">Confidential</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <div class="wrap">
+    <div class="nav-id">DwellWell <span>Guidelines v2.5</span></div>
+    <div class="nav-links">
+      <a href="#s1">01 Foundation</a><a href="#s2">02 Voice</a><a href="#s3">03 Colour</a>
+      <a href="#s4">04 Type</a><a href="#s5">05 Logo</a><a href="#s6">06 Shapes</a><a href="#s7">07 Governance</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ═══ 01 FOUNDATION ═══ -->
+<section id="s1">
+  <div class="sec-num">SECTION 01</div>
+  <h2 class="sec-title">Brand Foundation</h2>
+  <p class="sec-intro">Who DwellWell is, who it serves, and the single sentence every communication derives from.</p>
+
+  <div class="block"><div class="opener"><h3 class="h3">Positioning</h3></div>
+    <p>DwellWell is a US-based <strong>managed property maintenance and preservation operator</strong> — the operator of record between the demand side (property managers, landlords, lenders, real-estate investors) and vetted, independent US-based contractors. DwellWell receives work orders, manages the full job lifecycle from intake to closeout, dispatches contractors, and owns the client relationship throughout. When something goes wrong, the client deals with DwellWell — not the contractor.</p>
+    <div class="panel locked"><span class="pl">Locked — what DwellWell is not</span>DwellWell is <strong>not</strong> a gig platform, a marketplace, a directory, or a startup. It never adopts consumer-app, gig-economy, or home-services-franchise cues. "Platform" is prohibited in copy (§02).</div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">The three brand words</h3></div>
+    <p>Every output is tested against three words. If a sentence hedges it isn't <strong>Trustworthy</strong>; if it rambles it isn't <strong>Organised</strong>; if it wastes the reader's time it isn't <strong>Efficient</strong>.</p>
+    <table>
+      <tr><th>Word</th><th>In practice</th></tr>
+      <tr><td class="k">Trustworthy</td><td>Claims are concrete and verifiable. Commitments are stated as facts, never aspirations.</td></tr>
+      <tr><td class="k">Organised</td><td>Process is visible. Structure carries meaning — in layout and in language.</td></tr>
+      <tr><td class="k">Efficient</td><td>Nothing redundant. The brand says what is needed and stops.</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Personality</h3></div>
+    <p>DwellWell speaks like a senior partner at a well-regarded professional firm — formal enough to command respect, human enough to treat clients as people. Calm, authoritative, competent. The test: <em>"DwellWell is the most competent person in the room — and doesn't need to say so."</em> If copy sounds like it is trying to impress, it is wrong; if it sounds like it is describing how things work, it is right.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Audiences</h3></div>
+    <table>
+      <tr><th>Code</th><th>Audience</th><th>Lead with</th></tr>
+      <tr><td class="k">PM</td><td>Property management professionals — owners, operations directors, portfolio managers <span class="small">(primary)</span></td><td>The managed-operator distinction. One contact. Documentation standard. Accountability owned by DwellWell.</td></tr>
+      <tr><td class="k">PR</td><td>Preservation clients — lenders, banks, investors managing vacant or distressed assets</td><td>Documentation completeness. Compliance awareness. Response speed for time-sensitive securing tasks.</td></tr>
+      <tr><td class="k">CO</td><td>Contractors — independent tradespeople in or applying to the network</td><td>Clear scope on every job. Consistent, managed dispatch. Professional coordination.</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Service lines</h3></div>
+    <p><strong>Residential property maintenance</strong> — general handyman and maintenance work for occupied residential properties. <strong>Property preservation</strong> — securing and board-up, lock changes, debris removal, cleaning, lawn maintenance, winterisation, general repairs, and condition inspection and reporting for vacant, foreclosed, or REO assets.</p>
+    <div class="panel open"><span class="pl">Open — copy gated by launch reality</span>Both lines exist as positioning. Claimable copy is constrained by the Messaging Architecture (§02): preservation may be described as a full scope; the residential line lists general handyman/maintenance only. Do not name specialist-trade categories or code-regulated services in copy until operations confirms them operational and legal reviews any required wording.</div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Residential launch copy appendix</h3></div>
+    <p class="block-sub">This appendix controls examples used in website, proposal, and sales copy until operations publishes a fuller service catalogue.</p>
+    <table>
+      <tr><th>Allowed at launch</th><th>Not yet claimable</th></tr>
+      <tr><td class="k">General handyman and routine maintenance</td><td>Named specialist-trade categories, code-regulated service claims, or licensed-trade claims.</td></tr>
+      <tr><td class="k">Turnover support and minor repair coordination within confirmed scope</td><td>Any residential wording that implies comprehensive or full-service coverage.</td></tr>
+      <tr><td class="k">Work-order intake, dispatch, documentation, and closeout</td><td>Any standard-request response window not confirmed by operations.</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Anchor sentence — all copy derives from this</h3></div>
+    <div class="panel locked"><span class="pl">Locked · D-02</span>"DwellWell coordinates property maintenance from intake to closeout — one point of contact, vetted contractors, every job documented."</div>
+  </div>
+</section>
+
+<!-- ═══ 02 VERBAL IDENTITY ═══ -->
+<section id="s2">
+  <div class="sec-num">SECTION 02</div>
+  <h2 class="sec-title">Verbal Identity</h2>
+  <p class="sec-intro">The governing voice and tone. Any writer, operator, or agency applying this section should be able to produce DwellWell-correct copy without further instruction.</p>
+
+  <div class="block"><div class="opener"><h3 class="h3">Voice character</h3></div>
+    <p>The brand trusts its audience. Property managers are skilled professionals who scan rather than read; they have been burned by vague promises before, and they do not need enthusiasm — they need evidence. DwellWell gives them evidence in the form of precise, process-led language that describes what happens, in what order, with what outcome.</p>
+    <p class="small"><strong>Three-word test (Brand Brief v2.4):</strong> before publishing, ask whether the copy feels Trustworthy, Organised, and Efficient. If a sentence hedges (not trustworthy), rambles (not organised), or wastes the reader's time (not efficient) — rewrite it.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Two modes — one voice · Voice-person rule</h3></div>
+    <p>The voice is constant; the mode shifts with surface. On the <strong>website and marketing</strong> it is process-led — "DwellWell" is the subject, with no experience claims. In <strong>proposals and credentials</strong> it is experience-anchored — the founding team's experience is the credibility signal, always attributed to the team, never the entity. The voice-<em>person</em> follows: <strong>"DwellWell"</strong> is the subject in brand/marketing copy; <strong>"we"</strong> is the subject in correspondence (emails, proposals, work orders, and website FAQ/contact). The shift is structural, not tonal — <strong>do not mix the two within a single module or section</strong>. A multi-part document may carry both: a proposal, for example, uses "DwellWell" in its cover and about sections and "we" through the body. When a surface is both marketing and correspondence (e.g. outbound sales email), correspondence wins — write in the first person, signed by a named person.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Five tone principles</h3></div>
+    <div class="principle"><div class="pn">Principle 01</div><div class="pt">Specific over general</div>
+      <p>Every claim is concrete and verifiable. Process language describes what happens, in what order, with what outcome. Abstractions — "quality service," "reliable results," "we care" — are not used: they cannot be tested and are not believed.</p>
+      <div class="two"><div class="card do"><div class="tag">Do</div>"Submit a work order. DwellWell dispatches a vetted contractor, manages the job, and closes it with full documentation."</div><div class="card dont"><div class="tag">Don't</div>"We provide high-quality property maintenance solutions tailored to your needs."</div></div></div>
+    <div class="principle"><div class="pn">Principle 02</div><div class="pt">Direct without being blunt</div>
+      <p>DwellWell says what needs saying and stops — no filler, no preamble, no unnecessary qualification. But directness is not curtness; the brand always respects the reader's intelligence and professional context.</p>
+      <div class="two"><div class="card do"><div class="tag">Do</div>"One contact. Every job managed, documented, and closed by us — not referred out."</div><div class="card dont"><div class="tag">Don't</div>"We just wanted to quickly touch base and let you know that we might be able to assist with some of your maintenance needs."</div></div></div>
+    <div class="principle"><div class="pn">Principle 03</div><div class="pt">Confident without overclaiming</div>
+      <p>Commitments are stated as operational facts, not aspirations. Where a claim is not yet established it is held back rather than hedged. A scoped claim stated firmly beats a broad claim stated softly. Never "we try" or "we aim to."</p>
+      <div class="two"><div class="card do"><div class="tag">Do</div>"Emergency and urgent requests are acknowledged the same business day."</div><div class="card dont"><div class="tag">Don't</div>"We always try our best to respond to all requests as quickly as possible."</div></div></div>
+    <div class="principle"><div class="pn">Principle 04</div><div class="pt">Process-led</div>
+      <p>Describing what happens — in sequence — is more persuasive to this audience than any adjective. The verbs matter: DwellWell "coordinates," "manages," "closes," and "documents" — never "connects," "matches," or "finds."</p>
+      <div class="two"><div class="card do"><div class="tag">Do</div>"Work order in. Contractor dispatched. Job completed. Documentation delivered."</div><div class="card dont"><div class="tag">Don't</div>"Our seamless platform connects you with the best contractors instantly."</div></div></div>
+    <div class="principle"><div class="pn">Principle 05</div><div class="pt">Peer-to-peer register</div>
+      <p>DwellWell speaks to property managers as the competent professionals they are — using their vocabulary, assuming their knowledge. "Work orders," "portfolio," "multifamily," "HOA," and "preservation" are used without definition. The brand never adopts a teaching register with its primary audience.</p>
+      <div class="two"><div class="card do"><div class="tag">Do</div>"From routine work orders to emergency calls, DwellWell coordinates across your portfolio."</div><div class="card dont"><div class="tag">Don't</div>"A 'work order' is a request for maintenance. When you submit one to us, we get started right away!"</div></div></div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Audience register</h3></div>
+    <p class="block-sub">The voice is identical across audiences. The register — what it emphasises, what it assumes, how it frames the service — shifts to each audience's context, fear, and decision criteria.</p>
+    <div class="reg"><div><span class="rc">PM</span><span class="rt">Property Management Professionals</span></div>
+      <dl>
+        <dt>Fear</dt><dd>A vendor failure that reflects on them with their client or owner — contractors who don't show, missing documentation, issues that bounce back to them.</dd>
+        <dt>Needs to feel</dt><dd>That DwellWell reduces their risk and operational load. Credibility before enthusiasm. They scan first; they only read if the scan earns it.</dd>
+        <dt>Fluency</dt><dd>Full PM vocabulary — work orders, portfolio, multifamily, HOA, single-family, turnover. Used without definition.</dd>
+        <dt>Lead with</dt><dd>The managed-operator distinction. One contact. Documentation standard. Accountability owned by DwellWell. Reduce language: "fewer vendors," "no chasing required."</dd>
+      </dl>
+      <div class="ex">"Submit a work order. DwellWell coordinates — from dispatch to documentation. You deal with us, not the contractor."</div></div>
+    <div class="reg"><div><span class="rc">PR</span><span class="rt">Preservation Clients — Lenders, Banks, Investors</span></div>
+      <dl>
+        <dt>Fear</dt><dd>Incomplete documentation, slow turnaround on securing/compliance tasks, regulatory exposure from a vendor who doesn't understand the compliance context.</dd>
+        <dt>Needs to feel</dt><dd>That DwellWell speaks their regulatory language and produces the documentation they require — not records that need chasing or reformatting.</dd>
+        <dt>Fluency</dt><dd>Preservation terminology — securing, winterisation, REO, vacant property, condition report, asset manager. Do not conflate with residential maintenance.</dd>
+        <dt>Lead with</dt><dd>Documentation completeness. Compliance awareness. Preservation scope specifically. Response speed for time-sensitive tasks. In proposals, team experience anchors credibility.</dd>
+      </dl>
+      <div class="ex">"DwellWell coordinates property preservation services with the documentation lenders and asset managers require. Every job is closed with a complete record."</div></div>
+    <div class="reg"><div><span class="rc">CO</span><span class="rt">Contractors — Independent Tradespeople</span></div>
+      <dl>
+        <dt>Fear</dt><dd>Unclear scope on jobs, slow or uncertain payment, poor communication, wasted trips for jobs that aren't ready.</dd>
+        <dt>Needs to feel</dt><dd>That DwellWell is a well-organised, professional partner worth prioritising. Consistent dispatch and clear scope are the value proposition — not enthusiasm.</dd>
+        <dt>Fluency</dt><dd>Trade and operations vocabulary — work order, dispatch, scope of work, completion sign-off. Do not explain the job to a tradesperson who does it daily.</dd>
+        <dt>Lead with</dt><dd>Clear scope on every job. Consistent, managed dispatch. Professional coordination. Do not claim fast or guaranteed payment. "Apply to join the network" signals selectivity.</dd>
+      </dl>
+      <div class="ex">"DwellWell provides work to vetted contractors across residential maintenance and property preservation. Clear scope on every job. Consistent dispatch. Apply to join the network."</div></div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Vocabulary system</h3></div>
+    <p class="block-sub">Three tiers. Approved terms carry the positioning; flagged terms need care; prohibited terms never appear in client-facing or brand copy.</p>
+    <table>
+      <tr><th>✓ Approved — use consistently</th><th>Note</th></tr>
+      <tr><td class="k">Coordinates / manages</td><td>Primary verb. Signals the operator model. Never "connects" or "matches."</td></tr>
+      <tr><td class="k">Managed operator</td><td>The precise descriptor. Suits proposals/credentials/FAQ — not a primary hero claim without explanation.</td></tr>
+      <tr><td class="k">Work order</td><td>Standard PM vocabulary. Use without definition with PM and preservation audiences.</td></tr>
+      <tr><td class="k">Intake to closeout</td><td>The lifecycle anchor phrase. Use as a unit — do not separate or paraphrase.</td></tr>
+      <tr><td class="k">Vetted contractors</td><td>Approved at concept level. Do not elaborate on vetting specifics until confirmed by ops.</td></tr>
+      <tr><td class="k">Every job documented</td><td>Core accountability claim. Use as a declarative — "every job is documented."</td></tr>
+      <tr><td class="k">Portfolio</td><td>Standard PM framing. "Your portfolio," not "your properties" or "your buildings."</td></tr>
+      <tr><td class="k">Dispatch</td><td>The approved verb for sending a contractor. Not "sends" or "arranges."</td></tr>
+      <tr><td class="k">Accountability</td><td>Replaces "responsibility." "Accountability sits with DwellWell" is stronger and more precise.</td></tr>
+      <tr><td class="k">Preservation</td><td>Use "property preservation" as the service-line label — not "REO maintenance" or "vacant property services" as the category name. REO, vacant, and foreclosed remain fine descriptively where context requires.</td></tr>
+      <tr><td class="k">Not referred out</td><td>The three-word competitive contrast. Reinforces the managed-operator distinction without naming competitors.</td></tr>
+    </table>
+    <table>
+      <tr><th>⚠ Flagged — use with care</th><th>Why</th></tr>
+      <tr><td class="k">Network</td><td>Fine in contractor copy ("apply to join the network"). Avoid in client copy — implies a marketplace.</td></tr>
+      <tr><td class="k">Nationwide / across the US</td><td>"Across the US" is acceptable as direction. Never "nationwide coverage" — coverage is case-by-case.</td></tr>
+      <tr><td class="k">Partner</td><td>Fine in relationship contexts; reads generic if overused.</td></tr>
+      <tr><td class="k">Fast payment</td><td>Not in contractor copy — terms not standardised. "Clear payment terms" once confirmed.</td></tr>
+      <tr><td class="k">Comprehensive / full-service</td><td>Only if every category under it is operational at launch. Otherwise list specific services.</td></tr>
+      <tr><td class="k">Guaranteed</td><td>No specific warranty terms, timeframes, or conditions until legal review. Concept referenced conceptually only.</td></tr>
+    </table>
+    <table>
+      <tr><th>✗ Prohibited — never use</th><th>Why</th></tr>
+      <tr><td class="k">Connects you with / matches you to</td><td>Marketplace signals. The client never interacts directly with a contractor.</td></tr>
+      <tr><td class="k">Platform</td><td>Unavoidable tech/marketplace connotation that conflicts with the operator model. Prohibited in all client-facing and brand copy (§01).</td></tr>
+      <tr><td class="k">Browse our network</td><td>Implies a directory model. Never in client-facing copy.</td></tr>
+      <tr><td class="k">Seamless</td><td>Meaningless filler. Banned per Brand Brief v2.4.</td></tr>
+      <tr><td class="k">World-class / best-in-class</td><td>Unearned superlatives. Banned.</td></tr>
+      <tr><td class="k">Revolutionary / transforming</td><td>Startup energy. Wrong register. Banned.</td></tr>
+      <tr><td class="k">We're passionate about</td><td>Vague enthusiasm. Replace with a specific claim that demonstrates the quality.</td></tr>
+      <tr><td class="k">Trusted professionals in your area</td><td>Consumer home-services phrasing. Wrong register for a B2B operator.</td></tr>
+      <tr><td class="k">Book in minutes / instant booking</td><td>Gig-economy signals. The antithesis of the positioning.</td></tr>
+      <tr><td class="k">We try to / we aim to / we hope to</td><td>Hedged language. If a commitment can't be stated as fact, hold it back.</td></tr>
+      <tr><td class="k">DwellWell has [X] years of experience</td><td>The entity is new. Experience is attributed to the team — "our team brings."</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Messaging architecture</h3></div>
+    <p class="block-sub">No copy may assert a claim not found here. Binding launch constraints: handyman + full preservation only; same-business-day acknowledgement for emergency/urgent only; coverage case-by-case; no warranty terms in copy; network size and contractor payment timing not claimed.</p>
+    <table>
+      <tr><th>Theme</th><th>Approved claim &amp; guardrail</th></tr>
+      <tr><td class="k">01 · Managed operator identity <span class="small">(all contexts)</span></td><td>DwellWell manages the full job — coordinates, dispatches, closes out. It does not refer or connect. <span class="small">Guardrail: never "connects you with" / "browse our network."</span></td></tr>
+      <tr><td class="k">02 · Operational experience <span class="small">(proposals/credentials only — not website)</span></td><td>"The team behind DwellWell brings 12+ years of direct experience in US property maintenance and preservation." <span class="small">Guardrail: attribute to the team, never the company; website uses process language only.</span></td></tr>
+      <tr><td class="k">03 · Accountability &amp; documentation</td><td>"Every job is documented — from work order through to completion. Accountability sits with DwellWell." <span class="small">Guardrail: don't specify photo counts, report formats, or system names until confirmed; don't imply liability beyond the service agreement.</span></td></tr>
+      <tr><td class="k">04 · Responsiveness <span class="small">(scoped)</span></td><td>"Emergency and urgent requests are acknowledged the same business day." <span class="small">Guardrail: the universal "all requests" claim is not yet publishable — standard-request window awaits ops.</span></td></tr>
+      <tr><td class="k">05 · Service scope at launch</td><td>Residential = general handyman/maintenance only. Preservation = full scope (securing, board-up, lock changes, debris removal, cleaning, lawn, winterisation, repairs, condition reporting). <span class="small">Guardrail: no "comprehensive/full-service" for residential until specialist-trade scope is confirmed; do not name specialist-trade categories in copy; no HUD/Fannie Mae certifications.</span></td></tr>
+      <tr><td class="k">06 · Credentials <span class="small">(proposals/credentials)</span></td><td>General liability insurance and workers' compensation are publishable; contractors are vetted before first job. <span class="small">Guardrail: "licensed/insured/background-checked" need ops confirmation; no memberships (NARPM, NRBA, BBB) at launch.</span></td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Before &amp; after — the working reference</h3></div>
+    <p class="block-sub">Six pairs across all three audiences and five touchpoint types. The "before" is annotated with what fails; the "after" with what it does correctly.</p>
+
+    <p class="label" style="margin-top:6px">01 · Website hero copy — PM audience</p>
+    <div class="two"><div class="card dont"><div class="tag">✗ Before</div><p class="quote">"Connect with trusted property maintenance professionals in your area. Fast, reliable service for all your needs. Get matched today."</p><p class="anno">"Connect" and "get matched" are marketplace signals; "in your area" implies a directory; three generic adjectives in a row. Nothing distinguishes it from Angi.</p></div><div class="card do"><div class="tag">✓ After</div><p class="quote">"DwellWell coordinates property maintenance from intake to closeout. One contact. Vetted contractors. Every job documented."</p><p class="anno">"Coordinates" signals the operator in one word; the three-part sentence mirrors the anchor and scans; three specific facts, no adjectives.</p></div></div>
+
+    <p class="label" style="margin-top:14px">02 · Service page, how it works — PM audience</p>
+    <div class="two"><div class="card dont"><div class="tag">✗ Before</div><p class="quote">"Our platform gives property managers access to skilled handymen. Post your job, get matched, track progress in the app."</p><p class="anno">"Platform," "post your job," "get matched," "track in the app" — marketplace and consumer-tech throughout. The client does all the work.</p></div><div class="card do"><div class="tag">✓ After</div><p class="quote">"Submit a work order. DwellWell dispatches a vetted contractor, manages the job, and closes it out with full documentation. You deal with us — not the contractor."</p><p class="anno">A three-step sequence builds trust through specificity; "dispatches" and "closes it out" are the operator verbs; the final line makes accountability explicit.</p></div></div>
+
+    <p class="label" style="margin-top:14px">03 · Outbound prospecting email, opener — PM audience</p>
+    <div class="two"><div class="card dont"><div class="tag">✗ Before</div><p class="quote">"Hi [Name]! Hope you're doing well. I wanted to introduce DwellWell — we're passionate about transforming property maintenance for busy property managers like you. Would love to connect!"</p><p class="anno">Three exclamation marks; "passionate about transforming" combines two banned phrases; condescending; says nothing about what DwellWell does.</p></div><div class="card do"><div class="tag">✓ After</div><p class="quote">"Hi [Name], DwellWell manages property maintenance for portfolio managers — one contact, vetted contractors, every job coordinated and documented. If you're working with multiple vendors across your portfolio, it may be worth a conversation."</p><p class="anno">Opens with what DwellWell is; the pain point is implied, not accused; low-pressure close suits a sceptical first contact.</p></div></div>
+
+    <p class="label" style="margin-top:14px">04 · Proposal, about section — PM audience (experience permitted)</p>
+    <div class="two"><div class="card dont"><div class="tag">✗ Before</div><p class="quote">"We are a new and exciting company committed to delivering the highest quality property maintenance services with a focus on exceptional customer satisfaction and outstanding results."</p><p class="anno">"New and exciting" is a self-inflicted credibility wound; three superlatives with no backing; could be any company in any industry.</p></div><div class="card do"><div class="tag">✓ After</div><p class="quote">"The team behind DwellWell brings 12+ years of direct experience in US property maintenance and preservation operations. DwellWell is built on that experience — a managed operator model designed to replace the fragmentation of multiple contractors with a single, accountable point of coordination."</p><p class="anno">Experience attributed to the team; "12+ years" is specific; the second sentence turns the claim into a description of the model.</p></div></div>
+
+    <p class="label" style="margin-top:14px">05 · Preservation service page — preservation client</p>
+    <div class="two"><div class="card dont"><div class="tag">✗ Before</div><p class="quote">"We offer comprehensive property preservation services for banks, lenders, and investors. Our nationwide network handles everything from securing to winterisation. Fast turnaround. Competitive pricing."</p><p class="anno">"Comprehensive" and "everything" need a fully operational scope; "nationwide network" is unsupportable; "competitive pricing" undermines credibility with compliance-focused clients.</p></div><div class="card do"><div class="tag">✓ After</div><p class="quote">"DwellWell coordinates property preservation services — securing, winterisation, debris removal, condition reporting, and vacant-property maintenance — with the documentation lenders and asset managers require. Every job is closed with a complete record."</p><p class="anno">A specific list replaces "everything"; speaks to the client's primary concern — compliance and audit readiness — without overstating the record.</p></div></div>
+
+    <p class="label" style="margin-top:14px">06 · Contractor application page — contractor audience</p>
+    <div class="two"><div class="card dont"><div class="tag">✗ Before</div><p class="quote">"Love doing handiwork? Join thousands of pros on DwellWell and earn money doing what you do best! Flexible hours, great pay, work whenever you want."</p><p class="anno">Condescending to a professional; "thousands of pros" overclaims network size; "work whenever you want" is gig-economy framing — the opposite of an organised operator.</p></div><div class="card do"><div class="tag">✓ After</div><p class="quote">"DwellWell provides work to vetted contractors across residential maintenance and property preservation. Clear scope on every job. Consistent dispatch. Apply to join the network."</p><p class="anno">"Clear scope" and "consistent dispatch" address what contractors value most; "apply to join" signals selectivity as a quality signal; same professional register as client copy.</p></div></div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Tone by context</h3></div>
+    <p class="block-sub">The voice is constant; the tone modulates by touchpoint — in formality, sentence length, and what it leads with.</p>
+    <table>
+      <tr><th>Context</th><th>Voice person &amp; lead</th><th>Live example</th></tr>
+      <tr><td class="k">Website — hero &amp; service pages</td><td>"DwellWell…" third person (switch to "we" only in FAQ/contact). Lead with the model, process sequence, documentation. Short, declarative — 3–8 words; CTAs 2–4 words.</td><td>"DwellWell coordinates property maintenance from intake to closeout. One contact. Vetted contractors. Every job documented." CTA: "Start a conversation."</td></tr>
+      <tr><td class="k">Outbound email</td><td>"We manage…" first person, signed by a named individual. One-sentence opener; imply the pain; low-threshold close. Slightly warmer — but no enthusiasm, no exclamation marks.</td><td>"Hi [Name], we manage property maintenance for portfolio managers — one contact, vetted contractors, every job coordinated and documented. If you're working with multiple vendors, it may be worth a conversation."</td></tr>
+      <tr><td class="k">Proposals &amp; quotes</td><td>"DwellWell" for cover/about; "we" through the body. Experience permitted. The most formal surface — complete sentences, still direct and specific.</td><td>"The team behind DwellWell brings 12+ years of direct experience in US property maintenance and preservation. We operate as a managed operator — not a referral service."</td></tr>
+      <tr><td class="k">Work orders &amp; status updates</td><td>Functional, numbered, minimal voice. Lead with reference, scope, scheduled date, contact. Clarity is the brand signal.</td><td class="mono">Job #DW-2026-00412 — [Address]. Contractor dispatched: [Date]. Scope: door hardware adjustment, cabinet hinge reset. Completion: [Date]. Documentation: Attached.</td></tr>
+      <tr><td class="k">Contractor-facing</td><td>"DwellWell provides…" on application/network pages; "we" in work-order instructions. Peer-to-peer, operationally focused. No payment or network-size claims.</td><td>"DwellWell provides work to vetted contractors across residential maintenance and property preservation. Clear scope on every job. Consistent dispatch. Apply to join the network."</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Governing decisions</h3></div>
+    <div class="panel locked"><span class="pl">Locked · D-01 Hybrid messaging</span>Experience claims: proposals and credentials only. Website: process-led throughout, no experience references.</div>
+    <div class="panel locked"><span class="pl">Locked · D-02 Anchor sentence</span>"DwellWell coordinates property maintenance from intake to closeout — one point of contact, vetted contractors, every job documented."</div>
+    <div class="panel locked"><span class="pl">Locked · D-03 Single register</span>Professional, direct, peer-to-peer across all audiences. Contractor copy is operationally focused — not warmer.</div>
+    <div class="panel open"><span class="pl">Open · D-04 Warranty wording (Decision 2-B)</span>Warranty language is <strong>not approved for public copy</strong> until US counsel reviews the wording. Do not publish warranty terms, timeframes, conditions, or implied guarantees. Internal planning language is superseded by this gate until legal sign-off.</div>
+  </div>
+</section>
+
+<!-- ═══ 03 COLOUR ═══ -->
+<section id="s3">
+  <div class="sec-num">SECTION 03</div>
+  <h2 class="sec-title">Colour System</h2>
+  <p class="sec-intro">Five colours. No off-palette colours, gradients, or arbitrary tinting in any brand application — the only permitted opacity tints are the specific named values defined in §06 (e.g. Cool White 7% / 5% motif strokes, Cool White 40% / 100% and Steel Grey 40% structural fills).</p>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#101E31"></div><div class="meta"><div class="nm">Midnight</div><div class="hx">#101E31 · RGB 16/30/49 · CMYK 67/39/0/81</div><div class="rl">Primary. Wordmark, headings, navigation, footer, dark surfaces.</div></div></div>
+    <div class="sw"><div class="chip" style="background:#4A8BB5"></div><div class="meta"><div class="nm">Steel Blue</div><div class="hx">#4A8BB5 · RGB 74/139/181 · CMYK 59/23/0/29</div><div class="rl">Accent. Icon W-form, underlines, borders, large/display text, and non-text UI highlights. Normal-size text links on light surfaces use Steel Blue (Text) #3A6E91. Primary CTA buttons use Midnight.</div></div></div>
+    <div class="sw"><div class="chip" style="background:#57657A"></div><div class="meta"><div class="nm">Cool Slate</div><div class="hx">#57657A · RGB 87/101/122 · CMYK 29/17/0/52</div><div class="rl">Supporting. Subheadings, supporting copy, metadata.</div></div></div>
+    <div class="sw"><div class="chip" style="background:#F2F4F7; border-bottom:1px solid var(--steel-grey)"></div><div class="meta"><div class="nm">Cool White</div><div class="hx">#F2F4F7 · RGB 242/244/247 · CMYK 2/1/0/3</div><div class="rl">Background. Page and composition background.</div></div></div>
+    <div class="sw"><div class="chip" style="background:#D8E0EA"></div><div class="meta"><div class="nm">Steel Grey</div><div class="hx">#D8E0EA · RGB 216/224/234 · CMYK 8/4/0/8</div><div class="rl">Structure. Borders, dividers, table rules, structural lines; reversed supporting copy on dark surfaces.</div></div></div>
+  </div>
+
+  <p class="small" style="margin:0 0 6px"><strong>Two defined exceptions — neither is a sixth brand colour.</strong> <strong>Production White (#FFFFFF)</strong> is a substrate / technical-output exception only — paper stock, single-ink reversed lockups, embroidery thread; it is never a digital surface or fill colour (brand white is Cool White #F2F4F7). <strong>Steel Blue (Text) (#3A6E91)</strong> is a darkened, WCAG-AA variant of Steel Blue reserved for normal-size hyperlink text on light surfaces (5.0:1); on dark surfaces, links use Steel Blue (#4A8BB5).</p>
+
+  <div class="block"><div class="opener"><h3 class="h3">Approved pairings</h3></div>
+    <table>
+      <tr><th>Pairing</th><th>Use</th></tr>
+      <tr><td class="k">Midnight on Cool White</td><td>Primary text, wordmark, headings, body.</td></tr>
+      <tr><td class="k">Steel Blue on Cool White</td><td>Icon W-form, underlines, borders, large/display text, and non-text UI accents. Normal-size text links use Steel Blue (Text) #3A6E91; primary CTA buttons use Midnight.</td></tr>
+      <tr><td class="k">Cool Slate on Cool White</td><td>Supporting copy, metadata, captions, labels.</td></tr>
+      <tr><td class="k">Cool White on Midnight</td><td>Reversed wordmark and body on dark surfaces.</td></tr>
+      <tr><td class="k">Steel Grey on Midnight</td><td>Reversed supporting copy, captions, and structural lines on dark surfaces (Dark Field).</td></tr>
+      <tr><td class="k">Steel Blue on Midnight</td><td>Reversed accent at display size — rule, icon W-form.</td></tr>
+      <tr><td class="k">Midnight on Steel Grey</td><td>Structural elements — borders, dividers, tabs.</td></tr>
+    </table>
+    <p class="small"><strong>Avoid:</strong> Cool Slate on Steel Grey · Steel Blue on Steel Grey · any palette colour on an off-palette background.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Contrast &amp; accessibility</h3></div>
+    <table>
+      <tr><th>Combination</th><th>Ratio</th><th>Result</th></tr>
+      <tr><td>Cool White on Midnight</td><td>15.2 : 1</td><td>WCAG AAA</td></tr>
+      <tr><td>Midnight on Cool White</td><td>15.2 : 1</td><td>WCAG AAA</td></tr>
+      <tr><td>Steel Grey on Midnight</td><td>12.6 : 1</td><td>WCAG AAA</td></tr>
+      <tr><td>Steel Blue (Text) #3A6E91 on Cool White</td><td>5.0 : 1</td><td>WCAG AA — normal text / links</td></tr>
+      <tr><td>Steel Blue on Midnight</td><td>4.5 : 1</td><td>Display accent / icon W-form only — not link or body text</td></tr>
+      <tr><td>Production White (#FFFFFF) on Steel Blue</td><td>3.7 : 1</td><td>Physical / single-ink / display-size exception only — fails AA normal</td></tr>
+      <tr><td>Cool White on Steel Blue</td><td>3.4 : 1</td><td>Large text / non-text UI only — fails AA normal</td></tr>
+      <tr><td>Steel Blue on Cool White</td><td>3.4 : 1</td><td>Non-text accent / large text / UI only — fails AA normal</td></tr>
+    </table>
+    <div class="panel locked"><span class="pl">Locked — Steel Blue is not an AA text colour on light</span>Steel Blue (#4A8BB5) on Cool White is 3.4:1 — it fails WCAG AA for normal text. Use it for the icon W-form, underlines, borders, large/display text (≥24px or ≥18.66px bold), and non-text UI accents. For normal-size hyperlink text on light surfaces, use <strong>Steel Blue (Text) #3A6E91</strong> (5.0:1, AA). On dark surfaces, link text is Cool White with a Steel Blue underline (15.2:1); Steel Blue is not used as link or body text on dark — its 4.51:1 margin on Midnight is too thin to survive surface variation, and the darkened Text variant is worse on Midnight (3.05:1).</div>
+    <div class="panel locked"><span class="pl">Locked — Steel Blue is not the primary button fill</span>Primary CTA buttons use <strong>Midnight fill with Cool White text</strong>. On a Steel Blue ground, Cool White appears only as a <strong>non-text</strong> emphasis fill (Precision Square Emphasis ≥ 80px). The reversed lockup is <strong>never</strong> placed on Steel Blue — it sits on a Midnight field or approved Midnight scrim (per R3), so the wordmark and descriptor always clear AA.</div>
+  </div>
+</section>
+
+<!-- ═══ 04 TYPOGRAPHY ═══ -->
+<section id="s4">
+  <div class="sec-num">SECTION 04</div>
+  <h2 class="sec-title">Typography System</h2>
+  <p class="sec-intro">Two typefaces. Cormorant Garamond SemiBold 600 is reserved for Display/H1, H2, the logo wordmark, and approved display-scale editorial moments. Inter is used for everything else. Option B, confirmed.</p>
+  <div class="panel locked"><span class="pl">Locked — font loading</span>The complete load set is exactly four weights: <strong>Cormorant Garamond 600</strong> and <strong>Inter 400 / 500 / 600</strong>. Do not load Inter 300, Inter 700, any other Cormorant weight, or variable fonts. Specify weights explicitly: <code>family=Cormorant+Garamond:wght@600&amp;family=Inter:wght@400;500;600</code>. <span class="small">This document is loaded with exactly that set.</span></div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Type scale</h3></div>
+    <div class="spec"><div class="sl"><span class="label">Display / H1 · Cormorant Garamond SemiBold 600</span><span class="meta">web hero &amp; document covers only</span></div><div style="font-family:var(--ser); font-weight:600; font-size:48px; line-height:1.15">Property care, professionally managed</div><div class="meta" style="margin-top:8px">Web 56px / 36px mobile · LH 1.15 · Document 32pt / 38pt leading · before 24pt / after 12pt</div></div>
+    <div class="spec"><div class="sl"><span class="label">H2 · Cormorant Garamond SemiBold 600</span><span class="meta">section headings</span></div><div class="h2">Service coordination and dispatch</div><div class="meta" style="margin-top:8px">Web 40px / 30px mobile · LH 1.20 · Document 24pt / 30pt leading · before 18pt / after 8pt</div></div>
+    <div class="spec"><div class="sl"><span class="label">H3 · Inter SemiBold 600</span><span class="meta">subsection headings</span></div><div class="h3">Every job documented, from intake to closeout</div><div class="meta" style="margin-top:8px">Web 22px / 20px mobile · LH 1.35 · tracking −0.01em · Document 14pt / 18pt leading</div></div>
+    <div class="spec"><div class="sl"><span class="label">H4 / Label · Inter Medium 500 · Uppercase</span><span class="meta">labels, metadata, table headers</span></div><div class="label" style="font-size:13px">Property type · Service region · Work order status</div><div class="meta" style="margin-top:8px">Web 12px · LH 1.40 · Document 9pt / 13pt leading</div></div>
+    <div class="spec"><div class="sl"><span class="label">Body · Inter Regular 400</span><span class="meta">all prose</span></div><div style="font-size:16px; max-width:72ch; line-height:1.65">DwellWell coordinates maintenance from intake to closeout. You place the work order — we handle dispatch, documentation, and delivery.</div><div class="meta" style="margin-top:8px">Web 16px · LH 1.65 · max 72ch · Document 10pt / 1.48 · after 6pt. Inter 300 is not approved; 400 holds legibility at 10pt.</div></div>
+    <div class="spec"><div class="sl"><span class="label">Body Small · Inter Regular 400</span><span class="meta">captions, footnotes</span></div><div style="font-size:13px; color:var(--cool-slate); line-height:1.6">Job reference DW-2026-00412 · Assigned 14 May 2026 · Documentation attached</div><div class="meta" style="margin-top:8px">Web 13px · LH 1.60 · Document 8.5pt / 13pt leading</div></div>
+    <div class="spec"><div class="sl"><span class="label">UI / Button · Inter Medium 500</span><span class="meta">CTAs, navigation, forms</span></div><div><span style="display:inline-flex; padding:10px 22px; background:var(--midnight); color:var(--cool-white); border-radius:4px; font-weight:500; font-size:14px; letter-spacing:.02em">Start a conversation</span></div><div class="meta" style="margin-top:8px">Web 14px · LH 1.0 · tracking 0.02em · padding 10×22px · <strong>border radius 4px</strong> (the only approved interactive radius) · primary CTA default: Midnight fill with Cool White text</div></div>
+    <div class="spec"><div class="sl"><span class="label">Table · Inter SemiBold 600 (header) / Regular 400 (cell)</span><span class="meta">work orders, invoices</span></div><div class="meta">Header Inter 600 / 12px · cells Body Small spec · Steel Grey 0.5px rules.</div></div>
+    <div class="spec"><div class="sl"><span class="label">Monospace · System stack · Regular 400</span><span class="meta">job &amp; invoice references only</span></div><div class="mono" style="font-size:14px">#DW-2026-00412</div><div class="meta" style="margin-top:8px">ui-monospace stack · 14px · LH 1.5. Job numbers and invoice/work-order codes only — never prose.</div></div>
+  </div>
+  <div class="block"><div class="opener"><h3 class="h3">Cormorant scope &amp; line length</h3></div>
+    <p>Cormorant Garamond SemiBold 600 appears only at Display/H1 and H2, in the logo wordmark, and in approved display-scale pull-quotes and Dark-Field headlines (≥24px). Small quote examples, annotations, captions, and documentation notes use Inter. Body line length is capped at 72ch.</p>
+  </div>
+</section>
+
+<!-- ═══ 05 LOGO ═══ -->
+<section id="s5">
+  <div class="sec-num">SECTION 05</div>
+  <h2 class="sec-title">Logo System</h2>
+  <p class="sec-intro">Three registers and ten numbered variants. Variant 10 ships as two subvariants, 10A and 10B, for a total of eleven asset deliverables. Wordmark in Cormorant Garamond SemiBold 600 ("DwellWell"); descriptor in Inter Regular 400 ("Property Care LLC"). No substitution permitted.</p>
+  <div class="panel locked"><span class="pl">Marks shown — provenance</span>The icons in this section render as crisp inline SVG via <code>&lt;use&gt;</code> from the corrected in-document symbol set. The supplied <code>DwellWell_Master_Logo.svg</code> is retained as source geometry for the D/W letterforms only and is <strong>not production-approved</strong> until reissued with the corrected 25% container radius. Wordmarks continue to render live in the brand fonts.</div>
+
+  <div class="block"><div class="opener"><h3 class="h3">The mark</h3></div>
+    <p>The icon is a rounded-square container holding the <strong>DW monogram</strong>: an open-arc "D" with the "W" rendered in Steel Blue — the same geometric letterforms the design-system motifs are derived from (§06). The container flips with the surface; the W is the Steel Blue accent in every colour application — the single-colour (10A) and monochrome (10B) variants are the only exceptions.</p>
+    <div class="lkgrid">
+      <div class="lkcell"><div class="lkstage light"><svg role="img" aria-label="DwellWell icon, Midnight square" style="width:104px; height:104px"><use href="#dw-icon-square-dark"/></svg></div><div class="lkcap"><b>Register 1 — Light</b> <span>· Midnight square · Cool White D · Steel Blue W</span></div></div>
+      <div class="lkcell"><div class="lkstage light"><svg role="img" aria-label="DwellWell icon, Cool White square" style="width:104px; height:104px"><use href="#dw-icon-square-light"/></svg></div><div class="lkcap"><b>Register 2 — Contained</b> <span>· Cool White square · Midnight D · Steel Blue W</span></div></div>
+      <div class="lkcell"><div class="lkstage dark"><svg role="img" aria-label="DwellWell monogram on Midnight" style="width:104px; height:104px"><use href="#dw-icon-bare-midnight-reversed"/></svg></div><div class="lkcap"><b>Register 3 — Reversed</b> <span>· no container · Cool White D · Steel Blue W</span></div></div>
+    </div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Three-register system</h3></div>
+    <table>
+      <tr><th>Register</th><th>Definition &amp; default use</th></tr>
+      <tr><td class="k">R1 — Primary (Light)</td><td>Icon + Steel Blue rule + wordmark, directly on Cool White for digital surfaces or white stock in physical production. No enclosing bar. Default for documents, web body, email signatures, invoices.</td></tr>
+      <tr><td class="k">R2 — Contained (Badge)</td><td>Full lockup inside a Midnight rounded rectangle. High-authority — business cards, proposal/report covers, title slides, signage.</td></tr>
+      <tr><td class="k">R3 — Reversed (Dark)</td><td>Two-colour reversed lockup (Cool White D + Steel Blue W) on <strong>Midnight only</strong> — the Steel Blue W would disappear on a Steel Blue ground. Photography use requires a solid Midnight field or approved Midnight scrim behind the lockup. On Steel Blue or other dark surfaces the designer does not control, use the 10A single-colour reversed lockup. Partner dark templates must provide the same Midnight field/scrim protection.</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Ten numbered variants</h3></div>
+    <div class="lkgrid">
+      <!-- 01 -->
+      <div class="lkcell"><div class="lkstage light"><div class="lk"><svg role="img" aria-label="DwellWell primary lockup mark"><use href="#dw-icon-square-dark"/></svg><div class="rule"></div><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>01 — Primary Lockup (R1)</b> <span>· letterheads, proposals, email, web, invoices</span></div></div>
+      <!-- 02 -->
+      <div class="lkcell"><div class="lkstage light"><div class="badge"><div class="lk"><svg role="img" aria-label="DwellWell contained lockup mark"><use href="#dw-icon-square-light"/></svg><div class="rule"></div><div class="wm"><div class="nm" style="color:var(--cool-white)">DwellWell</div><div class="ds" style="color:var(--steel-grey)">Property Care LLC</div></div></div></div></div><div class="lkcap"><b>02 — Contained Lockup (R2)</b> <span>· business cards, covers, signage, slides</span></div></div>
+      <!-- 03 -->
+      <div class="lkcell"><div class="lkstage dark"><div class="lk"><svg role="img" aria-label="DwellWell reversed lockup mark"><use href="#dw-icon-bare-midnight-reversed"/></svg><div class="rule"></div><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>03 — Reversed Lockup (R3)</b> <span>· dark surfaces outside designer control</span></div></div>
+      <!-- 04 -->
+      <div class="lkcell"><div class="lkstage light"><div class="lk stacked"><svg role="img" aria-label="DwellWell stacked primary mark"><use href="#dw-icon-square-dark"/></svg><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>04 — Stacked Primary (R1)</b> <span>· square formats, social, avatars</span></div></div>
+      <!-- 05 -->
+      <div class="lkcell"><div class="lkstage light"><div class="badge"><div class="lk stacked"><svg role="img" aria-label="DwellWell stacked contained mark"><use href="#dw-icon-square-light"/></svg><div class="wm"><div class="nm" style="color:var(--cool-white)">DwellWell</div><div class="ds" style="color:var(--steel-grey)">Property Care LLC</div></div></div></div></div><div class="lkcap"><b>05 — Stacked Contained (R2)</b> <span>· presentation tiles, badges</span></div></div>
+      <!-- 06 -->
+      <div class="lkcell"><div class="lkstage dark"><div class="lk stacked"><svg role="img" aria-label="DwellWell stacked reversed mark"><use href="#dw-icon-bare-midnight-reversed"/></svg><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>06 — Stacked Reversed (R3)</b> <span>· square formats on dark</span></div></div>
+      <!-- 07 -->
+      <div class="lkcell"><div class="lkstage light"><svg role="img" aria-label="DwellWell standalone icon" style="height:64px; width:64px"><use href="#dw-icon-square-dark"/></svg></div><div class="lkcap"><b>07 — Icon Standalone</b> <span>· favicon, avatar, app icon. Min 32px / 8mm</span></div></div>
+      <!-- 08 -->
+      <div class="lkcell"><div class="lkstage dark" style="min-height:90px"><div class="lk compact"><svg role="img" aria-label="DwellWell compact inline mark"><use href="#dw-icon-square-light"/></svg><div class="rule"></div><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>08 — Compact Inline</b> <span>· invoice headers, email footers, narrow bands</span></div></div>
+      <!-- 09 -->
+      <div class="lkcell"><div class="lkstage light"><div class="wmonly" style="text-align:center"><div class="nm">DwellWell</div><div class="ds" style="color:var(--cool-slate)">Property Care LLC</div></div></div><div class="lkcap"><b>09 — Wordmark Only</b> <span>· text-only, icon can't render. Min 80px. Last resort</span></div></div>
+      <!-- 10 -->
+      <div class="lkcell"><div class="lkstage light" style="gap:24px"><div class="lk"><svg role="img" aria-label="DwellWell single-colour mark, full Midnight" style="height:46px; width:46px"><use href="#dw-icon-bare-midnight"/></svg><div class="rule" style="background:var(--midnight)"></div><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>10A — Single-Colour</b> <span>· one ink; Steel Blue omitted (full Midnight on light / reversed white on dark)</span></div></div>
+      <div class="lkcell"><div class="lkstage light" style="background:#fff; gap:24px"><div class="lk"><svg role="img" aria-label="DwellWell monochrome mark, K100 black" style="height:46px; width:46px"><use href="#dw-icon-bare-black"/></svg><div class="rule" style="background:#000"></div><div class="wm"><div class="nm" style="color:#000">DwellWell</div><div class="ds" style="color:#000">Property Care LLC</div></div></div></div><div class="lkcap"><b>10B — Monochrome (K100)</b> <span>· 100% black on white stock only · no palette hex</span></div></div>
+    </div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Clearspace &amp; minimum sizes</h3></div>
+    <table>
+      <tr><th>Spec</th><th>Value</th></tr>
+      <tr><td class="k">Clearspace</td><td>½ × icon height on all sides (½ × badge height for R2, from the outer bar edge). No marks within the zone.</td></tr>
+      <tr><td class="k">Minimum — digital</td><td>160px wide · icon 32px. Stacked ~90px total height. Standalone icon 32px.</td></tr>
+      <tr><td class="k">Minimum — print</td><td>38mm (1.5in) wide · icon 8mm. Stacked 25mm total. Standalone icon 8mm.</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Icon standalone &amp; container rule</h3></div>
+    <div class="panel locked"><span class="pl">Locked — V07 standalone rule</span>The container is <strong>retained</strong> for digital standalone uses that need a filled shape: favicon, avatar, app icon, and social profile use. The <strong>bare monogram</strong> (no container) is used only for single-ink physical reproduction — embossing, embroidery — in the R3 reversed lockup, and in the 10A single-colour reversed lockup. Do not use the bare monogram freely as a standalone digital icon.</div>
+    <div class="panel locked"><span class="pl">Locked — icon corner radius (Decision 3-B)</span>The icon container corner radius is fixed at <strong>25% of the container side</strong> (≈ 8px at the 32px reference) and <strong>scales with the icon</strong> as a vector unit — preserving the geometric-root echo with the Precision Square (fixed 8px) at reference size. See the radius family in §06.</div>
+    <div class="panel open"><span class="pl">Open asset task — deprecated master SVG</span>The supplied master SVG ships its square symbols at <code>rx=2.2</code> on a 50-unit box (4.4% — nearly square), which contradicts Locked Decision 3-B (25%). The containers here are rendered at <strong>25%</strong> to honour the locked rule. <strong>The supplied master SVG is deprecated for production: do not ship icons from it until it is corrected to 25% radius (rx=12.5 on a 50-unit box) and re-versioned.</strong></div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Single-colour &amp; monochrome</h3></div>
+    <p><strong>10A — Single-colour:</strong> the Steel Blue accent is omitted; all elements render in one ink — full Midnight on light stock and reversed white on dark stock. For digital reversed single-colour output, use Cool White; for physical single-ink output, use Production White where required by the substrate or vendor. D and W must read as distinct letterforms without colour differentiation. <strong>10B — Monochrome:</strong> 100% black (K100) on white stock only — no palette hex of any kind, for black-and-white print, photocopies, fax, legal filings, single-colour emboss. Confirm legibility at 32px and business-card size.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Misuse — do not reproduce</h3></div>
+    <ul class="clean">
+      <li>Do not change colours or place the logo on an unapproved (off-palette) background.</li>
+      <li>Do not distort, stretch, or scale non-uniformly. Do not rotate — the logo is always upright.</li>
+      <li>Do not add shadows, glows, gradients, bevel, or emboss effects.</li>
+      <li>Do not outline the icon — it is a filled mark.</li>
+      <li>Do not rearrange components — icon, rule, and wordmark positions are fixed.</li>
+      <li>Do not place the wordmark on contrast below 4.5:1.</li>
+      <li>Do not append a tagline lockup — there is no fixed tagline (below).</li>
+    </ul>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Brand line &amp; tagline</h3></div>
+    <div class="panel locked"><span class="pl">Locked — no fixed consumer tagline (Decision 1-C)</span>DwellWell carries <strong>no fixed tagline</strong>. Where a short brand line is needed, lead with a process-led line derived from the anchor sentence — e.g. <em>"Coordinated from intake to closeout."</em> or <em>"One operator of record."</em> — always Voice-compliant (§02).</div>
+    <div class="panel open"><span class="pl">Retired</span><em>"We care for your home."</em> (Logo Rulebook) and <em>"Well-Cared Homes. Well-Managed Properties."</em> (Shapes Library / Website Brief) are retired: "we care" is an untestable abstraction barred by Tone Principle 01, and "Homes" reads consumer/residential, omitting the preservation and operator distinctions.</div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">File-format matrix</h3></div>
+    <table>
+      <tr><th>Format</th><th>When to use</th><th>Applies to</th></tr>
+      <tr><td class="k">SVG</td><td>Corrected in-document production vector only. All digital; for developers and web teams. Do not export production SVGs from the deprecated master file until the 25% radius is reissued.</td><td>All variants</td></tr>
+      <tr><td class="k">PDF</td><td>Print vendors; embed fonts. Physical collateral.</td><td>All variants</td></tr>
+      <tr><td class="k">PNG (transparent)</td><td>Email, presentations, web where SVG is unsupported.</td><td>All variants</td></tr>
+      <tr><td class="k">PNG (light / dark bg)</td><td>Where transparency causes issues; reversed raster on dark.</td><td>R1/Stacked · R3</td></tr>
+      <tr><td class="k">2× PNG</td><td>Retina/HiDPI 144–192 DPI. Required for modern web.</td><td>All variants</td></tr>
+      <tr><td class="k">3× PNG</td><td>Ultra HiDPI 216+ DPI. Mobile app icons.</td><td>V07 standalone</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ 06 SHAPES ═══ -->
+<section id="s6">
+  <div class="sec-num">SECTION 06</div>
+  <h2 class="sec-title">Shapes Library &amp; Design Architecture</h2>
+  <p class="sec-intro">Eight approved elements (§2.1–2.8). No element outside this library, and no decorative shape, may be used without founding-team sign-off. All spacing derives from an 8px base unit (digital) / 6pt (document) / 2mm (physical).</p>
+
+  <div class="panel locked"><span class="pl">Locked — geometric root &amp; radius family (Decision 3-B)</span>The rounded-square icon container is the structural reference for the whole system. Every radius sits in one descending family:</div>
+  <div class="radii">
+    <div class="ri"><div class="box icn"><svg role="img" aria-label="DwellWell icon at 25% container radius"><use href="#dw-icon-square-dark"/></svg></div>Icon container<br>25% ratio (≈8px@32px), scales</div>
+    <div class="ri"><div class="box" style="border-radius:8px"></div>Precision Square<br>8px fixed (≥48px)</div>
+    <div class="ri"><div class="box" style="border-radius:4px"></div>Button / UI<br>4px fixed</div>
+    <div class="ri"><div class="box" style="border-radius:2px"></div>Tag / chip<br>2px fixed</div>
+  </div>
+  <p class="small">The eight elements, in order: <strong>2.1</strong> Precision Square · <strong>2.2</strong> Rule Device · <strong>2.3</strong> Horizontal Divider · <strong>2.4</strong> Grid · <strong>2.5</strong> Dark Field · <strong>2.6</strong> Accent &amp; Containment · <strong>2.7</strong> Derived Motifs · <strong>2.8</strong> Motif Applications. Element 2.7 defines the two motifs; element 2.8 defines their two locked applications — both sit within the eight, not alongside them.</p>
+
+  <div class="block"><div class="opener"><h3 class="h3">2.1 — The Precision Square</h3></div>
+    <div class="demo-row">
+      <div><div class="ps outline"></div><div class="ps-lab">Outline</div></div>
+      <div><div class="ps structural"></div><div class="ps-lab">Structural</div></div>
+      <div><div class="ps accent"></div><div class="ps-lab">Accent (max 1/pg)</div></div>
+      <div><div class="ps emphasis"></div><div class="ps-lab">Emphasis (≥80px)</div></div>
+    </div>
+    <table>
+      <tr><th>Decision</th><th>Specification</th></tr>
+      <tr><td class="k">Corner radius</td><td>8px fixed · does not scale · applies at all sizes.</td></tr>
+      <tr><td class="k">Proportion</td><td>True 1:1 square only · no rectangular variants.</td></tr>
+      <tr><td class="k">Minimum size</td><td>48 × 48px digital · 12 × 12mm print.</td></tr>
+      <tr><td class="k">Frequency</td><td>Documents: max 3 per page (all fills); grouped tile arrays count as one. Web: Steel Grey grids exempt · Midnight max 1/section · Steel Blue max 1/screen.</td></tr>
+      <tr><td class="k">Fills</td><td>Outline (Cool White / Steel Grey border) · Structural (Steel Grey) · Accent (Midnight, max 1 per page in documents / 1 per section on web) · Emphasis (Steel Blue, ≥80px, max 1/screen).</td></tr>
+    </table>
+    <p class="small">Text on fills: Cool White on Midnight · Cool White on Steel Blue (≥80px square, text ≥24px only) · Midnight on Steel Grey. Cool Slate is never text on any Precision Square fill.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">2.2 — The Rule Device (1px accent)</h3></div>
+    <p class="block-sub">A 1px line in two orientations — vertical (primary, from the logo) and horizontal (24px accent prefix). Steel Blue for emphasis (one per section); Steel Grey for structure (repeatable); Cool White only on dark. Five named patterns govern all use.</p>
+    <div class="ruledemo"><div class="rd-open"><div class="vbar"></div><div><div style="font-weight:600">Pattern 1 — Section opener</div><p style="margin:4px 0 0; color:var(--cool-slate); font-size:13px">A vertical 1px Steel Blue rule sets a heading apart — the device that opens every section of this document. As the section/sub-section opener it is a fixed structural signature, exempt from the one-per-section Steel Blue emphasis cap.</p></div></div></div>
+    <div class="ruledemo"><div class="rd-eyebrow">Pattern 3 — Website section label</div><div style="margin-top:6px; font-weight:600">A 24px horizontal Steel Blue prefix precedes an eyebrow label.</div></div>
+    <div class="ruledemo"><div class="rd-open"><div class="vbar"></div><div><div style="font-weight:500; font-style:italic; font-size:14px">Pattern 2 — Pull-quote inset.</div><p style="margin:4px 0 0; color:var(--cool-slate); font-size:13px">A short, indented statement carried by the vertical rule rather than quotation marks.</p></div></div></div>
+    <p class="small">Remaining patterns: <strong>4 — Sidebar column edge</strong> (Steel Grey vertical rule separating a document sidebar) and <strong>5 — Table column separator</strong> (Steel Grey vertical between columns). No application outside these five without sign-off. Steel Blue must not appear as a floating rule on Midnight.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">2.3 — The Horizontal Divider (0.5px structural)</h3></div>
+    <p class="block-sub">A 0.5px, column-width separator — thinner than the Rule Device by design. Four contexts: section break · header boundary · table row separator · website hero boundary.</p>
+    <div class="ruledemo">
+      <div class="small" style="margin-bottom:2px">Steel Grey — default, repeatable</div><div class="divline"></div>
+      <div class="small" style="margin:10px 0 2px">Steel Blue — emphasis, one per document / screen</div><div class="divline blue"></div>
+    </div>
+    <div class="darkstrip">
+      <div class="small" style="color:var(--steel-grey); margin-bottom:2px">Cool White 40% — internal divider on dark</div><div class="dl40"></div>
+      <div class="small" style="color:var(--steel-grey); margin:10px 0 2px">Cool White 100% — Dark-Field-to-light transition</div><div class="dl100"></div>
+    </div>
+    <div class="panel locked"><span class="pl">Locked — full-width exception</span>The divider is column-width only, with a single exception: the Dark-Field-to-light boundary spans the full Dark Field width. This does not extend to any other application.</div>
+    <p class="small"><strong>Divider colours do not overlap in role.</strong> The structural Dark→light transition is the <strong>Cool White 100%</strong> divider above — a structural element, exempt from the one-per-document Steel Blue emphasis cap. As a horizontal divider, <strong>Steel Blue</strong> is reserved for two roles only: (a) the emphasis Horizontal Divider, max one per document / screen; and (b) within the motif hero applications (2.8), a <strong>1px</strong> Steel Blue rule + 18px Cool White bar that closes the panel base. Different colours, weights, and roles.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">2.4 — Grid</h3></div>
+    <table>
+      <tr><th>Surface</th><th>Ref</th><th>Cols</th><th>Gutter</th><th>Margin</th><th>Max width</th></tr>
+      <tr><td>Web — desktop</td><td>1440px</td><td>12</td><td>32px</td><td>96px/side</td><td>1248px</td></tr>
+      <tr><td>Web — mobile</td><td>375px</td><td>4</td><td>16px</td><td>20px/side</td><td>335px</td></tr>
+      <tr><td>Document body</td><td>US Letter</td><td>1 + optional sidebar</td><td>18pt</td><td>72pt top · 54pt sides</td><td>468pt body · 108pt sidebar</td></tr>
+      <tr><td>Presentation</td><td>1920×1080</td><td>12</td><td>24px</td><td>80px all</td><td>1760×920</td></tr>
+      <tr><td>Business card</td><td>85×55mm</td><td>1</td><td>—</td><td>6mm all</td><td>73×43mm</td></tr>
+    </table>
+    <p class="small">Base spacing scale: 4 · 8 · 16 · 24 · 32 · 48 · 64 · 96px. Documents are US Letter only — A4 is not approved. The document sidebar is optional (work orders/invoices); proposals and reports run full-width.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">2.5 — The Dark Field</h3></div>
+    <div class="darkstrip" style="padding:24px 24px 0">
+      <div style="font-family:var(--ser); font-size:24px">A full Midnight surface — never a tint or partial panel.</div>
+      <p style="color:var(--steel-grey); font-size:13.5px; margin:8px 0 0">Cool White headings &amp; body · Steel Grey supporting copy &amp; captions · Rule Device Cool White only · Precision Square Steel Grey fill only.</p>
+      <div class="dl100" style="margin:18px 0 0"></div>
+    </div>
+    <p class="small" style="margin-top:8px">Ten approved surfaces: website hero, website footer, document cover, document back cover, presentation title slide, proposal section divider (max 3/doc), email header band, square social post, story social post, business-card front. Every Dark Field exits to light via a Cool White Horizontal Divider at 100% (shown above) — a structural transition, exempt from the one-per-document Steel Blue emphasis cap. Not permitted: Steel Blue text below display size, partial dark panels, Steel Blue floating rules, Midnight Precision Square on dark, gradient fades.</p>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">2.6 — Accent &amp; containment</h3></div>
+    <p><strong>2.6.A Tag / Badge Chip</strong> — rectangular, rx 2px, padding 3×9px, Inter 10px/500/0.08em. Labels only, never interactive. Max two per row.</p>
+    <p><span class="pill neutral">Scheduled</span><span class="pill neutral">Residential</span><span class="pill active">In Progress</span><span class="pill active">Complete</span><span class="pill secondary">Archived</span><span class="pill secondary">On Hold</span></p>
+    <div class="two" style="margin-top:10px">
+      <div><div class="callout"><strong>2.6.B Fine Border Callout Box — neutral.</strong> 0.5px Steel Grey border, rx 8px, transparent fill. Repeatable.</div><div class="callout adv"><strong>Callout — advisory.</strong> Steel Blue border, max 1 per page.</div></div>
+      <div><div class="inset"><strong>2.6.C Inset Pull.</strong> Steel Grey 40% tint, rx 8px, no border. Documents only. The Callout Box and Inset Pull are mutually exclusive per template.</div></div>
+    </div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">2.7 — Derived graphic motifs</h3></div>
+    <p class="block-sub">Two motifs extracted from the DW monogram's <strong>geometric</strong> letterforms — never the Cormorant serif wordmark. Orientation is fixed: <strong>no rotation or mirroring under any circumstances.</strong></p>
+    <div class="panel locked"><span class="pl">Locked — independence (v1.2 state)</span>The Open Arc and the Truncated Descent are used <strong>independently</strong> and are <strong>mutually exclusive</strong> — never together in one composition. The earlier co-presence requirement is retired, and there is <strong>no same-surface opacity differential</strong>: each motif carries its own fixed opacity on its own surface.</div>
+    <div class="motif-grid">
+      <div class="motifcard"><svg viewBox="160 40 320 320" style="width:100%; height:150px" aria-hidden="true"><path d="M181.19,59.35 c0,0,164.89,0,164.45,0 c-0.44,0,126.02,25.83,124.12,151.22 c-1.26,76.24,-44.74,117.19,-70.88,136.73" fill="none" stroke="#101E31" stroke-opacity="0.85" stroke-width="34" stroke-linecap="square"/></svg>
+        <div style="font-weight:600; margin-top:8px">2.7.A — The Open Arc</div><p class="demo-note">From the D: top arm + outer arc retained. Path terminals (181.19, 59.35)→(398.88, 347.30). Production colourway: Cool White 7% on dark. Min 480px arc height. Midnight-on-light is sign-off-gated only (see the Excluded-elements log) — not a standard colourway. <em>(Shown at full opacity for geometry.)</em></p></div>
+      <div class="motifcard"><svg viewBox="40 150 380 270" style="width:100%; height:150px" aria-hidden="true"><path d="M67.06,170.87 L190.95,391.71 L289.09,216.80 L387.22,391.71" fill="none" stroke="#101E31" stroke-opacity="0.85" stroke-width="29" stroke-linejoin="miter" stroke-linecap="square"/></svg>
+        <div style="font-weight:600; margin-top:8px">2.7.B — The Truncated Descent</div><p class="demo-note">From the W: three strokes; rightmost ascending stroke removed. Derived peak (289.09, 216.80) — never the inner vertex (279.48, 198.28). Cool White 5% on Midnight only. Min 600px wide. <em>(Shown at full opacity for geometry.)</em></p></div>
+    </div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">2.8 — Motif applications</h3></div>
+    <p class="block-sub">One locked application per motif. Every proportion, transform, path, stroke, opacity, and text-block percentage is fixed — only the outer display width may change. The two are mutually exclusive and never co-occur. <span class="small">(Panels render the locked production opacity.)</span></p>
+    <div class="motif-grid">
+      <div>
+        <div class="darkpanel"><svg viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g transform="translate(-63.57,-8.05) scale(3.0)"><path d="M181.19,59.35 c0,0,164.89,0,164.45,0 c-0.44,0,126.02,25.83,124.12,151.22 c-1.26,76.24,-44.74,117.19,-70.88,136.73" fill="none" stroke="#F2F4F7" stroke-opacity="0.07" stroke-width="34" stroke-linecap="square"/></g></svg>
+          <div class="cap"><div class="eb">Managed property maintenance</div><div class="hd">Property care,<br>professionally managed.</div></div>
+          <div class="base"><div class="rule"></div><div class="bar"></div></div></div>
+        <div class="demo-note"><strong>2.8.A — Horizontal Bar Website Hero.</strong> 2:1 Dark Field · <code>translate(-63.57,-8.05) scale(3.0)</code> · stroke-width 34 · Cool White <strong>7%</strong> · base: 1px Steel Blue rule + 18px Cool White bar.</div>
+      </div>
+      <div>
+        <div class="darkpanel"><svg viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g transform="translate(-176.18,-434.30) scale(3.1)"><path d="M190.95,391.71 L289.09,216.80 L387.22,391.71" fill="none" stroke="#F2F4F7" stroke-opacity="0.05" stroke-width="29" stroke-linejoin="miter" stroke-linecap="square"/></g></svg>
+          <div class="cap"><div class="eb">Managed property maintenance</div><div class="hd">Property care,<br>professionally managed.</div></div>
+          <div class="base"><div class="rule"></div><div class="bar"></div></div></div>
+        <div class="demo-note"><strong>2.8.B — Base-Anchored Peak Fragment.</strong> 2:1 Dark Field · <code>translate(-176.18,-434.30) scale(3.1)</code> · path <span class="mono">M190.95,391.71 L289.09,216.80 L387.22,391.71</span> · stroke-width 29 · Cool White <strong>5%</strong> · valleys cropped below panel.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Excluded elements log</h3></div>
+    <table>
+      <tr><th>Element</th><th>Reason</th></tr>
+      <tr><td class="k">Rectangular Precision Square</td><td>1:1 is locked. Wider containers use content rows with the Rule Device.</td></tr>
+      <tr><td class="k">Pill-shaped chip</td><td>Reads casual/interactive; conflicts with positioning and buttons.</td></tr>
+      <tr><td class="k">Filled (tinted) callout box</td><td>Introduces an undefined surface colour; competes with Dark Field and Steel Grey.</td></tr>
+      <tr><td class="k">Inset Pull — website</td><td>Web accent-containment is covered by the Rule Device pull-quote and Callout Box.</td></tr>
+      <tr><td class="k">Partial Dark Field panel</td><td>Dark Field requires totality; half-dark reads as flourish.</td></tr>
+      <tr><td class="k">Full-bleed Horizontal Divider</td><td>Reads editorial. Use a background band or Dark Field zone instead.</td></tr>
+      <tr><td class="k">Serif D-arch (Cormorant)</td><td>Imports the serif register; motifs derive from the geometric monogram only.</td></tr>
+      <tr><td class="k">Motifs on light surfaces</td><td>Require founding-team sign-off — the dark context and extreme scale establish the letterform reference.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ 07 GOVERNANCE ═══ -->
+<section id="s7">
+  <div class="sec-num">SECTION 07</div>
+  <h2 class="sec-title">Governance</h2>
+  <p class="sec-intro">How this document relates to its sources, what changed in unification, and what remains open.</p>
+
+  <div class="block"><div class="opener"><h3 class="h3">Supersession</h3></div>
+    <div class="panel locked"><span class="pl">Locked</span>DwellWell Brand Guidelines v2.5 <strong>supersedes the Logo Rulebook (v1.9), the Typography System (v1.1), the Shapes Library (v1.2), and the Brand Voice &amp; Tone Guide (v1.0)</strong> in their entirety. Where any source conflicts with this document, this document wins. The Brand Brief v2.4 remains the upstream positioning source; the Design Architecture Brief v1.0 is the historical commissioning brief and its open items are closed by §06 unless explicitly listed as open in the register below.</div>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Document hierarchy</h3></div>
+    <table>
+      <tr><th>Tier</th><th>Authority</th></tr>
+      <tr><td class="k">1</td><td>Brand Guidelines v2.5 (this document) — the single governing reference for all brand matters.</td></tr>
+      <tr><td class="k">2</td><td>Brand Brief v2.4 — upstream positioning, brand words, audience definitions.</td></tr>
+      <tr><td class="k">3</td><td>Superseded sources — retained for archive only; not for production reference.</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Decision index</h3></div>
+    <p class="block-sub">Two numbering schemes run through the brand work; this is the crosswalk.</p>
+    <table>
+      <tr><th>Ref</th><th>Decision</th></tr>
+      <tr><td class="k">D-01</td><td>Hybrid messaging — experience claims in proposals/credentials only; website process-led.</td></tr>
+      <tr><td class="k">D-02</td><td>Anchor sentence — all copy derives from it.</td></tr>
+      <tr><td class="k">D-03</td><td>Single register — professional, direct, peer-to-peer across all audiences.</td></tr>
+      <tr><td class="k">D-04 (= Decision 2-B)</td><td>Warranty language — no terms, timeframes, conditions, or implied guarantees in public copy until US counsel sign-off. <span style="color:var(--doc-amber); font-weight:600">Open</span></td></tr>
+      <tr><td class="k">Decision 1-C</td><td>No fixed consumer tagline; process-led brand line.</td></tr>
+      <tr><td class="k">Decision 3-B</td><td>Icon container corner radius fixed at 25% of side; radius family.</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Changelog — sources &amp; what changed</h3></div>
+    <table>
+      <tr><th>Source</th><th>Contributed</th><th>Changed / retired</th></tr>
+      <tr><td class="k">v2.4 → v2.5 (this revision)</td><td>Internal-consistency audit; no new source documents. The two open Steel-Blue contrast questions were decided on the recommended (safer) option.</td><td><strong>Steel Blue retired as normal-size text everywhere.</strong> On dark surfaces, link text is now Cool White with a Steel Blue underline (15.2:1) — Steel Blue's 4.51:1 on Midnight is too thin to survive surface variation, and the darkened Text variant is worse on Midnight (3.05:1); the contrast-table row is relabelled accordingly. The reversed lockup is <strong>never</strong> placed on a Steel Blue ground (Midnight field/scrim per R3), retiring the sub-AA display exception so the wordmark/descriptor always clear AA; Precision-Square text on Steel Blue tightened to ≥24px display only. <strong>Mechanical fixes:</strong> "Steel Blue reserved for two roles" rescoped to horizontal dividers only; Messaging-Architecture claim corrected to "same-business-day acknowledgement"; V07 bare-monogram scope adds the 10A reversed lockup; R2 badge radius aligned to the 8px container tier; website FAQ/contact added to the "we" correspondence set; two unused sprite symbols removed; changelog hierarchy phrasing corrected. <strong>Self-compliance:</strong> the section-opener Steel Blue rule made an explicit exempt signature device; Cormorant editorial specimens raised to the ≥24px floor; residual "12 years" normalised to "12+ years".</td></tr>
+      <tr><td class="k">v2.3 → v2.4</td><td>Founder-directed cleanup using the recommended decision set: strict for logo, colour, accessibility, and copy claims; flexible only where layout/motif execution remains controlled.</td><td><strong>Primary CTA decision locked:</strong> Midnight fill with Cool White text is the default; Steel Blue is no longer a normal-size button fill. <strong>Steel Blue accessibility rule tightened:</strong> normal-size text links on light use Steel Blue (Text) only. <strong>V07 standalone rule locked:</strong> contained icon for digital standalone; bare monogram only for single-ink physical uses and R3. <strong>Master SVG status clarified:</strong> supplied master remains deprecated for production export until reissued at 25% container radius. <strong>Warranty gate tightened:</strong> no public warranty terms, timeframes, or implied guarantees before US counsel review. <strong>Residential launch appendix added:</strong> approved general-maintenance examples separated from unconfirmed specialist-trade claims. <strong>Motif opacity locked:</strong> exact 7% and 5% production values, no ranges. <strong>Photography overlays clarified:</strong> logo requires a solid Midnight field or approved Midnight scrim. <strong>Production White clarified:</strong> digital surfaces use Cool White; Production White remains a physical/substrate/single-ink exception. <strong>Self-compliance fixes:</strong> quote examples use Inter, sample SLA wording removed, Steel Grey/Midnight changelog ratio corrected to 12.6:1, and 12+ years terminology normalised.</td></tr>
+      <tr><td class="k">v2.2 → v2.3</td><td>Second-pass consistency audit; no new source documents.</td><td>Resolved a further set of contradictions and one accessibility decision. <strong>Voice-person rule</strong> rescoped from "one document" to "one module/section" so proposals can carry both "DwellWell" and "we"; added a marketing-vs-correspondence tiebreaker (correspondence wins). <strong>Contrast table</strong> recomputed and corrected (Cool White/Midnight 15.2:1, Steel Grey/Midnight 12.6:1, White/Steel Blue 3.7:1) and expanded with interactive pairings. <strong>Steel Blue text decision (b):</strong> Steel Blue fails AA for normal text on light (3.4:1), so normal-size links now use <strong>Steel Blue (Text) #3A6E91</strong> (5.0:1 AA); Steel Blue is reserved for fills, large/display text, icons, underlines, and UI. <strong>R3 reversed lockup</strong> restricted to Midnight only (the Steel Blue W vanishes on Steel Blue); 10A single-colour white lockup used on Steel Blue. <strong>R2</strong> no longer lists "embossed print" (embossing = bare monogram). <strong>Dark-Field exit divider</strong> resolved as a Cool White 100% structural transition, exempt from the Steel Blue one-per-document emphasis cap (was specified as both Cool White and Steel Blue). <strong>Production White (#FFFFFF)</strong> defined as a substrate/technical exception; brand white is Cool White. <strong>Preservation</strong> rule rescoped to the service-line label only. <strong>Cormorant scope</strong> widened to include display-scale pull-quotes and Dark-Field headlines. Master SVG marked deprecated for production until corrected to 25%. Self-compliance: H3 specimen 22px, anchor phrase restored to "intake to closeout".</td></tr>
+      <tr><td class="k">v2.1 → v2.2</td><td>Internal-consistency audit applied; no new source documents.</td><td>Resolved five contradictions and three open decisions. <strong>"Platform"</strong> moved from the Flagged tier to Prohibited (§02), matching §01 and the changelog. <strong>§03 colour rule</strong> reworded: bans off-palette colours/gradients/arbitrary tinting but explicitly permits the named §06 opacity values. <strong>Variant 07</strong> no longer lists "embossed" (embossing uses the bare monogram). <strong>"W is always Steel Blue"</strong> softened to except 10A/10B. Stray "managed coordinator" → "managed operator". <strong>Eight elements</strong> enumerated explicitly as §2.1–2.8 (motifs/applications sit within the eight). <strong>Light-surface motifs</strong> reclassified as sign-off-gated only; Cool White on dark is the production motif colourway. <strong>Dark-Field supporting copy</strong> changed from Cool Slate (~2.8:1, fails WCAG) to Steel Grey (12.6:1 AAA); "Steel Grey on Midnight" added to approved pairings. Self-compliance: H2 specimen 40px, cover title 56px, off-palette table text → Midnight, Precision Square Midnight frequency disambiguated (page vs section), decision-numbering crosswalk added.</td></tr>
+      <tr><td class="k">v2.0 → v2.1</td><td>Master vector logo (<code>DwellWell_Master_Logo.svg</code>).</td><td>§05 logo icons and the §06 radius-family demo now render as inline SVG via <code>&lt;use&gt;</code> from the master vector; low-resolution raster PNGs removed (file size cut substantially). Containers rendered at 25% radius per Decision 3-B — master ships <code>rx 2.2</code>, flagged for sign-off.</td></tr>
+      <tr><td class="k">Logo Rulebook v1.9</td><td>Three registers, ten variants, clearspace, minimums, file-format matrix, CMYK, misuse. Logo artwork (now vectorised — §05 icons render via <code>&lt;use&gt;</code> from the master SVG).</td><td>"v1.8 — DRAFT" stamp corrected to v1.9 and superseded. Tagline "We care for your home." retired (1-C). V07 container contradiction resolved in v2.4: digital standalone keeps the container; bare monogram is limited to single-ink physical and R3 usage.</td></tr>
+      <tr><td class="k">Typography System v1.1</td><td>Full type scale, Option B Cormorant scope, four-weight load, 4px button radius, monospace rule, Table level.</td><td>Self-compliance fixed (no Inter 300/700 rendered). Domain "dwellwell.com" corrected to dwellwellpropertycare.com. Warranty sample copy gated by D-04 and not approved for public use.</td></tr>
+      <tr><td class="k">Shapes Library v1.2</td><td>Eight elements (§2.1–2.8) with locked specs, grid, Dark Field surfaces, radius family, excluded-elements log, motif geometry, both motif applications.</td><td>Forbidden weights removed from load (Cormorant 400/500/700, Inter 300). v1.2 state carried: co-presence and same-surface opacity differential remain retired; 2.8.A = Horizontal Bar Hero; 2.8.B = Base-Anchored Peak Fragment (3.1×). Self-identity clarified (it also labelled itself "Design Architecture Brief"). Warranty pull-quote retired from approved copy pending legal review.</td></tr>
+      <tr><td class="k">Brand Voice &amp; Tone Guide v1.0</td><td>Voice character, two-modes/one-voice, voice-person, five principles, audience register, vocabulary, messaging architecture, six before/after, tone-by-context, D-01–D-04.</td><td>Inter 300 removed from load and render. D-04 updated to Decision 2-B: warranty language gated on legal review; no terms, timeframes, or implied guarantees in public copy.</td></tr>
+      <tr><td class="k">Brand Brief v2.4</td><td>Positioning, brand words, audiences, two service lines, prohibited terms.</td><td>Its "platform" usage and live warranty statement overridden by this consolidated document: "platform" prohibited; warranty gated. Specialist-trade claims remain launch-gated and must not be named in copy until operations confirms scope.</td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Locked vs open register</h3></div>
+    <div class="legend"><span><i style="background:var(--doc-green)"></i>Locked</span><span><i style="background:var(--doc-amber)"></i>Open</span></div>
+    <table>
+      <tr><th>Item</th><th>State</th></tr>
+      <tr><td>Five-colour palette · pairings · contrast rules</td><td><span style="color:var(--doc-green); font-weight:600">Locked</span></td></tr>
+      <tr><td>Type scale · four-weight load · Cormorant scope · radii</td><td><span style="color:var(--doc-green); font-weight:600">Locked</span></td></tr>
+      <tr><td>Logo registers, variants, clearspace, minimums, formats</td><td><span style="color:var(--doc-green); font-weight:600">Locked</span></td></tr>
+      <tr><td>Icon corner radius (25% ratio) &amp; radius family</td><td><span style="color:var(--doc-green); font-weight:600">Locked</span></td></tr>
+      <tr><td>Eight shape elements §2.1–2.8 (2.7 defines two motifs; 2.8 their two locked applications)</td><td><span style="color:var(--doc-green); font-weight:600">Locked</span></td></tr>
+      <tr><td>Voice, vocabulary, messaging architecture, D-01–D-03</td><td><span style="color:var(--doc-green); font-weight:600">Locked</span></td></tr>
+      <tr><td>No fixed tagline; process-led brand line</td><td><span style="color:var(--doc-green); font-weight:600">Locked</span></td></tr>
+      <tr><td>V07 icon-standalone container rule</td><td><span style="color:var(--doc-green); font-weight:600">Locked</span></td></tr>
+      <tr><td>D-04 — warranty wording (awaiting US counsel)</td><td><span style="color:var(--doc-amber); font-weight:600">Open</span></td></tr>
+      <tr><td>Residential specialist-trade categories and code-regulated service claims in copy</td><td><span style="color:var(--doc-amber); font-weight:600">Open</span></td></tr>
+      <tr><td>Standard-request response window; contractor payment terms; network size</td><td><span style="color:var(--doc-amber); font-weight:600">Open</span></td></tr>
+      <tr><td>Master vector logo production asset — supplied master deprecated until reissued with 25% container radius</td><td><span style="color:var(--doc-amber); font-weight:600">Open</span></td></tr>
+    </table>
+  </div>
+
+  <div class="block"><div class="opener"><h3 class="h3">Document control</h3></div>
+    <table>
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td class="k">Document</td><td>DwellWell Brand Guidelines v2.5</td></tr>
+      <tr><td class="k">Date</td><td>June 2026</td></tr>
+      <tr><td class="k">Status</td><td>Active — Governing</td></tr>
+      <tr><td class="k">Supersedes</td><td>Logo Rulebook v1.9 · Typography System v1.1 · Shapes Library v1.2 · Brand Voice &amp; Tone Guide v1.0</td></tr>
+      <tr><td class="k">Contact</td><td>info@dwellwellpropertycare.com</td></tr>
+      <tr><td class="k">Domain</td><td>dwellwellpropertycare.com</td></tr>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-line">DwellWell</div>
+    <p>Coordinated from intake to closeout.</p>
+    <p style="margin-top:14px">DwellWell Property Care LLC · Brand Guidelines v2.5 · June 2026 · Confidential — do not distribute without founding-team sign-off · info@dwellwellpropertycare.com</p>
+  </div>
+</footer>
+
+</body>
+</html>

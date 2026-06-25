@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="Practical guidance on property maintenance and preservation from DwellWell: maintenance checklists, the work-order process, winterisation, make-ready turns, and preventive maintenance.">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;font-family:'Inter',system-ui,sans-serif;color:#101E31;">
+  <dc-import name="SiteNav" active="resources" hint-size="100%,72px"></dc-import>
+
+  <!-- COVER -->
+  <section data-screen-label="Resources cover" style="position:relative;background:#101E31;overflow:hidden;min-height:clamp(380px,46vw,500px);display:flex;flex-direction:column;justify-content:center;padding:clamp(64px,9vw,104px) 0 clamp(72px,10vw,116px);">
+    <svg viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;">
+      <g transform="translate(-176.18,-434.30) scale(3.1)">
+        <path d="M190.95,391.71 L289.09,216.80 L387.22,391.71" fill="none" stroke="#F2F4F7" stroke-opacity="0.05" stroke-width="29" stroke-linejoin="miter" stroke-linecap="square"></path>
+      </g>
+    </svg>
+    <div style="position:relative;z-index:2;max-width:1248px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,96px);">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+        <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+        <span style="font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#D8E0EA;">Resources</span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(36px,6.2vw,56px);line-height:1.15;color:#F2F4F7;margin:0 0 20px;max-width:18ch;">Notes from the field.</h1>
+      <p style="font-weight:400;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#F2F4F7;margin:0;max-width:58ch;">Practical guidance on maintaining and preserving property, written for the people who manage it. No theory, just how the work gets coordinated and documented.</p>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;z-index:2;">
+      <div style="height:1px;background:#4A8BB5;"></div>
+      <div style="height:18px;background:#F2F4F7;"></div>
+    </div>
+  </section>
+
+  <main style="background:#F2F4F7;">
+    <section data-screen-label="Article grid" style="max-width:1248px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,96px) clamp(64px,9vw,96px);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;">
+        <sc-for list="{{ articles }}" as="a" hint-placeholder-count="6">
+          <a href="{{ a.href }}" style="display:flex;flex-direction:column;gap:18px;padding:30px;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:8px;text-decoration:none;transition:border-color .15s,transform .15s;" style-hover="border-color:#4A8BB5;transform:translateY(-2px);" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">
+            <span style="align-self:flex-start;font-weight:500;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 9px;border-radius:2px;background:#D8E0EA;color:#101E31;">{{ a.category }}</span>
+            <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:26px;line-height:1.22;color:#101E31;margin:0;">{{ a.title }}</h2>
+            <p style="font-size:15px;line-height:1.6;color:#57657A;margin:0;flex:1 1 auto;">{{ a.excerpt }}</p>
+            <span style="font-weight:500;font-size:14px;color:#3A6E91;">Read →</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      articles: [
+        { category: "Residential maintenance", title: "The property manager's maintenance checklist", excerpt: "A standing checklist for keeping occupied properties in good repair across the year, before small issues turn into expensive ones.", href: "Article-Maintenance-Checklist.dc.html" },
+        { category: "Property preservation", title: "How property preservation works: a guide for lenders and investors", excerpt: "What preservation covers, why documentation matters, and how a coordinated operator keeps vacant assets compliant and marketable.", href: "Article-Preservation-Guide.dc.html" },
+        { category: "How we work", title: "What to expect: DwellWell's work-order process explained", excerpt: "From the first work order to closeout, here is exactly how a job moves through DwellWell.", href: "Article-Work-Order-Process.dc.html" },
+        { category: "Property preservation", title: "Winterisation for vacant properties", excerpt: "What winterisation protects, when to schedule it, and what a documented winterisation should include.", href: "Article-Winterisation-Vacant.dc.html" },
+        { category: "Residential maintenance", title: "Preparing a property for new tenants (turn / make-ready)", excerpt: "A make-ready that moves fast without cutting corners: the work that matters between tenants.", href: "Article-Make-Ready.dc.html" },
+        { category: "Residential maintenance", title: "Preventive maintenance for rental properties", excerpt: "The maintenance that prevents emergencies, protects the asset, and keeps good tenants in place.", href: "Article-Preventive-Maintenance.dc.html" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

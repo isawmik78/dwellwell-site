@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="Preventive maintenance for rental properties: where prevention pays most, how it protects the asset, and how it keeps good tenants in place.">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="resources" hint-size="100%,72px"></dc-import>
+  <dc-import name="Article" category="{{ category }}" title="{{ title }}" dek="{{ dek }}" blocks="{{ blocks }}" related="{{ related }}" hint-size="100%,1400px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      category: "Residential maintenance",
+      title: "Preventive maintenance for rental properties",
+      dek: "Preventive maintenance is the cheapest line item you'll ever run, because it's the one that stops the expensive ones. Here's where it pays.",
+      blocks: [
+        { t: "p", c: "Emergency repairs cost more than scheduled ones, every time. They come with after-hours rates, collateral damage, and a frustrated tenant. Preventive maintenance trades a small, predictable cost now for the large, unpredictable one later, and it keeps good tenants from leaving over problems that never should have happened." },
+        { t: "h2", c: "Where prevention pays most" },
+        { t: "ul", c: ["HVAC service before peak season","Water heaters, shutoffs, and visible plumbing","Roof and gutter checks before wet weather","Seals, caulking, and weatherproofing","Detectors, alarms, and electrical safety"] },
+        { t: "h2", c: "Protecting the asset, not just the month" },
+        { t: "p", c: "Deferred maintenance doesn't disappear; it accrues. Every skipped service shortens the life of a system and lowers the value of the property. A standing preventive schedule protects the asset itself, not just this month's operating budget." },
+        { t: "h2", c: "Keeping tenants in place" },
+        { t: "p", c: "Tenants renew when a property is well run. Quick, documented responses and maintenance that gets ahead of problems are what turnover-resistant portfolios are built on. Coordinating it through one operator means it actually happens on schedule." },
+        { t: "callout", c: "DwellWell coordinates recurring preventive maintenance across residential portfolios, documented and closed on every visit. Start a conversation about a schedule for your properties." }
+      ],
+      related: [
+        { title: "The property manager's maintenance checklist", href: "Article-Maintenance-Checklist.dc.html" },
+        { title: "Preparing a property for new tenants (turn / make-ready)", href: "Article-Make-Ready.dc.html" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="services" hint-size="100%,72px"></dc-import>
+  <dc-import name="ServiceOverview"
+    cover-eyebrow="Property preservation"
+    cover-title="Preservation for vacant assets."
+    cover-sub="{{ coverSub }}"
+    intro="{{ intro }}"
+    tiles="{{ tiles }}"
+    hint-size="100%,1600px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      coverSub: "DwellWell coordinates property preservation: securing, winterisation, debris removal, condition reporting, and vacant-property maintenance, with the documentation lenders and asset managers require. Every job is closed with a complete record.",
+      intro: "For lenders, investors, and asset managers responsible for vacant, foreclosed, and REO property.",
+      tiles: [
+        { name: "Property Securing & Board-Up", desc: "Securing and board-up of doors, windows, and points of entry.", href: "Service-Securing-BoardUp.dc.html" },
+        { name: "Lock Changes & Property Security", desc: "Rekeys and lock changes to control access to vacant property.", href: "Service-Lock-Changes.dc.html" },
+        { name: "Debris Removal & Cleanouts", desc: "Debris removal and full cleanouts of interiors and exteriors.", href: "Service-Debris-Removal.dc.html" },
+        { name: "Interior Cleaning", desc: "Interior cleaning to bring vacant units to a presentable condition.", href: "Service-Interior-Cleaning.dc.html" },
+        { name: "Lawn Maintenance", desc: "Lawn and grounds maintenance to keep vacant property compliant.", href: "Service-Lawn-Maintenance.dc.html" },
+        { name: "Winterisation", desc: "Winterisation of plumbing and systems against seasonal damage.", href: "Service-Winterisation.dc.html" },
+        { name: "Property Repairs", desc: "Repairs needed to protect and preserve the condition of the asset.", href: "Service-Property-Repairs.dc.html" },
+        { name: "Property Inspections & Condition Reporting", desc: "Inspections and condition reporting with the documentation required.", href: "Service-Inspections-Reporting.dc.html" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

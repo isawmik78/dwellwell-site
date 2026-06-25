@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="Contact DwellWell. Email info@dwellwellpropertycare.com, call our client or vendor lines, or send a message. Emergency and urgent requests receive a same-business-day acknowledgement.">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;font-family:'Inter',system-ui,sans-serif;color:#101E31;">
+  <dc-import name="SiteNav" active="contact" hint-size="100%,72px"></dc-import>
+
+  <!-- COVER (Dark Field, motif 2.8.B) -->
+  <section data-screen-label="Contact cover" style="position:relative;background:#101E31;overflow:hidden;min-height:clamp(360px,42vw,460px);display:flex;flex-direction:column;justify-content:center;padding:clamp(64px,9vw,96px) 0 clamp(64px,9vw,104px);">
+    <svg viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;">
+      <g transform="translate(-176.18,-434.30) scale(3.1)">
+        <path d="M190.95,391.71 L289.09,216.80 L387.22,391.71" fill="none" stroke="#F2F4F7" stroke-opacity="0.05" stroke-width="29" stroke-linejoin="miter" stroke-linecap="square"></path>
+      </g>
+    </svg>
+    <div style="position:relative;z-index:2;max-width:1248px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,96px);">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+        <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+        <span style="font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#D8E0EA;">Contact</span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(36px,6.2vw,56px);line-height:1.15;color:#F2F4F7;margin:0 0 20px;max-width:16ch;">Start a conversation.</h1>
+      <p style="font-weight:400;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#F2F4F7;margin:0;max-width:56ch;">Tell us what you need handled. We coordinate maintenance and preservation from intake to closeout, and we are the single point of contact throughout.</p>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;z-index:2;">
+      <div style="height:1px;background:#4A8BB5;"></div>
+      <div style="height:18px;background:#F2F4F7;"></div>
+    </div>
+  </section>
+
+  <main style="background:#F2F4F7;">
+    <section data-screen-label="Contact body" style="max-width:1248px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,96px) clamp(64px,9vw,96px);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(36px,5vw,64px);align-items:start;">
+
+        <!-- LEFT: details -->
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+            <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+            <span style="font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;">Reach us directly</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:0;margin-bottom:28px;">
+            <div style="padding:18px 0;border-bottom:0.5px solid #D8E0EA;">
+              <div style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;margin-bottom:6px;">Email</div>
+              <a href="mailto:info@dwellwellpropertycare.com" style="font-size:16px;color:#3A6E91;text-decoration:none;border-bottom:1px solid #4A8BB5;padding-bottom:1px;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">info@dwellwellpropertycare.com</a>
+            </div>
+            <div style="padding:18px 0;border-bottom:0.5px solid #D8E0EA;">
+              <div style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;margin-bottom:6px;">Clients / Property Managers</div>
+              <div style="font-size:16px;color:#101E31;">[TBD]</div>
+            </div>
+            <div style="padding:18px 0;border-bottom:0.5px solid #D8E0EA;">
+              <div style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;margin-bottom:6px;">Vendors / Contractors</div>
+              <div style="font-size:16px;color:#101E31;">[TBD]</div>
+            </div>
+          </div>
+
+          <a href="#" aria-label="Message DwellWell on WhatsApp" style="display:inline-flex;align-items:center;gap:11px;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#3A6E91;background:transparent;border:1px solid #4A8BB5;padding:11px 20px;border-radius:4px;text-decoration:none;margin-bottom:28px;transition:background .15s;" style-hover="background:rgba(74,139,181,0.1);" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">
+            <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><path fill="#3A6E91" d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.5 2.1 7.9L.5 31.5l7.8-2c2.3 1.3 5 1.9 7.7 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.5 0-4.9-.7-7-1.9l-.5-.3-4.6 1.2 1.2-4.5-.3-.5C3.4 20.7 2.7 18.4 2.7 16 2.7 8.7 8.7 2.7 16 2.7S29.3 8.7 29.3 16 23.3 28.8 16 28.8zm8.2-9.9c-.4-.2-2.6-1.3-3-1.4-.4-.1-.7-.2-1 .2s-1.1 1.4-1.4 1.7c-.2.3-.5.3-.9.1-.4-.2-1.9-.7-3.6-2.2-1.3-1.2-2.2-2.6-2.5-3-.3-.4 0-.7.2-.9.2-.2.4-.5.6-.8.2-.3.3-.5.4-.8.1-.3 0-.6 0-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.7-1-.7h-.8c-.3 0-.8.1-1.2.5-.4.4-1.6 1.5-1.6 3.7s1.6 4.3 1.9 4.6c.2.3 3.2 4.9 7.7 6.8 1.1.5 1.9.8 2.6 1 1.1.3 2.1.3 2.9.2.9-.1 2.6-1.1 3-2.1.4-1 .4-1.9.3-2.1-.1-.2-.4-.3-.8-.5z"></path></svg>
+            Message us on WhatsApp
+          </a>
+
+          <div style="border:0.5px solid #4A8BB5;border-radius:8px;padding:20px 22px;">
+            <div style="font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;margin-bottom:8px;">Response</div>
+            <p style="font-size:15px;line-height:1.6;color:#101E31;margin:0;">Emergency and urgent requests receive a same-business-day acknowledgement.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: form -->
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+            <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+            <span style="font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;">Send a message</span>
+          </div>
+
+          <form onSubmit="{{ onSubmit }}" style="border:0.5px solid #D8E0EA;border-radius:8px;padding:clamp(24px,4vw,36px);background:#F2F4F7;display:flex;flex-direction:column;gap:20px;">
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;">Full name <span style="color:#3A6E91;">*</span></span>
+              <input type="text" name="fullName" required="required" autoComplete="name" style="font-family:'Inter',sans-serif;font-size:15px;color:#101E31;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:4px;padding:11px 13px;" style-focus="outline:2px solid #4A8BB5;outline-offset:1px;border-color:#4A8BB5;" />
+            </label>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;">
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;">Email <span style="color:#3A6E91;">*</span></span>
+                <input type="email" name="email" required="required" autoComplete="email" style="font-family:'Inter',sans-serif;font-size:15px;color:#101E31;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:4px;padding:11px 13px;" style-focus="outline:2px solid #4A8BB5;outline-offset:1px;border-color:#4A8BB5;" />
+              </label>
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;">Phone <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#57657A;">(optional)</span></span>
+                <input type="tel" name="phone" autoComplete="tel" style="font-family:'Inter',sans-serif;font-size:15px;color:#101E31;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:4px;padding:11px 13px;" style-focus="outline:2px solid #4A8BB5;outline-offset:1px;border-color:#4A8BB5;" />
+              </label>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;">
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;">State / ZIP <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#57657A;">(optional)</span></span>
+                <input type="text" name="stateZip" autoComplete="postal-code" style="font-family:'Inter',sans-serif;font-size:15px;color:#101E31;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:4px;padding:11px 13px;" style-focus="outline:2px solid #4A8BB5;outline-offset:1px;border-color:#4A8BB5;" />
+              </label>
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;">Service category <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#57657A;">(optional)</span></span>
+                <select name="serviceCategory" style="font-family:'Inter',sans-serif;font-size:15px;color:#101E31;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:4px;padding:11px 13px;appearance:none;-webkit-appearance:none;" style-focus="outline:2px solid #4A8BB5;outline-offset:1px;border-color:#4A8BB5;">
+                  <option value="">Select one</option>
+                  <option value="Residential">Residential maintenance</option>
+                  <option value="Preservation">Property preservation</option>
+                  <option value="Not sure">Not sure</option>
+                </select>
+              </label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;">Photos <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#57657A;">(optional, up to 3 files, 5MB each)</span></span>
+              <input type="file" name="photos" accept="image/*" multiple="multiple" onChange="{{ onFileChange }}" style="font-family:'Inter',sans-serif;font-size:14px;color:#57657A;background:#F2F4F7;border:1px dashed #D8E0EA;border-radius:4px;padding:12px 13px;cursor:pointer;" style-focus="outline:2px solid #4A8BB5;outline-offset:1px;border-color:#4A8BB5;" />
+              <sc-if value="{{ fileError }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:13px;color:#3A6E91;">{{ fileErrorText }}</span>
+              </sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-weight:500;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#57657A;">Message <span style="color:#3A6E91;">*</span></span>
+              <textarea name="message" rows="5" required="required" style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.55;color:#101E31;background:#F2F4F7;border:1px solid #D8E0EA;border-radius:4px;padding:11px 13px;resize:vertical;" style-focus="outline:2px solid #4A8BB5;outline-offset:1px;border-color:#4A8BB5;"></textarea>
+            </label>
+            <button type="submit" style="align-self:flex-start;font-family:'Inter',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#F2F4F7;background:#101E31;border:none;padding:12px 26px;border-radius:4px;cursor:pointer;transition:opacity .15s;" style-hover="opacity:0.9;" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">Send message</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { fileError: '' };
+  renderVals() {
+    return {
+      fileError: !!this.state.fileError,
+      fileErrorText: this.state.fileError,
+      onFileChange: (e) => {
+        const files = Array.from(e.target.files || []);
+        let err = '';
+        if (files.length > 3) err = 'Please attach no more than 3 files.';
+        else if (files.some(f => f.size > 5 * 1024 * 1024)) err = 'Each file must be 5MB or smaller.';
+        if (err) e.target.value = '';
+        this.setState({ fileError: err });
+      },
+      onSubmit: (e) => {
+        e.preventDefault();
+        if (this.state.fileError) return;
+        window.location.href = 'Thank-You.dc.html';
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

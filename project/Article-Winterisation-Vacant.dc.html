@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="Winterisation for vacant properties: what the work protects, when to schedule it ahead of a freeze, and what a documented winterisation should include.">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="resources" hint-size="100%,72px"></dc-import>
+  <dc-import name="Article" category="{{ category }}" title="{{ title }}" dek="{{ dek }}" blocks="{{ blocks }}" related="{{ related }}" hint-size="100%,1400px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      category: "Property preservation",
+      title: "Winterisation for vacant properties",
+      dek: "A frozen pipe in a vacant property is a five-figure problem that a scheduled winterisation prevents. Here's what the work protects and what a documented job includes.",
+      blocks: [
+        { t: "p", c: "Vacant properties don't have anyone to notice a dropping temperature or a dripping line. By the time damage is found, it has usually been spreading for weeks. Winterisation removes the water that does the damage and documents that the property was protected before the cold set in." },
+        { t: "h2", c: "What winterisation protects" },
+        { t: "p", c: "The goal is simple: no standing water in any system that can freeze, expand, and burst. That covers supply lines, drains, traps, water heaters, and fixtures." },
+        { t: "ul", c: ["Supply lines drained and shut off","Water heater drained","Traps and drains protected with anti-freeze","Fixtures and appliances cleared","Exterior spigots and irrigation cleared"] },
+        { t: "h2", c: "When to schedule it" },
+        { t: "p", c: "Ahead of the first hard freeze for the region, not after. In colder markets that means getting vacant assets winterised early in the season rather than reacting to a forecast. Coverage and timing depend on location, which we confirm case by case." },
+        { t: "h2", c: "What a documented winterisation includes" },
+        { t: "p", c: "A winterisation you can rely on comes with dated photos of each step and a closeout record. That record is what protects you if a freeze claim is ever questioned." },
+        { t: "callout", c: "DwellWell coordinates winterisation as part of property preservation, documented and closed with a complete record. Contact us to confirm coverage for your area." }
+      ],
+      related: [
+        { title: "How property preservation works: a guide for lenders and investors", href: "Article-Preservation-Guide.dc.html" },
+        { title: "Preventive maintenance for rental properties", href: "Article-Preventive-Maintenance.dc.html" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

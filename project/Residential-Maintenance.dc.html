@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="services" hint-size="100%,72px"></dc-import>
+  <dc-import name="ServiceOverview"
+    cover-eyebrow="Residential property maintenance"
+    cover-title="Maintenance for occupied homes."
+    cover-sub="{{ coverSub }}"
+    intro="{{ intro }}"
+    tiles="{{ tiles }}"
+    hint-size="100%,1400px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      coverSub: "Everyday repairs and upkeep for occupied homes, rentals, and multi-unit residential property, coordinated and documented from intake to closeout.",
+      intro: "For homeowners, landlords, and property managers responsible for occupied residential property.",
+      tiles: [
+        { name: "Property Repairs & General Maintenance", desc: "General repairs: leaks, damaged walls, floors, surfaces, and broken fixtures and appliances.", href: "Service-Repairs-Maintenance.dc.html" },
+        { name: "Residential & Common Area Cleaning", desc: "Units and multi-unit common areas: hallways, lobbies, and stairwells.", href: "Service-Residential-Cleaning.dc.html" },
+        { name: "Landscaping & Exterior Maintenance", desc: "Lawn care, tree and shrub trimming, planting, and curb-appeal upkeep.", href: "Service-Landscaping-Exterior.dc.html" },
+        { name: "Interior & Exterior Painting", desc: "Touch-ups, full painting, exterior work for homes and fences, and surface refinishing.", href: "Service-Interior-Exterior-Painting.dc.html" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

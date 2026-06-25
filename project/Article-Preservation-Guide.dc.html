@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="A guide to property preservation for lenders and investors: what preservation covers on vacant and REO assets, why documentation is the product, and how coverage is confirmed.">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="resources" hint-size="100%,72px"></dc-import>
+  <dc-import name="Article" category="{{ category }}" title="{{ title }}" dek="{{ dek }}" blocks="{{ blocks }}" related="{{ related }}" hint-size="100%,1400px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      category: "Property preservation",
+      title: "How property preservation works: a guide for lenders and investors",
+      dek: "Preservation keeps a vacant asset secure, compliant, and marketable. The difference between a good preservation operator and a liability is documentation.",
+      blocks: [
+        { t: "p", c: "When a property goes vacant, the clock starts. Unsecured entries, code violations, freeze damage, and deferred decay all compound, and they all land on whoever holds the asset. Preservation is the work that keeps a vacant property from becoming a problem, and the record that proves it was handled." },
+        { t: "h2", c: "What preservation covers" },
+        { t: "p", c: "The core scope is consistent across most vacant and REO assets, even when the sequence changes by property." },
+        { t: "ul", c: ["Securing and board-up of entries","Lock changes and access control","Debris removal and cleanouts","Interior cleaning","Lawn and grounds maintenance","Winterisation of plumbing and systems","Repairs that protect condition","Inspections and condition reporting"] },
+        { t: "h2", c: "Why documentation is the product" },
+        { t: "p", c: "For a lender or asset manager, the work itself is only half of it. The other half is a complete, dated, photographed record that satisfies investors, insurers, and compliance. A job that was done but not documented is, for your purposes, a job that creates risk. Every DwellWell job closes with that record attached." },
+        { t: "h2", c: "Coverage is confirmed case by case" },
+        { t: "p", c: "Availability depends on location and contractor coverage. We confirm your area before committing, rather than promising blanket reach we can't stand behind." },
+        { t: "callout", c: "DwellWell coordinates property preservation across the US, confirmed case by case, with the documentation lenders and asset managers require. Every job is closed with a complete record." }
+      ],
+      related: [
+        { title: "Winterisation for vacant properties", href: "Article-Winterisation-Vacant.dc.html" },
+        { title: "What to expect: DwellWell's work-order process explained", href: "Article-Work-Order-Process.dc.html" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

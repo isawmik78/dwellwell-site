@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="services" hint-size="100%,72px"></dc-import>
+  <dc-import name="ServiceDetail"
+    svc-name="{{ svcName }}" descr="{{ descr }}" who-needs="{{ whoNeeds }}"
+    line-label="{{ lineLabel }}" line-href="{{ lineHref }}" includes="{{ includes }}"
+    hint-size="100%,1000px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      svcName: "Lock Changes & Property Security",
+      lineLabel: "Property preservation",
+      lineHref: "Property-Preservation.dc.html",
+      descr: "Controlling access to vacant property through rekeys and lock changes. DwellWell coordinates lock changes, lockbox installation, and access control. Every job is documented and closed with a complete record.",
+      whoNeeds: "Lenders and asset managers who need access to vacant property controlled and recorded for compliance.",
+      includes: ["Lock changes and rekeys","Lockbox installation","Access control coordination","Key management","Condition photos","Documented closeout record"]
+    };
+  }
+}
+</script>
+</body>
+</html>

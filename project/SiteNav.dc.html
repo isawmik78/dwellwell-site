@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</helmet>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="dw-icon-square-dark" viewBox="0 0 50 50"><rect x="0" y="0" width="50" height="50" rx="12.5" fill="#101E31"></rect><path fill="#F2F4F7" d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"></path><path fill="#4A8BB5" d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"></path></symbol>
+</defs></svg>
+
+<header data-screen-label="Nav" style="position:sticky;top:0;z-index:50;background:rgba(242,244,247,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:0.5px solid #D8E0EA;font-family:'Inter',system-ui,sans-serif;">
+  <div style="max-width:1248px;margin:0 auto;padding:0 clamp(20px,5vw,96px);height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <a href="Home.dc.html" aria-label="DwellWell Property Care home" style="display:flex;align-items:center;gap:13px;text-decoration:none;flex:0 0 auto;" style-focus="outline:2px solid #4A8BB5;outline-offset:4px;border-radius:4px;">
+      <svg viewBox="0 0 50 50" style="width:42px;height:42px;display:block;flex:0 0 auto;"><use href="#dw-icon-square-dark"></use></svg>
+      <span style="width:1px;align-self:stretch;margin:6px 0;background:#4A8BB5;"></span>
+      <span style="display:flex;flex-direction:column;line-height:1;">
+        <span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px;color:#101E31;letter-spacing:0.005em;">DwellWell</span>
+        <span style="font-weight:400;font-size:10.5px;letter-spacing:0.04em;color:#57657A;margin-top:3px;white-space:nowrap;">Property Care LLC</span>
+      </span>
+    </a>
+
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);">
+        <a href="Home.dc.html" style="font-weight:500;font-size:14px;color:{{ homeColor }};text-decoration:none;padding:6px 0;border-bottom:1.5px solid {{ homeBorder }};transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Home</a>
+        <a href="About.dc.html" style="font-weight:500;font-size:14px;color:{{ aboutColor }};text-decoration:none;padding:6px 0;border-bottom:1.5px solid {{ aboutBorder }};transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">About</a>
+        <span style="position:relative;display:inline-flex;" onMouseEnter="{{ openServices }}" onMouseLeave="{{ closeServices }}">
+          <button type="button" onClick="{{ toggleServices }}" style="display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:{{ servicesColor }};background:none;border:none;border-bottom:1.5px solid {{ servicesBorder }};padding:6px 0;cursor:pointer;transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Services <span style="font-size:9px;line-height:1;">▾</span></button>
+          <sc-if value="{{ servicesOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);min-width:288px;background:#F2F4F7;border:0.5px solid #D8E0EA;border-radius:8px;box-shadow:0 18px 44px rgba(16,30,49,0.14);padding:8px;z-index:60;">
+              <a href="Residential-Maintenance.dc.html" style="display:block;padding:13px 16px;border-radius:4px;text-decoration:none;" style-hover="background:#D8E0EA;">
+                <span style="display:block;font-weight:600;font-size:14px;color:#101E31;letter-spacing:-0.01em;">Residential Property Maintenance</span>
+                <span style="display:block;font-size:12px;color:#57657A;margin-top:3px;">General handyman &amp; maintenance for occupied homes</span>
+              </a>
+              <a href="Property-Preservation.dc.html" style="display:block;padding:13px 16px;border-radius:4px;text-decoration:none;" style-hover="background:#D8E0EA;">
+                <span style="display:block;font-weight:600;font-size:14px;color:#101E31;letter-spacing:-0.01em;">Property Preservation</span>
+                <span style="display:block;font-size:12px;color:#57657A;margin-top:3px;">Securing, winterisation, cleanouts &amp; condition reporting</span>
+              </a>
+            </div>
+          </sc-if>
+        </span>
+        <a href="#" style="font-weight:500;font-size:14px;color:{{ resourcesColor }};text-decoration:none;padding:6px 0;border-bottom:1.5px solid {{ resourcesBorder }};transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Resources</a>
+        <a href="#" style="font-weight:500;font-size:14px;color:{{ contractorColor }};text-decoration:none;padding:6px 0;border-bottom:1.5px solid {{ contractorBorder }};transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Join as Contractor</a>
+        <a href="#" style="font-weight:500;font-size:14px;color:{{ contactColor }};text-decoration:none;padding:6px 0;border-bottom:1.5px solid {{ contactBorder }};transition:color .15s,border-color .15s;" style-hover="color:#101E31;border-color:#4A8BB5;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;border-radius:2px;">Contact</a>
+        <a href="#" style="font-weight:500;font-size:14px;letter-spacing:0.02em;color:#F2F4F7;background:#101E31;padding:10px 22px;border-radius:4px;text-decoration:none;margin-left:6px;transition:opacity .15s;" style-hover="opacity:0.9;" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;">Start a conversation</a>
+      </nav>
+    </sc-if>
+
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ toggleMobile }}" aria-label="Toggle menu" style="display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:10px;" style-focus="outline:2px solid #4A8BB5;outline-offset:2px;border-radius:4px;">
+        <span style="display:block;height:1.5px;background:#101E31;border-radius:2px;"></span>
+        <span style="display:block;height:1.5px;background:#101E31;border-radius:2px;"></span>
+        <span style="display:block;height:1.5px;background:#101E31;border-radius:2px;"></span>
+      </button>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:0.5px solid #D8E0EA;background:#F2F4F7;padding:8px clamp(20px,5vw,96px) 24px;">
+      <a href="Home.dc.html" style="display:block;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;border-bottom:0.5px solid #D8E0EA;">Home</a>
+      <a href="About.dc.html" style="display:block;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;border-bottom:0.5px solid #D8E0EA;">About</a>
+      <button type="button" onClick="{{ toggleMobileServices }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:#101E31;background:none;border:none;border-bottom:0.5px solid #D8E0EA;padding:14px 0;cursor:pointer;text-align:left;">Services <span style="font-size:11px;color:#57657A;">▾</span></button>
+      <sc-if value="{{ mobileServicesOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:6px 0 6px 16px;border-bottom:0.5px solid #D8E0EA;border-left:1px solid #4A8BB5;margin:0 0 0 2px;">
+          <a href="Residential-Maintenance.dc.html" style="display:block;font-size:14px;color:#57657A;text-decoration:none;padding:9px 0;">Residential Property Maintenance</a>
+          <a href="Property-Preservation.dc.html" style="display:block;font-size:14px;color:#57657A;text-decoration:none;padding:9px 0;">Property Preservation</a>
+        </div>
+      </sc-if>
+      <a href="#" style="display:block;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;border-bottom:0.5px solid #D8E0EA;">Resources</a>
+      <a href="#" style="display:block;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;border-bottom:0.5px solid #D8E0EA;">Join as Contractor</a>
+      <a href="#" style="display:block;font-weight:500;font-size:15px;color:#101E31;text-decoration:none;padding:14px 0;">Contact</a>
+      <a href="#" style="display:block;text-align:center;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#F2F4F7;background:#101E31;padding:13px 22px;border-radius:4px;text-decoration:none;margin-top:16px;">Start a conversation</a>
+    </div>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1248,&quot;height&quot;:72},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;about&quot;,&quot;services&quot;,&quot;resources&quot;,&quot;contractor&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;services&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = {
+    narrow: (typeof window !== 'undefined' && window.innerWidth < 920),
+    servicesOpen: false,
+    mobileOpen: false,
+    mobileServicesOpen: false
+  };
+  componentDidMount() {
+    this._onResize = () => {
+      const n = window.innerWidth < 920;
+      if (n !== this.state.narrow) this.setState({ narrow: n, mobileOpen: false, servicesOpen: false });
+    };
+    window.addEventListener('resize', this._onResize);
+  }
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+  renderVals() {
+    const active = this.props.active || '';
+    const col = (k) => active === k ? '#101E31' : '#57657A';
+    const bor = (k) => active === k ? '#4A8BB5' : 'transparent';
+    return {
+      narrow: this.state.narrow,
+      wide: !this.state.narrow,
+      servicesOpen: this.state.servicesOpen,
+      mobileOpen: this.state.mobileOpen,
+      mobileServicesOpen: this.state.mobileServicesOpen,
+      openServices: () => this.setState({ servicesOpen: true }),
+      closeServices: () => this.setState({ servicesOpen: false }),
+      toggleServices: () => this.setState(s => ({ servicesOpen: !s.servicesOpen })),
+      toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen })),
+      toggleMobileServices: () => this.setState(s => ({ mobileServicesOpen: !s.mobileServicesOpen })),
+      homeColor: col('home'), homeBorder: bor('home'),
+      aboutColor: col('about'), aboutBorder: bor('about'),
+      servicesColor: col('services'), servicesBorder: bor('services'),
+      resourcesColor: col('resources'), resourcesBorder: bor('resources'),
+      contractorColor: col('contractor'), contractorBorder: bor('contractor'),
+      contactColor: col('contact'), contactBorder: bor('contact')
+    };
+  }
+}
+</script>
+</body>
+</html>

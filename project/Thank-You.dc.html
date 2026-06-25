@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="Thank you. Your request has been received by DwellWell.">
+  <meta name="robots" content="noindex">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden;font-family:'Inter',system-ui,sans-serif;color:#101E31;">
+  <dc-import name="SiteNav" active="" hint-size="100%,72px"></dc-import>
+
+  <main style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;background:#F2F4F7;">
+    <section data-screen-label="Thank you" style="max-width:680px;width:100%;margin:0 auto;padding:clamp(64px,12vw,128px) clamp(20px,5vw,40px);text-align:center;">
+      <div style="width:64px;height:64px;border-radius:8px;background:#101E31;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#4A8BB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 6.5"></path></svg>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:18px;">
+        <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+        <span style="font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#57657A;">Request received</span>
+        <span style="width:24px;height:1px;background:#4A8BB5;"></span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(36px,6vw,52px);line-height:1.15;color:#101E31;margin:0 0 18px;">Thank you. Your request is in.</h1>
+      <p style="font-size:17px;line-height:1.65;color:#101E31;margin:0 0 14px;max-width:54ch;margin-left:auto;margin-right:auto;">A member of our team will review your request and be in touch.</p>
+      <p style="font-size:15px;line-height:1.65;color:#57657A;margin:0 0 36px;max-width:52ch;margin-left:auto;margin-right:auto;">Emergency and urgent requests receive a same-business-day acknowledgement.</p>
+      <a href="Home.dc.html" style="display:inline-block;font-weight:500;font-size:14px;letter-spacing:0.02em;color:#3A6E91;text-decoration:none;border-bottom:1px solid #4A8BB5;padding-bottom:2px;" style-focus="outline:2px solid #4A8BB5;outline-offset:3px;">Back to home →</a>
+    </section>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

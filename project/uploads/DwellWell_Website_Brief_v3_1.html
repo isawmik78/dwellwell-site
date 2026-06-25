@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DwellWell — Website Brief v3.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Compliant load: exactly Cormorant Garamond 600 + Inter 400/500/600. No Inter 300, no 700, no variable fonts. (Brand Guidelines v2.5 §04) -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --midnight:#101E31; --steel-blue:#4A8BB5; --steel-blue-text:#3A6E91; --cool-slate:#57657A; --cool-white:#F2F4F7; --steel-grey:#D8E0EA;
+    --ser:'Cormorant Garamond', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'SF Mono','Cascadia Code','Fira Code', ui-monospace, monospace;
+    /* DOCUMENTATION CHROME ONLY — not brand colours; never used in any brand application */
+    --doc-green:#2F7A55; --doc-green-bg:#EAF4EE; --doc-green-line:#BFE0CC;
+    --doc-amber:#9A6B16; --doc-amber-bg:#FBF3E2; --doc-amber-line:#EAD7A8;
+    --doc-red:#B4453A; --doc-paper:#FBFCFD; --doc-hair:#E4E9F0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  body{margin:0; background:var(--doc-paper); color:var(--midnight); font-family:var(--sans); font-weight:400; line-height:1.65; font-size:16px; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3,h4{margin:0; font-weight:600;}
+  .h2{font-family:var(--ser); font-weight:600; font-size:34px; line-height:1.2; letter-spacing:.01em;}
+  .h3{font-family:var(--sans); font-weight:600; font-size:20px; line-height:1.35; letter-spacing:-.01em;}
+  .h4{font-family:var(--sans); font-weight:600; font-size:15px;}
+  .label{font-family:var(--sans); font-weight:500; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--cool-slate);}
+  p{margin:0 0 14px;} a{color:var(--steel-blue); text-decoration:none;}
+  code,.mono{font-family:var(--mono); font-size:.85em;} strong{font-weight:600;} em{font-style:italic;}
+
+  /* COVER */
+  .cover{background:var(--midnight); color:var(--cool-white); padding:96px 0 70px; position:relative; overflow:hidden;}
+  .cover .wrap{position:relative; z-index:2;}
+  .cover-eyebrow{font-weight:500; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--steel-grey); margin-bottom:32px;}
+  .cover-title{font-family:var(--ser); font-weight:600; font-size:64px; line-height:1.05; margin-bottom:12px;}
+  .cover-sub{font-weight:400; font-size:15px; line-height:1.7; color:var(--steel-grey); max-width:560px; margin-bottom:44px;}
+  .cover-meta{display:flex; flex-wrap:wrap; gap:30px 52px; border-top:1px solid rgba(216,224,234,.22); padding-top:26px;}
+  .cover-meta .val{font-weight:500; font-size:14px; color:var(--cool-white); margin-top:5px;}
+  .cover-motif{position:absolute; inset:0; z-index:1; pointer-events:none;}
+
+  /* NAV */
+  .navbar{position:sticky; top:0; z-index:40; background:rgba(251,252,253,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--doc-hair);}
+  .navbar .wrap{display:flex; align-items:center; justify-content:space-between; height:54px; gap:18px;}
+  .nav-id{font-family:var(--ser); font-weight:600; font-size:18px;}
+  .nav-id span{font-family:var(--sans); font-weight:500; font-size:11px; letter-spacing:.04em; color:var(--cool-slate); margin-left:8px;}
+  .nav-links{display:flex; gap:17px; overflow-x:auto;}
+  .nav-links a{font-weight:500; font-size:12.5px; color:var(--cool-slate); white-space:nowrap; padding:4px 0; border-bottom:1.5px solid transparent;}
+  .nav-links a:hover{color:var(--midnight); border-color:var(--steel-blue);}
+  @media(max-width:820px){.nav-links{display:none;}}
+
+  /* SECTIONS */
+  section{padding:66px 0 8px; border-top:1px solid var(--doc-hair);}
+  .sec-num{font-weight:600; font-size:12px; letter-spacing:.16em; color:var(--steel-blue); margin-bottom:10px;}
+  .sec-title{font-family:var(--ser); font-weight:600; font-size:40px; line-height:1.1; margin-bottom:14px;}
+  .sec-intro{font-size:16px; color:var(--cool-slate); max-width:800px; margin-bottom:32px;}
+  .block{margin:0 0 38px;}
+  .opener{display:flex; gap:14px; align-items:flex-start; margin:0 0 14px;}
+  .opener::before{content:""; flex:0 0 auto; width:1px; background:var(--steel-blue); align-self:stretch; min-height:24px;}
+  .opener h3{margin:0;}
+  .block-sub{color:var(--cool-slate); margin-bottom:16px; max-width:820px;}
+
+  /* PANELS */
+  .panel{border-radius:8px; padding:15px 18px; margin:16px 0; font-size:14px; border:1px solid; line-height:1.6;}
+  .panel .pl{font-weight:600; font-size:11px; letter-spacing:.13em; text-transform:uppercase; display:block; margin-bottom:6px;}
+  .locked{background:var(--doc-green-bg); border-color:var(--doc-green-line); color:#1d3d2c;} .locked .pl{color:var(--doc-green);}
+  .open{background:var(--doc-amber-bg); border-color:var(--doc-amber-line); color:#5e470f;} .open .pl{color:var(--doc-amber);}
+
+  /* TABLES */
+  table{width:100%; border-collapse:collapse; margin:14px 0 8px; font-size:13.5px;}
+  th,td{text-align:left; padding:9px 12px; vertical-align:top; border-bottom:.5px solid var(--steel-grey);}
+  th{font-weight:600; font-size:12px; color:var(--midnight); background:#F4F6F9; border-bottom:1px solid var(--steel-grey);}
+  td.k{font-weight:500; color:var(--midnight); width:26%;} td{color:var(--midnight);}
+  .small{font-size:12.5px; color:var(--cool-slate);}
+
+  /* SWATCHES */
+  .swatches{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:14px; margin:14px 0;}
+  .sw{border:1px solid var(--doc-hair); border-radius:8px; overflow:hidden; background:#fff;}
+  .sw .chip{height:76px;} .sw .meta{padding:11px 13px;}
+  .sw .nm{font-weight:600; font-size:14px;} .sw .hx{font-family:var(--mono); font-size:11.5px; color:var(--cool-slate); margin-top:3px;}
+  .sw .rl{font-size:11.5px; color:var(--cool-slate); margin-top:6px;}
+
+  /* TYPE SPECIMENS */
+  .spec{border:1px solid var(--doc-hair); border-radius:8px; padding:17px 20px; margin:12px 0; background:#fff;}
+  .spec .sl{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:8px;}
+  .spec .meta{font-size:12.5px; color:var(--cool-slate);}
+
+  /* CARDS / GRID */
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:14px;} @media(max-width:680px){.two{grid-template-columns:1fr;}}
+  .three{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;} @media(max-width:680px){.three{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--doc-hair); border-radius:8px; padding:15px 17px; background:#fff; font-size:13.5px; line-height:1.55;}
+  .card .tag{font-weight:600; font-size:11px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:7px;}
+  .do{border-left:3px solid var(--doc-green);} .do .tag{color:var(--doc-green);}
+  .dont{border-left:3px solid var(--doc-red);} .dont .tag{color:var(--doc-red);}
+  .quote{font-family:var(--ser); font-size:16px; line-height:1.4; color:var(--midnight); margin:0 0 8px;}
+  .anno{font-size:12.5px; color:var(--cool-slate); margin:0;}
+  ul.clean{margin:8px 0 14px; padding-left:18px;} ul.clean li{margin-bottom:5px;}
+  ol.clean{margin:8px 0 14px; padding-left:20px;} ol.clean li{margin-bottom:6px;}
+
+  /* PILLS / CHIPS */
+  .pill{display:inline-block; font-weight:500; font-size:11px; letter-spacing:.04em; padding:3px 9px; border-radius:2px; margin:2px 4px 2px 0;}
+  .pill.neutral{background:var(--steel-grey); color:var(--midnight);}
+  .pill.active{background:var(--midnight); color:var(--cool-white);}
+  .pill.secondary{background:#fff; color:var(--cool-slate); border:1px solid var(--steel-grey);}
+
+  /* PRINCIPLE / REGISTER */
+  .principle{border:1px solid var(--doc-hair); border-left:3px solid var(--steel-blue); border-radius:8px; padding:16px 18px; margin:12px 0; background:#fff;}
+  .principle .pn{font-weight:600; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--steel-blue);}
+  .principle .pt{font-family:var(--ser); font-size:22px; margin:2px 0 8px;}
+
+  /* BUTTONS (brand CTAs — Inter 500, radius 4px, the only approved interactive radius) */
+  .btnrow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:10px 0;}
+  .btn{font-family:var(--sans); font-weight:500; font-size:14px; letter-spacing:.02em; padding:10px 22px; border-radius:4px; display:inline-block; border:1px solid transparent; cursor:default;}
+  .btn.primary{background:var(--midnight); color:var(--cool-white);}
+  .btn.secondary{background:transparent; color:var(--steel-blue-text); border-color:var(--steel-blue);}
+  .btn.dark{background:var(--midnight); color:var(--cool-white);}
+
+  /* SITEMAP / NAV TREE */
+  .tree{border:1px solid var(--doc-hair); border-radius:8px; background:#fff; padding:14px 18px; font-size:13.5px;}
+  .tree ul{list-style:none; margin:0; padding-left:18px;} .tree>ul{padding-left:4px;}
+  .tree li{margin:5px 0; padding-left:14px; position:relative;}
+  .tree li::before{content:""; position:absolute; left:0; top:9px; width:8px; height:1px; background:var(--steel-grey);}
+  .tree .top{font-weight:600; color:var(--midnight);}
+
+  /* FORM FIELD LIST */
+  .fields{border:1px solid var(--doc-hair); border-radius:8px; background:#fff; overflow:hidden; margin:12px 0;}
+  .fields .fh{background:#F4F6F9; padding:11px 16px; font-weight:600; font-size:13px; border-bottom:1px solid var(--steel-grey);}
+  .fields ul{list-style:none; margin:0; padding:8px 16px 12px;}
+  .fields li{padding:5px 0; font-size:13.5px; border-bottom:.5px solid var(--doc-hair);}
+  .fields li:last-child{border-bottom:0;}
+  .req{color:var(--steel-blue); font-weight:600; font-size:11px; letter-spacing:.04em;}
+  .opt{color:var(--cool-slate); font-size:11px; letter-spacing:.04em;}
+
+  /* NAV / FOOTER PREVIEW */
+  .navprev{border:1px solid var(--doc-hair); border-radius:8px; overflow:hidden; margin:14px 0;}
+  .navprev .bar{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 18px; background:#fff; border-bottom:1px solid var(--doc-hair);}
+  .navprev .bar.dark{background:var(--midnight);}
+  .navprev .lks{display:flex; gap:16px; font-size:12.5px; color:var(--cool-slate);}
+  .navprev .bar.dark .lks{color:var(--steel-grey);}
+  .footprev{background:var(--midnight); color:var(--steel-grey); border-radius:8px; padding:26px 24px; margin:14px 0;}
+  .footprev .ftgrid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:22px;} @media(max-width:680px){.footprev .ftgrid{grid-template-columns:1fr 1fr;}}
+  .footprev .ft-line{font-family:var(--ser); font-weight:600; font-size:18px; color:var(--cool-white); margin-bottom:8px;}
+  .footprev h5{font-weight:600; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--steel-grey); margin:0 0 9px;}
+  .footprev ul{list-style:none; margin:0; padding:0; font-size:12.5px; line-height:1.9;}
+  .footprev .div{height:0; border-top:1px solid var(--steel-blue); margin:18px 0;}
+
+  /* DARK FIELD HERO PREVIEW */
+  .heroprev{position:relative; background:var(--midnight); border-radius:8px; overflow:hidden; padding:54px 32px 0; min-height:230px;}
+  .heroprev svg{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .heroprev .hc{position:relative; z-index:2;}
+  .heroprev .eb{font-weight:600; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--steel-grey); margin-bottom:14px;}
+  .heroprev h3{font-family:var(--ser); font-weight:600; font-size:34px; line-height:1.12; color:var(--cool-white); margin:0 0 12px; max-width:560px;}
+  .heroprev p{color:var(--steel-grey); font-size:14px; max-width:520px;}
+  .heroprev .base{position:relative; z-index:2; margin:26px -32px 0;}
+  .heroprev .base .rule{height:1px; background:var(--steel-blue);} .heroprev .base .bar{height:18px; background:var(--cool-white);}
+
+  /* LOGO LOCKUPS */
+  .lkgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin:16px 0;}
+  .lkcell{border:1px solid var(--doc-hair); border-radius:8px; overflow:hidden; background:#fff;}
+  .lkstage{padding:26px; display:flex; align-items:center; justify-content:center; min-height:120px;}
+  .lkstage.light{background:var(--cool-white);} .lkstage.dark{background:var(--midnight);}
+  .lkcap{padding:11px 15px; border-top:1px solid var(--doc-hair); font-size:12.5px;}
+  .lkcap b{font-weight:600;} .lkcap span{color:var(--cool-slate);}
+  .lk{display:flex; align-items:center; gap:14px;}
+  .lk svg{display:block; height:52px; width:52px;}
+  .lk .rule{width:1px; align-self:stretch; min-height:46px; background:var(--steel-blue);}
+  .lk .wm .nm{font-family:var(--ser); font-weight:600; font-size:30px; line-height:1; letter-spacing:.005em;}
+  .lk .wm .ds{font-family:var(--sans); font-weight:400; font-size:12px; letter-spacing:.02em; margin-top:3px;}
+  .lkstage.light .nm{color:var(--midnight);} .lkstage.light .ds{color:var(--cool-slate);}
+  .lkstage.dark .nm{color:var(--cool-white);} .lkstage.dark .ds{color:var(--steel-grey);}
+  .lk.stacked{flex-direction:column; gap:10px; text-align:center;} .lk.stacked .rule{display:none;} .lk.stacked svg{height:56px; width:56px;} .lk.stacked .nm{font-size:26px;}
+  .lk.compact svg{height:34px; width:34px;} .lk.compact .rule{min-height:30px;} .lk.compact .nm{font-size:21px;} .lk.compact .ds{font-size:10px;}
+
+  /* SHAPE DEMOS */
+  .demo-row{display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end; margin:14px 0;}
+  .ps{width:72px; height:72px; border-radius:8px;} .ps-lab{font-size:11.5px; color:var(--cool-slate); text-align:center; margin-top:7px;}
+  .ps.outline{background:var(--cool-white); border:1px solid var(--steel-grey);}
+  .ps.structural{background:var(--steel-grey);} .ps.accent{background:var(--midnight);} .ps.emphasis{background:var(--steel-blue);}
+  .radii{display:flex; gap:22px; flex-wrap:wrap; margin:14px 0;}
+  .radii .ri{text-align:center; font-size:11.5px; color:var(--cool-slate); max-width:120px;}
+  .radii .box{width:60px; height:60px; background:var(--midnight); margin:0 auto 8px;}
+  .radii .box.icn{background:transparent; padding:0;} .radii .box.icn svg{width:60px; height:60px; display:block;}
+  .callout{border:.5px solid var(--steel-grey); border-radius:8px; padding:14px 16px; font-size:13.5px; margin:8px 0; background:#fff;}
+  .callout.adv{border-color:var(--steel-blue);}
+
+  footer{background:var(--midnight); color:var(--steel-grey); margin-top:56px; padding:40px 0;}
+  footer .wrap{font-size:13px;} footer .ft-line{font-family:var(--ser); font-weight:600; font-size:18px; color:var(--cool-white); margin-bottom:8px;}
+  @media print{.navbar{position:static;} section{break-inside:avoid-page;} .lkcell,.spec,.principle,.card{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<!-- DwellWell master mark sprite: form paths + icon symbols lifted from DwellWell_Master_Logo.svg.
+     Square symbols rendered at rx=12.5 (25% of the 50-unit box) per Locked Decision 3-B; the supplied master SVG ships rx=2.2 and is deprecated for production until reissued at 25% (Brand Guidelines v2.5 §05). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <g id="dw-form-d"><path d="M19.094,26.134 L16.535,21.058 L16.535,9.439 C16.535,9.439 32.118,9.439 32.076,9.439 C32.034,9.439 43.987,11.859 43.805,23.598 C43.684,30.738 39.577,34.571 37.106,36.400 C35.885,34.012 34.039,30.650 34.039,30.650 C34.039,30.650 37.791,27.935 37.521,22.924 C37.255,17.909 32.967,16.080 30.585,15.877 C28.203,15.674 21.891,15.702 21.891,15.702 L21.891,21.040 L19.094,26.134 Z"/></g>
+  <g id="dw-form-w"><path d="M11.743,19.881 L19.332,33.684 L25.825,22.449 L36.006,40.556 L29.634,40.556 L25.792,33.093 L21.714,40.556 L17.458,40.556 L5.748,19.881 L11.743,19.881 Z"/></g>
+  <symbol id="dw-icon-square-dark" viewBox="0 0 50 50"><rect x="0" y="0" width="50" height="50" rx="12.5" fill="#101E31"/><use href="#dw-form-d" fill="#F2F4F7"/><use href="#dw-form-w" fill="#4A8BB5"/></symbol>
+  <symbol id="dw-icon-square-light" viewBox="0 0 50 50"><rect x="0" y="0" width="50" height="50" rx="12.5" fill="#F2F4F7"/><use href="#dw-form-d" fill="#101E31"/><use href="#dw-form-w" fill="#4A8BB5"/></symbol>
+  <symbol id="dw-icon-bare-midnight-reversed" viewBox="0 0 50 50"><use href="#dw-form-d" fill="#F2F4F7"/><use href="#dw-form-w" fill="#4A8BB5"/></symbol>
+</defs></svg>
+
+<!-- COVER -->
+<header class="cover">
+  <svg class="cover-motif" viewBox="0 0 1080 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(560 -50) scale(1.7)">
+      <path d="M181.19,59.35 c0,0,164.89,0,164.45,0 c-0.44,0,126.02,25.83,124.12,151.22 c-1.26,76.24,-44.74,117.19,-70.88,136.73" fill="none" stroke="#F2F4F7" stroke-opacity="0.07" stroke-width="34" stroke-linecap="square"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="cover-eyebrow">DwellWell Property Care LLC · Build Specification</div>
+    <h1 class="cover-title">Website Brief</h1>
+    <p class="cover-sub">The plan, content, and component specification for the DwellWell website — re-based entirely on Brand Guidelines v2.5. Read alongside the Guidelines: this brief governs <em>what the site says and contains</em>; the Guidelines govern <em>how it looks</em>.</p>
+    <div class="cover-meta">
+      <div><div class="label">Version</div><div class="val">3.0 · June 2026</div></div>
+      <div><div class="label">Status</div><div class="val">Active — Build Ready</div></div>
+      <div><div class="label">Governed by</div><div class="val">Brand Guidelines v2.5</div></div>
+      <div><div class="label">Build target</div><div class="val">Claude Design</div></div>
+      <div><div class="label">Classification</div><div class="val">Confidential</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="wrap">
+    <div class="nav-id">DwellWell <span>Website Brief v3.1</span></div>
+    <div class="nav-links">
+      <a href="#s00">00 · Using this brief</a>
+      <a href="#s01">01 · Business</a>
+      <a href="#s02">02 · Goals</a>
+      <a href="#s03">03 · Brand on web</a>
+      <a href="#s04">04 · Structure</a>
+      <a href="#s05">05 · Pages</a>
+      <a href="#s06">06 · Services</a>
+      <a href="#s07">07 · Forms</a>
+      <a href="#s08">08 · Trust</a>
+      <a href="#s09">09 · Build</a>
+      <a href="#s10">10 · SEO</a>
+      <a href="#s11">11 · Open items</a>
+      <a href="#s12">12 · Checklist</a>
+      <a href="#s13">13 · Governance</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ SECTION 00 ============ -->
+<section id="s00">
+  <div class="wrap">
+    <div class="sec-num">SECTION 00</div>
+    <h2 class="sec-title">How to Use This Brief</h2>
+    <p class="sec-intro">This document specifies the DwellWell website end to end — its purpose, audiences, structure, page content, forms, and the brand system applied to the web. It is written so the site can be built in Claude Design with no prior context on the business.</p>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">Two reference documents, two jobs</h3></div>
+      <p class="block-sub">The build draws on exactly two governing references. Keep both open.</p>
+      <table>
+        <tr><th>Reference</th><th>Governs</th><th>Use it for</th></tr>
+        <tr><td class="k">Brand Guidelines v2.5</td><td>How the site looks and sounds</td><td>Colour, typography, logo, shapes &amp; components, grid, motifs, voice and vocabulary. Authoritative for every visual and verbal decision.</td></tr>
+        <tr><td class="k">Website Brief v3.1 <span class="small">(this document)</span></td><td>What the site contains</td><td>Site structure, page-by-page content, the service list, forms, conversion flow, trust model, and launch requirements.</td></tr>
+      </table>
+      <div class="panel locked"><span class="pl">Authority order</span>Where this brief and the Brand Guidelines appear to differ on a visual or verbal matter, <strong>Brand Guidelines v2.5 wins</strong>. This brief never overrides a locked brand rule — it applies it to the website surface.</div>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">Structural reference (secondary, content only)</h3></div>
+      <p class="block-sub">United Field Services (<a href="https://www.unitedfieldservices.com">unitedfieldservices.com</a>) is a structurally similar US property-services company. Use it <strong>only</strong> as a model for information architecture — navigation patterns, the dual client/vendor phone treatment, the resources hub, and the contractor page. <strong>Do not</strong> take any visual, colour, type, or copy cues from it: all visual and verbal direction comes from Brand Guidelines v2.5.</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">How to read the markers</h3></div>
+      <div class="two">
+        <div class="panel locked" style="margin:0"><span class="pl">Green — Locked</span>A confirmed decision. Build to it exactly. Do not reinterpret.</div>
+        <div class="panel open" style="margin:0"><span class="pl">Amber — Open</span>Not yet finalised or gated on an external review. <strong>Do not publish</strong> the affected element until confirmed.</div>
+      </div>
+      <p class="small" style="margin-top:12px">Green and amber panels are documentation chrome — they are not brand colours and never appear in the website itself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 01 ============ -->
+<section id="s01">
+  <div class="wrap">
+    <div class="sec-num">SECTION 01</div>
+    <h2 class="sec-title">The Business</h2>
+    <p class="sec-intro">Everything on the site must reflect one positioning: DwellWell is the operator of record, not a platform, marketplace, or directory. (Brand Guidelines v2.5 §01.)</p>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">Positioning</h3></div>
+      <p>DwellWell Property Care LLC is a US-based managed property maintenance and preservation operator — the single point of coordination between the demand side (property managers, landlords, lenders, real-estate investors) and vetted, independent US-based contractors. DwellWell receives work orders, manages the full job lifecycle from intake to closeout, dispatches contractors, and owns the client relationship throughout. When something goes wrong, the client deals with DwellWell — not the contractor.</p>
+      <div class="panel locked"><span class="pl">What DwellWell is not</span>Not a gig platform, a marketplace, a directory, or a startup. The site never adopts consumer-app, gig-economy, or home-services-franchise cues. The word <strong>"platform" is prohibited</strong> in all copy.</div>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">The anchor sentence — all site copy derives from this</h3></div>
+      <div class="principle">
+        <div class="pn">Locked · D-02</div>
+        <p class="quote" style="font-size:19px">"DwellWell coordinates property maintenance from intake to closeout — one point of contact, vetted contractors, every job documented."</p>
+        <p class="anno">Every headline, sub-line, and section lead on the site is a restatement or fragment of this sentence. If a piece of copy cannot be traced back to it, rewrite the copy.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">The three brand words</h3></div>
+      <p class="block-sub">Every page is tested against three words before it ships.</p>
+      <table>
+        <tr><th>Word</th><th>On the website it means</th></tr>
+        <tr><td class="k">Trustworthy</td><td>Claims are concrete and verifiable. Commitments are stated as facts, never aspirations. No hedging.</td></tr>
+        <tr><td class="k">Organised</td><td>Process is visible. Structure carries meaning — in layout and in language. The site looks and reads like a system.</td></tr>
+        <tr><td class="k">Efficient</td><td>Nothing redundant. Property managers scan; the site says what is needed and stops.</td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">Two service lines</h3></div>
+      <div class="two">
+        <div class="card"><div class="tag" style="color:var(--steel-blue)">Residential property maintenance</div>General handyman and maintenance work for occupied residential properties — apartments, single-family homes, rentals, condominiums.</div>
+        <div class="card"><div class="tag" style="color:var(--steel-blue)">Property preservation</div>Securing, board-up, lock changes, debris removal, cleaning, lawn maintenance, winterisation, general repairs, and condition inspection and reporting for vacant, foreclosed, or REO assets.</div>
+      </div>
+      <div class="panel open"><span class="pl">Open — copy gated by launch reality</span>Both lines exist as positioning. <strong>Preservation may be described as a full scope.</strong> The <strong>residential line lists general handyman/maintenance only</strong> — specialist trades (HVAC, electrical, plumbing) must not be named in website copy until operations confirms them operational. See §06.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 02 ============ -->
+<section id="s02">
+  <div class="wrap">
+    <div class="sec-num">SECTION 02</div>
+    <h2 class="sec-title">Goals &amp; Audiences</h2>
+    <p class="sec-intro">The site has a primary job, a secondary job, and three audiences — each scanning for different evidence.</p>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">What the website must do</h3></div>
+      <ol class="clean">
+        <li><strong>Generate leads</strong> from property managers and preservation clients — primarily through a Contact flow.</li>
+        <li><strong>Capture service requests and quote enquiries</strong> — through a dedicated request form.</li>
+      </ol>
+      <p>A secondary goal is to <strong>recruit contractors</strong> to the network via a simple application form. Keep this path visible but understated — never at parity with the primary client audience.</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">The three audiences</h3></div>
+      <p class="block-sub">The voice is identical across audiences (Locked · D-03). The register — what each page emphasises and assumes — shifts to each audience's context, fear, and decision criteria. (Brand Guidelines v2.5 §02.)</p>
+      <table>
+        <tr><th>Code</th><th>Audience</th><th>The site leads with</th></tr>
+        <tr><td class="k">PM <span class="small">(primary)</span></td><td>Property management professionals — owners, operations directors, portfolio managers. B2B buyers: busy, analytical, sceptical. They scan headings and the service list; they read only if the scan earns it.</td><td>The managed-operator distinction. One contact. The documentation standard. Accountability owned by DwellWell. Reduce language — "fewer vendors," "no chasing required."</td></tr>
+        <tr><td class="k">PR <span class="small">(secondary)</span></td><td>Preservation clients — lenders, banks, investors managing vacant or distressed assets.</td><td>Documentation completeness. Compliance awareness. Preservation scope specifically. Response speed for time-sensitive securing tasks.</td></tr>
+        <tr><td class="k">CO <span class="small">(tertiary)</span></td><td>Contractors — independent tradespeople in or applying to the network.</td><td>Clear scope on every job. Consistent, managed dispatch. Professional coordination. "Apply to join" signals selectivity.</td></tr>
+      </table>
+      <p class="small">The site speaks naturally to PM and PR without separate sections for each. The CO path is a single page plus a footer link.</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">Personality the site must project</h3></div>
+      <p>DwellWell speaks like a senior partner at a well-regarded professional firm — formal enough to command respect, human enough to treat clients as people. Calm, authoritative, competent. The test: <em>"DwellWell is the most competent person in the room — and doesn't need to say so."</em> If a page sounds like it is trying to impress, it is wrong; if it sounds like it is describing how things work, it is right.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 03 ============ -->
+<section id="s03">
+  <div class="wrap">
+    <div class="sec-num">SECTION 03</div>
+    <h2 class="sec-title">The Brand System on the Web</h2>
+    <p class="sec-intro">This section applies the locked brand system to the website. Every value here is drawn from Brand Guidelines v2.5 — colour (§03), typography (§04), logo (§05), and shapes &amp; design architecture (§06). Where this brief abbreviates, the Guidelines are authoritative.</p>
+
+    <!-- 3.1 COLOUR -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">3.1 — Colour</h3></div>
+      <p class="block-sub">Five colours. No tints, shades, gradients, or off-palette colours anywhere on the site. (The old brief's navy/medium-blue palette is retired in full.)</p>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#101E31"></div><div class="meta"><div class="nm">Midnight</div><div class="hx">#101E31</div><div class="rl">Headings, nav, footer, dark surfaces, body text on light.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#4A8BB5"></div><div class="meta"><div class="nm">Steel Blue</div><div class="hx">#4A8BB5</div><div class="rl">Icon W-form, underlines, borders, large/display text (≥24px), non-text UI accents. <strong>Not an AA colour for normal text</strong> on light (3.4:1).</div></div></div>
+        <div class="sw"><div class="chip" style="background:#3A6E91"></div><div class="meta"><div class="nm">Steel Blue (Text)</div><div class="hx">#3A6E91</div><div class="rl">Defined AA variant (5.0:1) — normal-size hyperlink text on light surfaces only. Not a sixth colour.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#57657A"></div><div class="meta"><div class="nm">Cool Slate</div><div class="hx">#57657A</div><div class="rl">Subheadings, supporting copy, metadata, captions.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#F2F4F7; border-bottom:1px solid #E4E9F0"></div><div class="meta"><div class="nm">Cool White</div><div class="hx">#F2F4F7</div><div class="rl">Page and section background.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#D8E0EA"></div><div class="meta"><div class="nm">Steel Grey</div><div class="hx">#D8E0EA</div><div class="rl">Borders, dividers, table rules, structural lines.</div></div></div>
+      </div>
+      <table>
+        <tr><th>Approved pairing</th><th>Web use</th></tr>
+        <tr><td class="k">Midnight on Cool White</td><td>Body text, headings, primary content.</td></tr>
+        <tr><td class="k">Steel Blue (Text) on Cool White</td><td>Normal-size text links on light (5.0:1, AA).</td></tr>
+        <tr><td class="k">Midnight on Cool White (CTA)</td><td>Primary CTA buttons — Midnight fill, Cool White text. Steel Blue is no longer a button fill.</td></tr>
+        <tr><td class="k">Cool Slate on Cool White</td><td>Supporting copy, metadata, labels, captions.</td></tr>
+        <tr><td class="k">Cool White on Midnight</td><td>Reversed headings &amp; body on the hero, footer, and dark sections (15.2:1, AAA).</td></tr>
+        <tr><td class="k">Steel Grey on Midnight</td><td>Reversed supporting copy, captions, and structural lines on Dark Field (12.6:1, AAA).</td></tr>
+        <tr><td class="k">Steel Blue on Midnight</td><td>Display accent / icon W-form only (≥24px) — never link or body text on dark.</td></tr>
+        <tr><td class="k">Midnight on Steel Grey</td><td>Structural elements — borders, dividers, tabs.</td></tr>
+      </table>
+      <div class="panel locked"><span class="pl">Links &amp; buttons — the v2.5 rules</span><strong>Steel Blue #4A8BB5 fails AA for normal text on light (3.4:1).</strong> Use it only for the icon W-form, underlines, borders, large/display text (≥24px), and non-text UI accents. Normal-size text links on light surfaces use <strong>Steel Blue (Text) #3A6E91</strong> (5.0:1, AA). On dark surfaces, links are Cool White with a Steel Blue underline (15.2:1) — Steel Blue is never link or body text on dark. <strong>Primary CTA buttons are Midnight fill with Cool White text</strong>; Steel Blue is no longer a button fill. Midnight↔Cool White running text is 15.2:1 (AAA).</div>
+      <div class="panel locked"><span class="pl">Production White — physical only</span>Production White <strong>#FFFFFF</strong> is a substrate / single-ink exception (paper stock, embossing, embroidery thread) — <strong>never a digital surface or fill</strong>. On screen, brand white is always Cool White #F2F4F7. Like Steel Blue (Text), it is not a sixth brand colour.</div>
+      <p class="small">Avoid: Cool Slate on Steel Grey · Steel Blue on Steel Grey · any palette colour on an off-palette background. There is no "client may supply different colours" exception — the palette is locked.</p>
+    </div>
+
+    <!-- 3.2 TYPOGRAPHY -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">3.2 — Typography</h3></div>
+      <p class="block-sub">Two typefaces. Cormorant Garamond SemiBold 600 for Display/H1 and H2 only; Inter for everything else. (The old brief's "Inter Bold 700 headings" is retired — Inter 700 must not be loaded or used.)</p>
+      <div class="panel locked"><span class="pl">Font loading — exact set</span>Load exactly four weights: <strong>Cormorant Garamond 600</strong> and <strong>Inter 400 / 500 / 600</strong>. Do not load Inter 300, Inter 700, any other Cormorant weight, or variable fonts.<br><code>family=Cormorant+Garamond:wght@600&amp;family=Inter:wght@400;500;600</code></div>
+      <div class="spec"><div class="sl"><span class="label">Display / H1 · Cormorant Garamond 600</span><span class="meta">hero &amp; page titles only</span></div><div style="font-family:var(--ser); font-weight:600; font-size:48px; line-height:1.15">Property care, professionally managed</div><div class="meta" style="margin-top:8px">Web 56px / 36px mobile · LH 1.15 · one H1 per page</div></div>
+      <div class="spec"><div class="sl"><span class="label">H2 · Cormorant Garamond 600</span><span class="meta">section headings</span></div><div style="font-family:var(--ser); font-weight:600; font-size:38px; line-height:1.2">Service coordination and dispatch</div><div class="meta" style="margin-top:8px">Web 40px / 30px mobile · LH 1.20</div></div>
+      <div class="spec"><div class="sl"><span class="label">H3 · Inter SemiBold 600</span><span class="meta">subsection headings</span></div><div style="font-family:var(--sans); font-weight:600; font-size:22px; line-height:1.35; letter-spacing:-.01em">Every job documented, from intake to closeout</div><div class="meta" style="margin-top:8px">Web 22px / 20px mobile · LH 1.35 · tracking −0.01em</div></div>
+      <div class="spec"><div class="sl"><span class="label">H4 / Label · Inter Medium 500 · uppercase</span><span class="meta">eyebrows, metadata, labels</span></div><div style="font-family:var(--sans); font-weight:500; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--cool-slate)">Service region · Work order status</div><div class="meta" style="margin-top:8px">Web 12px · LH 1.40</div></div>
+      <div class="spec"><div class="sl"><span class="label">Body · Inter Regular 400</span><span class="meta">all prose</span></div><div style="font-family:var(--sans); font-weight:400; font-size:16px; line-height:1.65; max-width:72ch">DwellWell coordinates maintenance from first contact to final closeout. You place the work order — we handle dispatch, documentation, and delivery.</div><div class="meta" style="margin-top:8px">Web 16px · LH 1.65 · max 72ch line length</div></div>
+      <div class="spec"><div class="sl"><span class="label">UI / Button · Inter Medium 500</span><span class="meta">CTAs, nav, forms</span></div><div class="btnrow"><span class="btn primary">Start a conversation</span></div><div class="meta">Web 14px · tracking 0.02em · padding 10×22px · <strong>border radius 4px — the only approved interactive radius</strong></div></div>
+      <p class="small">Cormorant appears at H1/H2, in the logo wordmark, and in approved display-scale editorial moments — pull-quotes and Dark-Field headlines at ≥24px. Small quotes, captions, annotations, and documentation notes use Inter. Everywhere else is Inter. Monospace (system stack) is for job and invoice references only — e.g. <code>#DW-2026-00412</code> — never prose.</p>
+    </div>
+
+    <!-- 3.3 VOICE & VOCABULARY -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">3.3 — Voice &amp; vocabulary on the web</h3></div>
+      <p class="block-sub">The website is the <strong>process-led</strong> surface: "DwellWell" is the subject, the language describes what happens in what order, and there are <strong>no experience claims</strong> (Locked · D-01). The two exceptions are the <strong>FAQ and Contact</strong> modules, which are correspondence and use the first-person "we." Do not mix "DwellWell" and "we" within a single module or section. Full voice system in Brand Guidelines v2.5 §02.</p>
+      <div class="two">
+        <div class="card do"><div class="tag">Approved verbs &amp; terms</div>coordinates · manages · dispatches · closes out · documents · work order · intake to closeout · vetted contractors · portfolio · preservation · accountability sits with DwellWell · not referred out</div>
+        <div class="card dont"><div class="tag">Prohibited — never on the site</div>connects you with / matches you to · browse our network · platform · seamless · world-class / best-in-class · revolutionary · we're passionate about · trusted professionals in your area · book in minutes · we try to / we aim to · "DwellWell has X years of experience"</div>
+      </div>
+      <div class="callout"><strong>Use with care:</strong> "network" is fine in contractor copy ("apply to join the network") but implies a marketplace in client copy — avoid it there. Never "nationwide coverage" (coverage is case-by-case); "across the US" is acceptable as direction.</div>
+      <div class="two">
+        <div class="card do"><div class="tag">Do — hero, PM audience</div>"DwellWell coordinates property maintenance from intake to closeout. One contact. Vetted contractors. Every job documented."</div>
+        <div class="card dont"><div class="tag">Don't</div>"Connect with trusted property maintenance professionals in your area. Fast, reliable service. Get matched today."</div>
+      </div>
+    </div>
+
+    <!-- 3.4 LOGO ON THE SITE -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">3.4 — Logo on the site</h3></div>
+      <p class="block-sub">Wordmark in Cormorant Garamond 600 ("DwellWell"); descriptor in Inter Regular 400 ("Property Care LLC"). The icon is the DW monogram in a rounded-square container (25% corner radius) — the W is the Steel Blue accent in every colour application, the only exceptions being the single-colour (10A) and monochrome (10B) variants. (Brand Guidelines v2.5 §05.)</p>
+      <div class="lkgrid">
+        <div class="lkcell"><div class="lkstage light"><div class="lk"><svg><use href="#dw-icon-square-light"/></svg><div class="rule"></div><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>R1 — Primary Lockup</b> · <span>light nav header, body, email, invoices. Default.</span></div></div>
+        <div class="lkcell"><div class="lkstage dark"><div class="lk"><svg><use href="#dw-icon-bare-midnight-reversed"/></svg><div class="rule"></div><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>R3 — Reversed Lockup</b> · <span>two-colour (Cool White D + Steel Blue W) on <strong>Midnight only</strong>; photography needs a solid Midnight field/scrim. On Steel Blue or uncontrolled dark, use the 10A single-colour reversed lockup.</span></div></div>
+        <div class="lkcell"><div class="lkstage light"><div class="lk stacked"><svg><use href="#dw-icon-square-dark"/></svg><div class="wm"><div class="nm">DwellWell</div><div class="ds">Property Care LLC</div></div></div></div><div class="lkcap"><b>Stacked / Icon</b> · <span>favicon &amp; app icon use the contained icon (V07).</span></div></div>
+      </div>
+      <div class="panel locked"><span class="pl">Web minimums &amp; rules</span>Lockup ≥ 160px wide; standalone icon ≥ 32px. <strong>V07 (Locked):</strong> the contained icon is the standalone form for all digital use — favicon, avatar, app icon, social; the bare monogram is reserved for single-ink physical, R3, and the 10A reversed lockup, and is not used freely as a digital icon. The system ships <strong>eleven assets</strong> (ten numbered variants; Variant 10 as 10A + 10B). No tagline lockup (there is no fixed tagline). Never distort, rotate, recolour, add shadows/glows, or place on an off-palette background.</div>
+      <div class="panel open"><span class="pl">Asset note — deprecated master SVG</span>The supplied master vector is <strong>deprecated for production</strong>: do not export production icons from it until it is reissued at 25% container radius (rx = 12.5 on a 50-unit box) and re-versioned. The icons rendered here come from the corrected in-document symbol set, which is the production source until the master is reissued.</div>
+      <p class="small">Source the marks as inline SVG from <code>DwellWell_Master_Logo.svg</code>. The master ships its container at rx 2.2 (≈4.4%); render at <strong>25%</strong> per Locked Decision 3-B until the master is corrected at sign-off.</p>
+    </div>
+
+    <!-- 3.5 GRID & SPACING -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">3.5 — Grid &amp; spacing</h3></div>
+      <p class="block-sub">All spacing derives from an 8px base unit. (Brand Guidelines v2.5 §06 / 2.4.)</p>
+      <table>
+        <tr><th>Surface</th><th>Reference</th><th>Columns</th><th>Gutter</th><th>Margin</th><th>Max content</th></tr>
+        <tr><td class="k">Desktop</td><td>1440px</td><td>12</td><td>32px</td><td>96px / side</td><td>1248px</td></tr>
+        <tr><td class="k">Mobile</td><td>375px</td><td>4</td><td>16px</td><td>20px / side</td><td>335px</td></tr>
+      </table>
+      <p class="small">Base spacing scale: 4 · 8 · 16 · 24 · 32 · 48 · 64 · 96px. Use these steps for all padding, gaps, and section rhythm.</p>
+    </div>
+
+    <!-- 3.6 SHAPES & COMPONENTS -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">3.6 — Shapes &amp; components</h3></div>
+      <p class="block-sub">The site is built from the eight approved elements only. No decorative shape outside this library without founding-team sign-off. (Brand Guidelines v2.5 §06.)</p>
+      <div class="radii">
+        <div class="ri"><div class="box icn" style="background:transparent"><svg><use href="#dw-icon-square-dark"/></svg></div>Icon container<br>25% ratio</div>
+        <div class="ri"><div class="box" style="border-radius:8px"></div>Precision Square<br>8px fixed</div>
+        <div class="ri"><div class="box" style="border-radius:4px; background:var(--steel-blue)"></div>Button / UI<br>4px fixed</div>
+        <div class="ri"><div class="box" style="border-radius:2px; background:var(--steel-grey)"></div>Tag / chip<br>2px fixed</div>
+      </div>
+      <table>
+        <tr><th>Element</th><th>Web use &amp; rule</th></tr>
+        <tr><td class="k">Precision Square</td><td>1:1 only, 8px radius, ≥48px. Steel Grey grids exempt; Midnight max 1/section; Steel Blue (Emphasis, ≥80px) max 1/screen. Use for service tiles and feature blocks.</td></tr>
+        <tr><td class="k">Rule Device (1px)</td><td>Vertical Steel Blue rule opens a section heading; 24px horizontal Steel Blue prefix precedes an eyebrow label. Steel Grey for repeatable structure. Never a floating Steel Blue rule on Midnight.</td></tr>
+        <tr><td class="k">Horizontal Divider (0.5px)</td><td>Section breaks, header boundary, and the hero-to-content boundary. Steel Grey default; Steel Blue for one emphasis per screen. The full-width Dark-Field-to-light transition uses a <strong>Cool White 100%</strong> divider (a structural element, exempt from the one-per-screen Steel Blue emphasis cap).</td></tr>
+        <tr><td class="k">Dark Field</td><td>Full Midnight surface (never a tint). Web uses: hero and footer. Supporting copy and captions on dark are <strong>Steel Grey</strong> (12.6:1), not Cool Slate. Exits to light via a <strong>Cool White 100% divider</strong>.</td></tr>
+        <tr><td class="k">Tag / chip</td><td>Rectangular, 2px radius, Inter 10px/500. Labels only — e.g. service-status chips. <strong>Never interactive</strong> (buttons are 4px). Max two per row.</td></tr>
+        <tr><td class="k">Callout box</td><td>0.5px Steel Grey border (neutral, repeatable) or Steel Blue border (advisory, max 1/page). Transparent fill — no tinted callouts.</td></tr>
+        <tr><td class="k">Buttons</td><td>4px radius, Inter 500. Primary = <strong>Midnight fill, Cool White text</strong>. Secondary = Steel Blue outline + Steel Blue (Text) #3A6E91 label on Cool White. Steel Blue is no longer a button fill.</td></tr>
+      </table>
+      <div class="demo-row">
+        <span class="pill neutral">Residential</span><span class="pill neutral">Preservation</span><span class="pill secondary">Scheduled</span><span class="pill secondary">In progress</span><span class="pill secondary">Complete</span>
+      </div>
+    </div>
+
+    <!-- 3.7 MOTIFS & DARK FIELD -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">3.7 — Hero motif &amp; the Dark Field</h3></div>
+      <p class="block-sub">The hero is a Dark Field carrying one derived motif from the DW monogram. The two motifs are mutually exclusive and never co-occur; orientation is fixed — no rotation or mirroring. (Brand Guidelines v2.5 §06 / 2.7–2.8.)</p>
+      <div class="heroprev">
+        <svg viewBox="0 0 1000 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g transform="translate(-63.57,-8.05) scale(3.0)">
+            <path d="M181.19,59.35 c0,0,164.89,0,164.45,0 c-0.44,0,126.02,25.83,124.12,151.22 c-1.26,76.24,-44.74,117.19,-70.88,136.73" fill="none" stroke="#F2F4F7" stroke-opacity="0.07" stroke-width="34" stroke-linecap="square"/>
+          </g>
+        </svg>
+        <div class="hc">
+          <div class="eb">Managed property maintenance</div>
+          <h3>DwellWell coordinates property maintenance from intake to closeout.</h3>
+          <p>One contact. Vetted contractors. Every job documented.</p>
+        </div>
+        <div class="base"><div class="rule"></div><div class="bar"></div></div>
+      </div>
+      <p class="small">Locked hero application (2.8.A — Horizontal Bar): 2:1 Dark Field · Open Arc at Cool White 7% · base closed by a 1px Steel Blue rule + 18px Cool White bar · exit to the page body below. Motifs appear only on dark surfaces; any use on a light surface needs founding-team sign-off.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 04 ============ -->
+<section id="s04">
+  <div class="wrap">
+    <div class="sec-num">SECTION 04</div>
+    <h2 class="sec-title">Site Structure &amp; Navigation</h2>
+    <p class="sec-intro">A flat, scannable structure. The primary CTA is present and sticky on every page.</p>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">4.1 — Top navigation</h3></div>
+      <p class="block-sub">Nav items in this order, with a primary CTA pinned right. The bar is sticky and present on every page.</p>
+      <div class="navprev">
+        <div class="bar">
+          <div class="lk compact"><svg><use href="#dw-icon-square-light"/></svg><div class="rule"></div><div class="wm"><div class="nm" style="color:var(--midnight)">DwellWell</div></div></div>
+          <div class="lks">Home · About · Services ▾ · Resources · Join as Contractor · Contact</div>
+          <span class="btn primary" style="padding:8px 16px">Start a conversation</span>
+        </div>
+      </div>
+      <ol class="clean">
+        <li>Home</li><li>About</li><li>Services <span class="small">(dropdown — see §05.3)</span></li><li>Resources</li><li>Join as Contractor</li><li>Contact</li>
+      </ol>
+      <p class="small">Nav label: Inter Medium 500, Cool Slate, with a Steel Blue underline on hover/active. Logo at left uses R1 (Primary Lockup) on the light bar, or R3 (Reversed) if a dark nav variant is used. Primary CTA button: Midnight fill, Cool White text, 4px radius — appears on every page and scrolls with the user.</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">4.2 — Footer (Dark Field)</h3></div>
+      <p class="block-sub">The footer is a full Midnight Dark Field with a reversed logo and a multi-column link layout. Model the column structure on UFS; take all styling from the Brand Guidelines.</p>
+      <div class="footprev">
+        <div class="lk stacked" style="align-items:flex-start; text-align:left; margin-bottom:18px">
+          <svg style="height:46px;width:46px"><use href="#dw-icon-bare-midnight-reversed"/></svg>
+        </div>
+        <div class="ftgrid">
+          <div>
+            <div class="ft-line">DwellWell</div>
+            <p style="color:var(--steel-grey); font-size:12.5px; margin:0">DwellWell coordinates property maintenance and preservation from intake to closeout — one point of contact, vetted contractors, every job documented.</p>
+            <p style="color:var(--cool-white); font-size:12.5px; margin:14px 0 0; font-family:var(--ser); font-size:15px">Coordinated from intake to closeout.</p>
+          </div>
+          <div><h5>Company</h5><ul><li>Home</li><li>About</li><li>Resources</li><li>Join as Contractor</li><li>Contact</li></ul></div>
+          <div><h5>Services</h5><ul><li>Residential maintenance</li><li>Property preservation</li></ul></div>
+          <div><h5>Contact</h5><ul><li>info@dwellwellpropertycare.com</li><li>Clients: [TBD]</li><li>Vendors: [TBD]</li></ul></div>
+        </div>
+        <div class="div"></div>
+        <p style="color:var(--steel-grey); font-size:11.5px; margin:0">Privacy Policy · Terms of Service · Service Terms · Coverage &amp; Limitations &nbsp;·&nbsp; © DwellWell Property Care LLC</p>
+      </div>
+      <div class="panel locked"><span class="pl">Footer brand line</span>Use a process-led line derived from the anchor — <strong>"Coordinated from intake to closeout."</strong> The retired taglines "Well-Cared Homes. Well-Managed Properties." and "We care for your home." must not appear anywhere on the site.</div>
+      <div class="panel open"><span class="pl">Footer legal links</span>List Privacy Policy, Terms of Service, Service Terms, and Coverage &amp; Limitations. <strong>A Warranty / Rework link is held back</strong> until counsel approves the wording (D-04, §08). Add it only once the policy is signed off.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 05 ============ -->
+<section id="s05">
+  <div class="wrap">
+    <div class="sec-num">SECTION 05</div>
+    <h2 class="sec-title">Page-by-Page Specifications</h2>
+    <p class="sec-intro">Suggested copy below is voice-compliant and ready to use or adapt. All headlines trace to the anchor sentence; all claims sit inside the messaging architecture (§01, §08).</p>
+
+    <!-- 5.1 HOME -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">5.1 — Home</h3></div>
+      <p class="block-sub">One job: convince a property manager that DwellWell is worth contacting. Trust is carried by process, not social proof (there are no testimonials at launch).</p>
+      <table>
+        <tr><th>Section</th><th>Specification &amp; suggested copy</th></tr>
+        <tr><td class="k">Hero (Dark Field)</td><td>Full-width Midnight Dark Field with the locked Horizontal Bar motif (§3.7). Headline (Cormorant H1): <em>"Property care, professionally managed."</em> Sub-line (Inter): <em>"DwellWell coordinates property maintenance from intake to closeout. One contact. Vetted contractors. Every job documented."</em> Two CTAs: <strong>Start a conversation</strong> (primary, Midnight fill + Cool White text) and <strong>Request service</strong> (secondary, Steel Blue outline). Exit to the page via a <strong>Cool White 100% divider</strong>. Supporting copy on the Dark Field is Cool White (headline/body) or Steel Grey (captions) — never Cool Slate. No background photo competing with the motif; if a photo is used, it sits under a solid Midnight field or scrim.</td></tr>
+        <tr><td class="k">Services overview strip</td><td>A grid of Precision-Square tiles (icon + category + one-line description) for the two service lines and their categories (§06). Each tile links to the relevant overview/detail page.</td></tr>
+        <tr><td class="k">How it works</td><td><strong>The primary trust signal.</strong> A numbered 5–7 step sequence with the operator verbs: (1) Submit a work order · (2) DwellWell assesses &amp; assigns · (3) Quote sent for approval · (4) Contractor dispatched · (5) Work completed &amp; documented · (6) Closeout record &amp; invoice issued · (7) Follow-up if an issue arises. Visual, numbered, short descriptions. Close with: <em>"You deal with us — not the contractor."</em></td></tr>
+        <tr><td class="k">Why DwellWell</td><td>3–4 differentiators as icon + heading + short line: <strong>One point of contact</strong> · <strong>Accountability owned by DwellWell</strong> (not referred out) · <strong>Every job documented</strong> · <strong>Coverage across the US, confirmed case by case</strong>. Keep focused on the operator model and process — do not mention contractor licensing/vetting specifics.</td></tr>
+        <tr><td class="k">Coverage statement</td><td>One line, optionally with a simple map graphic — use the locked coverage wording in §08.1.</td></tr>
+        <tr><td class="k">Testimonials</td><td>Build the section into the layout but keep it hidden at launch (comment it out, easy to activate later). No placeholder logos.</td></tr>
+        <tr><td class="k">Final CTA strip</td><td>Full-width band: <em>"Ready to simplify maintenance across your portfolio?"</em> with <strong>Start a conversation</strong> and <strong>Request service</strong>. May be a Dark Field or a Cool-White band with a Steel Blue emphasis divider.</td></tr>
+      </table>
+    </div>
+
+    <!-- 5.2 ABOUT -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">5.2 — About</h3></div>
+      <p class="block-sub">Establish credibility through the operating model, not size or history. Process-led only.</p>
+      <ul class="clean">
+        <li><strong>Who we are</strong> — what DwellWell does and who it serves, as the managed operator of record.</li>
+        <li><strong>Our model</strong> — clients submit work orders; DwellWell coordinates dispatch, management, documentation, and closeout; the client deals with DwellWell throughout.</li>
+        <li><strong>Accountability</strong> — every job documented; accountability sits with DwellWell, not the contractor.</li>
+        <li><strong>Two CTAs</strong> at the foot: <strong>Start a conversation</strong> (client) and <strong>Join as a contractor</strong> (vendor).</li>
+      </ul>
+      <div class="panel open"><span class="pl">No experience claims on the website</span>Do <strong>not</strong> state "12 years of experience" or any experience/history claim on the About page or anywhere on the site (Locked · D-01). Operational-experience language is permitted only in proposals and credentials, and is always attributed to <em>the team behind DwellWell</em> — never the entity. The old brief's "reference the 12 years" instruction is retired.</div>
+    </div>
+
+    <!-- 5.3 SERVICES -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">5.3 — Services (dropdown + overview + detail)</h3></div>
+      <p class="block-sub">"Services" is a nav dropdown opening to the two service lines, each with its own overview page; each individual service has a detail page. Full list in §06.</p>
+      <div class="tree"><ul>
+        <li class="top">Services</li>
+        <ul>
+          <li class="top">Residential Property Maintenance <span class="small">(overview)</span></li>
+          <ul><li>Detail page per published service (§06.1)</li></ul>
+          <li class="top">Property Preservation <span class="small">(overview)</span></li>
+          <ul><li>Detail page per service (§06.2)</li></ul>
+        </ul>
+      </ul></div>
+      <p class="small"><strong>Overview page template</strong> (same for both lines): (1) short intro — who this line is for; (2) service tiles (Precision Square: icon + name + one-line description + link); (3) coverage statement (§08.1); (4) CTAs — Request service / Start a conversation.</p>
+      <p class="small"><strong>Detail page template:</strong> (1) service name (H1); (2) 2–3 sentence description — what it is, who it's for; (3) "What's included" bullet list; (4) "Who needs this" short paragraph; (5) "How to request" → link to Contact / Request service; (6) two CTAs at the foot.</p>
+    </div>
+
+    <!-- 5.4 RESOURCES -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">5.4 — Resources</h3></div>
+      <p class="block-sub">A trust-building content hub — important early, before testimonials exist. A hub page links to 3–6 articles at launch.</p>
+      <ul class="clean">
+        <li>The property manager's maintenance checklist</li>
+        <li>How property preservation works: a guide for lenders and investors</li>
+        <li>What to expect: DwellWell's work-order process explained</li>
+        <li>Winterisation for vacant properties</li>
+        <li>Preparing a property for new tenants (turn / make-ready)</li>
+        <li>Preventive maintenance for rental properties</li>
+      </ul>
+      <p class="small">Written in the DwellWell voice (peer-to-peer, no teaching register with PMs) and with SEO value in mind (§10). Model layout on the UFS resources section; style from the Brand Guidelines.</p>
+    </div>
+
+    <!-- 5.5 JOIN AS CONTRACTOR -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">5.5 — Join as Contractor</h3></div>
+      <p class="block-sub">For independent contractors and field vendors. Visible but understated. No login/portal at launch.</p>
+      <ul class="clean">
+        <li>Explain what working with DwellWell involves — job types, the work-order process, documentation expectations.</li>
+        <li>List the trades DwellWell is looking for.</li>
+        <li>A simple application form (§07, Form 3).</li>
+        <li>Set expectations — clear scope on every job, consistent dispatch, documentation on every job.</li>
+      </ul>
+      <div class="card do" style="margin-top:6px"><div class="tag">Suggested lead copy</div>"DwellWell provides work to vetted contractors across residential maintenance and property preservation. Clear scope on every job. Consistent dispatch. Apply to join the network."</div>
+      <div class="panel locked"><span class="pl">Contractor copy guardrails</span>"Network" and "apply to join" are fine here (selectivity signal). Do <strong>not</strong> claim fast or guaranteed payment ("clear payment terms" only once confirmed). Do not use "licensed and insured contractors only" — describe standards in plain operational terms (§08.3).</div>
+    </div>
+
+    <!-- 5.6 CONTACT -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">5.6 — Contact</h3></div>
+      <p class="block-sub">One of the most important pages — clean, reassuring, frictionless.</p>
+      <ul class="clean">
+        <li>A contact form (the primary action — §07, Form 2).</li>
+        <li>Public email: <strong>info@dwellwellpropertycare.com</strong></li>
+        <li>Two clearly labelled phone lines — <strong>Clients / Property Managers: [TBD]</strong> and <strong>Vendors / Contractors: [TBD]</strong> (model on the UFS dual-line treatment).</li>
+        <li>A WhatsApp link/button.</li>
+        <li>A response-time line — use the scoped wording in §08.4. A "Book a call" text link may be added if a scheduling tool is set up.</li>
+      </ul>
+    </div>
+
+    <!-- 5.7 LEGAL -->
+    <div class="block">
+      <div class="opener"><h3 class="h3">5.7 — Legal &amp; policy pages</h3></div>
+      <p class="block-sub">Present and linked from the footer before launch. Not prominent, but required.</p>
+      <ul class="clean">
+        <li><strong>Privacy Policy</strong> — standard US data collection/usage.</li>
+        <li><strong>Terms of Service</strong> — website usage terms.</li>
+        <li><strong>Service Terms</strong> — how work orders are handled: quoting, approvals, change orders, dispute resolution. Important for B2B credibility.</li>
+        <li><strong>Coverage &amp; Limitations</strong> — multi-state, expanding across the US; availability depends on contractor coverage (§08.1).</li>
+      </ul>
+      <div class="panel open"><span class="pl">Warranty / Rework page — gated</span>Build the page shell, but it must carry <strong>no warranty terms, timeframes, conditions, or implied guarantees</strong> until US counsel signs off (D-04, §08.2). Do not publish or link it until then.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 06 ============ -->
+<section id="s06">
+  <div class="wrap">
+    <div class="sec-num">SECTION 06</div>
+    <h2 class="sec-title">Services to Display</h2>
+    <p class="sec-intro">The confirmed service list, by line. This list takes precedence over any categories referenced from UFS. Reflect it in the dropdown, overview pages, and detail pages — subject to the launch gates below.</p>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">6.1 — Residential Property Maintenance</h3></div>
+      <p class="block-sub">For homeowners, landlords, and property managers of occupied residential properties. <strong>Publishable copy is general handyman/maintenance only.</strong></p>
+      <table>
+        <tr><th>Service</th><th>One-line description</th><th>Launch status</th></tr>
+        <tr><td class="k">Property Repairs &amp; General Maintenance</td><td>General repairs — leaks, damaged walls/floors/surfaces, broken fixtures and appliances.</td><td><span class="pill" style="background:var(--doc-green-bg);color:var(--doc-green)">Publish</span></td></tr>
+        <tr><td class="k">Residential &amp; Common Area Cleaning</td><td>Cleaning of individual units and multi-unit common areas — hallways, lobbies, stairwells.</td><td><span class="pill" style="background:var(--doc-green-bg);color:var(--doc-green)">Publish</span></td></tr>
+        <tr><td class="k">Landscaping &amp; Exterior Maintenance</td><td>Lawn care, tree and shrub trimming, planting, curb-appeal upkeep.</td><td><span class="pill" style="background:var(--doc-green-bg);color:var(--doc-green)">Publish</span></td></tr>
+        <tr><td class="k">Interior &amp; Exterior Painting</td><td>Touch-ups and full painting, exterior painting for homes/fences/structures, surface refinishing.</td><td><span class="pill" style="background:var(--doc-green-bg);color:var(--doc-green)">Publish</span></td></tr>
+        <tr><td class="k">HVAC Maintenance</td><td>Routine inspections, repairs, and system maintenance.</td><td><span class="pill" style="background:var(--doc-amber-bg);color:var(--doc-amber)">Gated</span></td></tr>
+        <tr><td class="k">Electrical Maintenance &amp; Repairs</td><td>Inspections, troubleshooting, wiring/circuit repairs.</td><td><span class="pill" style="background:var(--doc-amber-bg);color:var(--doc-amber)">Gated</span></td></tr>
+      </table>
+      <div class="panel open"><span class="pl">Specialist-trade gate (broadened in v2.5)</span><strong>Do not name specialist-trade categories or code-regulated / licensed-trade services in residential website copy until operations confirms scope and legal reviews any required wording</strong> (Brand Guidelines v2.5 §02, Messaging Architecture). This is broader than the earlier HVAC/electrical/plumbing list — it covers any named specialist trade or regulated-service claim. Build the page structure but hold these detail pages unpublished until confirmation. Do not use "comprehensive" or "full-service" for the residential line, and do not imply full-service coverage — list the published categories specifically.</div>
+      <div class="block" style="margin-top:14px">
+        <p class="label" style="margin-bottom:6px">Residential launch-copy appendix (Brand Guidelines v2.5)</p>
+        <p class="small">This controls the residential examples used in website, proposal, and sales copy until operations publishes a fuller catalogue.</p>
+        <table>
+          <tr><th>Allowed at launch</th><th>Not yet claimable</th></tr>
+          <tr><td>General handyman and routine maintenance</td><td>Named specialist-trade categories, code-regulated or licensed-trade claims</td></tr>
+          <tr><td>Turnover support and minor repair coordination within confirmed scope</td><td>Any residential wording implying comprehensive or full-service coverage</td></tr>
+          <tr><td>Work-order intake, dispatch, documentation, and closeout</td><td>Any standard-request response window not confirmed by operations</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">6.2 — Property Preservation</h3></div>
+      <p class="block-sub">For lenders, investors, and asset managers handling vacant, foreclosed, or REO properties. <strong>Publishable as a full scope.</strong></p>
+      <table>
+        <tr><th>Service</th><th>One-line description</th></tr>
+        <tr><td class="k">Property Securing &amp; Board-Up</td><td>Boarding windows, doors, and vulnerable entry points against access, vandalism, and weather.</td></tr>
+        <tr><td class="k">Lock Changes &amp; Property Security</td><td>New locks, rekeying, key duplication, and security management during transfers or vacancy.</td></tr>
+        <tr><td class="k">Debris Removal &amp; Cleanouts</td><td>Removal of construction debris, furniture, appliances, yard waste, and unwanted materials.</td></tr>
+        <tr><td class="k">Interior Cleaning</td><td>Deep cleaning of carpets, floors, kitchens, bathrooms, and interior spaces for inspection or occupancy readiness.</td></tr>
+        <tr><td class="k">Lawn Maintenance</td><td>Mowing, trimming, pruning, and general lawn care for a presentable, compliant exterior.</td></tr>
+        <tr><td class="k">Winterisation</td><td>Draining and preparing plumbing, adding antifreeze, and protecting against cold-weather damage.</td></tr>
+        <tr><td class="k">Property Repairs</td><td>Repairs to broken windows, doors, roofs, and exterior structures, and related condition remediation.</td></tr>
+        <tr><td class="k">Property Inspections &amp; Condition Reporting</td><td>Condition reports, occupancy/vacancy inspections, and insurance-related inspections.</td></tr>
+      </table>
+      <p class="small">Lead preservation copy with documentation completeness and compliance — e.g. <em>"DwellWell coordinates property preservation — securing, winterisation, debris removal, condition reporting, and vacant-property maintenance — with the documentation lenders and asset managers require. Every job is closed with a complete record."</em></p>
+      <div class="panel open"><span class="pl">Standalone specialist trades</span>A standalone <strong>Plumbing</strong> (or HVAC/electrical) service page falls under the same specialist-trade gate as §6.1. Incidental plumbing within "Property Repairs" is fine; a named standalone trade page waits on ops confirmation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 07 ============ -->
+<section id="s07">
+  <div class="wrap">
+    <div class="sec-num">SECTION 07</div>
+    <h2 class="sec-title">Conversion &amp; Forms</h2>
+    <p class="sec-intro">Two CTAs throughout, three forms, one thank-you flow. All CTA styling follows the brand button spec (§3.2 / §3.6).</p>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">7.1 — Calls to action</h3></div>
+      <div class="btnrow"><span class="btn primary">Start a conversation</span><span class="btn secondary">Request service</span></div>
+      <table>
+        <tr><th>CTA</th><th>Style</th><th>Where</th></tr>
+        <tr><td class="k">Primary — Start a conversation</td><td>Midnight fill, Cool White text, 4px radius, Inter 500.</td><td>Sticky nav, hero, foot of key pages, final CTA strip.</td></tr>
+        <tr><td class="k">Secondary — Request service</td><td>Steel Blue outline + Steel Blue (Text) #3A6E91 label on Cool White, 4px radius.</td><td>Alongside the primary in the hero, on service pages, in the final strip.</td></tr>
+      </table>
+      <p class="small">CTA labels are 2–4 words. "Start a conversation," "Request service," and "Get a quote" are all voice-compliant; "Contact us" is acceptable as a functional label. A "Book a call" option may appear as a small text link on Contact (not a prominent button).</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">7.2 — Forms</h3></div>
+      <p class="block-sub">Three forms. Every submission emails <strong>info@dwellwellpropertycare.com</strong> and is also stored as a backup record. Form inputs use a 4px radius to match the button spec; labels in Inter 500; required fields marked.</p>
+      <div class="three">
+        <div class="fields"><div class="fh">Form 1 · Service Request (primary)</div><ul>
+          <li>Full Name <span class="req">REQ</span></li><li>Company Name <span class="req">REQ</span></li><li>Email <span class="req">REQ</span></li><li>Phone <span class="opt">opt</span></li><li>State / ZIP <span class="req">REQ</span></li><li>Service Category — Residential / Preservation / Not sure <span class="req">REQ</span></li><li>Urgency — Routine / Urgent / Emergency <span class="req">REQ</span></li><li>Message / Details <span class="req">REQ</span></li>
+        </ul></div>
+        <div class="fields"><div class="fh">Form 2 · General / Contact</div><ul>
+          <li>Full Name <span class="req">REQ</span></li><li>Email <span class="req">REQ</span></li><li>Phone <span class="opt">opt</span></li><li>State / ZIP <span class="opt">opt</span></li><li>Service Category <span class="opt">opt</span></li><li>Photo upload — max 3 files, 5MB each <span class="opt">opt</span></li><li>Message <span class="req">REQ</span></li>
+        </ul></div>
+        <div class="fields"><div class="fh">Form 3 · Contractor Application</div><ul>
+          <li>Full Name <span class="req">REQ</span></li><li>Trade / Specialty <span class="req">REQ</span></li><li>States / Areas Covered <span class="req">REQ</span></li><li>Email <span class="req">REQ</span></li><li>Phone <span class="req">REQ</span></li><li>Experience / Message <span class="opt">opt</span></li>
+        </ul></div>
+      </div>
+      <p class="small">"Service Request" replaces the old "Property Manager Request" label so the primary form reads naturally for both PM and preservation clients. Reached via the <em>Request service</em> CTA and linked from the service pages.</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">7.3 — Thank-you page</h3></div>
+      <p class="block-sub">After any submission, redirect to a dedicated thank-you page (e.g. <code>/thank-you</code>) — not an inline message — so conversions are trackable (§10).</p>
+      <ul class="clean">
+        <li>Confirm the submission was received.</li>
+        <li>Set expectations using the scoped response wording (§08.4) — emergency/urgent get a same-business-day acknowledgement; do not promise a response window for "all" enquiries.</li>
+        <li>Explain what happens next: "A member of our team will review your request and be in touch."</li>
+        <li>A secondary link back to the homepage.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 08 ============ -->
+<section id="s08">
+  <div class="wrap">
+    <div class="sec-num">SECTION 08</div>
+    <h2 class="sec-title">Trust &amp; Compliance</h2>
+    <p class="sec-intro">With no testimonials at launch, trust is communicated through process and precise, defensible claims. Every claim below sits inside the messaging architecture (Brand Guidelines v2.5 §02).</p>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">8.1 — Coverage statement (locked wording)</h3></div>
+      <div class="panel locked"><span class="pl">Use consistently — homepage, service overviews, Coverage page</span>"Multi-state coverage across the US and expanding. Service availability depends on location and contractor coverage — contact us to confirm your area."</div>
+      <p class="small">Never write "nationwide coverage" — coverage is case-by-case. "Across the US" is the approved directional phrasing.</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">8.2 — Warranty (gated — do not publish terms)</h3></div>
+      <div class="panel open"><span class="pl">Open · D-04 (Decision 2-B)</span>Warranty language is <strong>not approved for public copy</strong> until US counsel reviews the wording. Do not publish warranty terms, timeframes, conditions, or <strong>implied guarantees</strong> anywhere on the site. Any warranty figure carried in earlier briefs (e.g. a 30-day workmanship period) is internal planning language only — not approved copy — and is superseded by this gate until legal sign-off.</div>
+      <p class="small">Practical effect on the build: no warranty figures on the homepage, service pages, or Service Terms; the Warranty / Rework page shell is built but unpublished and unlinked until counsel approves.</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">8.3 — Contractor standards (what to say publicly)</h3></div>
+      <div class="card do"><div class="tag">Approved wording</div>"We work with experienced, professional field vendors who meet our documentation and service standards. Every job is tracked, verified, and closed out with photos and written confirmation."</div>
+      <p class="small">Do not claim contractor licensing or insurance status on the site. "Vetted contractors" is approved at concept level — do not elaborate on vetting specifics, and do not write "licensed/insured/background-checked," until operations confirms.</p>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">8.4 — Responsiveness (scoped) &amp; process as trust</h3></div>
+      <div class="panel locked"><span class="pl">Scoped response claim — the only publishable version</span>"Emergency and urgent requests receive a <strong>same-business-day acknowledgement</strong>."</div>
+      <p class="small">No standard-request response window is publishable until operations confirms one — a blanket "we respond to all enquiries the same business day" must not appear. Replace it wherever it surfaced in the old brief (Contact page, thank-you page).</p>
+      <ul class="clean" style="margin-top:8px">
+        <li><strong>How it works</strong> on the homepage (5–7 steps) — the primary trust element.</li>
+        <li><strong>Documentation</strong> stated generally — every job is documented and closed out with photos and written confirmation. Do not specify photo counts, report formats, or system names.</li>
+        <li><strong>Accountability</strong> — DwellWell owns the resolution process; clients do not deal directly with contractors.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 09 ============ -->
+<section id="s09">
+  <div class="wrap">
+    <div class="sec-num">SECTION 09</div>
+    <h2 class="sec-title">Build Approach &amp; Technical Requirements</h2>
+    <p class="sec-intro">The site is built in Claude Design from this brief and Brand Guidelines v2.5. Requirements below are stated as outcomes, not platform-specific plugins — apply them in whatever hosting the finished pages are deployed to.</p>
+
+    <div class="panel locked"><span class="pl">Build target changed</span>The earlier brief specified WordPress with named plugins (WPForms, WP Rocket, Yoast, GTM). Those tool-specific instructions are <strong>superseded</strong>: the build is done in Claude Design. The underlying <em>requirements</em> — responsiveness, performance, accessible contrast, working forms, spam protection, analytics — still hold and are restated here tool-agnostically.</p></div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">9.1 — Core requirements</h3></div>
+      <table>
+        <tr><th>Requirement</th><th>Spec</th></tr>
+        <tr><td class="k">Responsive</td><td>Mobile-first, fully responsive. Use the locked grid (§3.5): desktop 12-col / 1248px max, mobile 4-col / 335px. Honour the mobile type scale (H1 36px, H2 30px, H3 20px).</td></tr>
+        <tr><td class="k">Accessibility</td><td>Meet the brand contrast rules (§3.1): body text Midnight-on-Cool-White (15.2:1 AAA). Normal-size links on light use Steel Blue (Text) #3A6E91 (5.0:1); on dark, Cool White with a Steel Blue underline. Primary CTAs are Midnight fill. Steel Blue #4A8BB5 only for icon/borders/large-display/UI. Logical heading order, descriptive alt text, visible focus states.</td></tr>
+        <tr><td class="k">Performance</td><td>Optimise images; lazy-load below the fold; preconnect the Google Fonts origin; target a fast first paint. Aim for 80+ on standard page-speed scoring.</td></tr>
+        <tr><td class="k">Domain &amp; security</td><td>dwellwellpropertycare.com on SSL at launch; standard security hardening for the final host.</td></tr>
+        <tr><td class="k">Forms</td><td>Each form emails info@dwellwellpropertycare.com and stores a backup record; redirects to <code>/thank-you</code> (§07).</td></tr>
+        <tr><td class="k">Spam protection</td><td>Honeypot field plus an invisible challenge (reCAPTCHA v3 or equivalent) on all forms.</td></tr>
+        <tr><td class="k">WhatsApp button</td><td>Floating button, bottom-right, every page. Opens WhatsApp chat with no pre-filled message. Number provided before launch.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 10 ============ -->
+<section id="s10">
+  <div class="wrap">
+    <div class="sec-num">SECTION 10</div>
+    <h2 class="sec-title">SEO Foundation</h2>
+    <p class="sec-intro">Non-negotiable basics for a new site. Advanced SEO can follow.</p>
+    <ul class="clean">
+      <li>Unique, descriptive title tag per page (≤ 60 chars) and unique meta description (≤ 155 chars).</li>
+      <li>Descriptive alt text on all images.</li>
+      <li><strong>One H1 per page</strong>, then H2s and H3s in logical order — matching the locked type scale (§3.2): H1/H2 in Cormorant, H3 in Inter.</li>
+      <li>Internal links: service detail pages link back to their overview and to Contact.</li>
+      <li>Generate an XML sitemap and submit it to Google Search Console once live.</li>
+      <li>Use the locked coverage wording (§8.1) consistently to support geographic intent — <strong>never "nationwide coverage."</strong></li>
+    </ul>
+    <p class="small">Resources articles (§5.4) carry SEO value — write them with relevant keywords in mind.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 11 ============ -->
+<section id="s11">
+  <div class="wrap">
+    <div class="sec-num">SECTION 11</div>
+    <h2 class="sec-title">Outstanding / Open Items</h2>
+    <p class="sec-intro">Do not go live until each is confirmed and built in.</p>
+    <table>
+      <tr><th>Item</th><th>Needed for</th><th>Owner / gate</th></tr>
+      <tr><td class="k">Client phone number (US)</td><td>Contact page, footer</td><td>Founding team</td></tr>
+      <tr><td class="k">Vendor / contractor phone number (US)</td><td>Contact page, footer</td><td>Founding team</td></tr>
+      <tr><td class="k">WhatsApp number</td><td>Floating button site-wide</td><td>Founding team</td></tr>
+      <tr><td class="k">Warranty wording</td><td>Warranty / Rework page; any warranty reference</td><td>US counsel (D-04)</td></tr>
+      <tr><td class="k">Residential specialist trades (HVAC, electrical, plumbing)</td><td>Naming these services in copy / publishing detail pages</td><td>Operations confirmation</td></tr>
+      <tr><td class="k">Standard-request response window</td><td>A non-scoped responsiveness claim</td><td>Operations</td></tr>
+      <tr><td class="k">Contractor payment terms; network size</td><td>Any payment/scale claim in contractor copy</td><td>Operations</td></tr>
+      <tr><td class="k">Favicon / app-icon source</td><td>Contained icon (V07) export from the master SVG</td><td>Brand (master rx correction at sign-off)</td></tr>
+    </table>
+    <div class="panel locked"><span class="pl">Retired from the old open-items list</span>"Brand colours — update palette to match logo" and "Logo file — use a text-only placeholder" are removed: the palette and logo system are locked. Use the locked palette (§3.1) and the approved lockups (§3.4).</div>
+  </div>
+</section>
+
+<!-- ============ SECTION 12 ============ -->
+<section id="s12">
+  <div class="wrap">
+    <div class="sec-num">SECTION 12</div>
+    <h2 class="sec-title">Launch Checklist</h2>
+    <div class="three">
+      <div class="card"><div class="tag" style="color:var(--steel-blue)">Build</div><ul class="clean" style="margin:0">
+        <li>All pages built and populated</li><li>Services dropdown working; published category + detail pages live</li><li>Both overview pages complete</li><li>Resources hub with ≥ 3 articles</li><li>Join as Contractor page + form</li><li>All three forms tested — email + backup record</li><li>Thank-you page for all forms</li><li>Floating WhatsApp button on every page</li><li>Legal pages live and linked (Warranty held per §8.2)</li>
+      </ul></div>
+      <div class="card"><div class="tag" style="color:var(--steel-blue)">Technical</div><ul class="clean" style="margin:0">
+        <li>Mobile tested (iOS, Android)</li><li>Desktop tested (Chrome, Safari, Firefox, Edge)</li><li>Page speed 80+</li><li>SSL active</li><li>Security hardening applied</li><li>Caching / image optimisation active</li><li>Spam protection active on all forms</li><li>Analytics + conversion events firing; sitemap submitted</li>
+      </ul></div>
+      <div class="card"><div class="tag" style="color:var(--steel-blue)">Brand compliance</div><ul class="clean" style="margin:0">
+        <li>Fonts: only Cormorant 600 + Inter 400/500/600 loaded (no Inter 700/300)</li><li>Palette: only the five locked colours; Steel Blue (Text) #3A6E91 used for normal links; #FFFFFF not used as a digital surface</li><li>Type scale correct; Cormorant scope = H1/H2 + display-scale pull-quotes/Dark-Field headlines (≥24px) only</li><li>Primary CTAs Midnight fill; secondary Steel Blue outline; buttons at 4px radius; icon container at 25%</li><li>Dark-Field supporting copy in Steel Grey; Dark→light exit divider Cool White 100%</li><li>Normal-size text links use Steel Blue (Text), not #4A8BB5</li><li>No prohibited vocabulary (platform, connects/matches, seamless, nationwide coverage…)</li><li>No experience claims on the website</li><li>No warranty terms, timeframes, conditions, or implied guarantees in copy</li><li>Coverage wording exact (§8.1); response scoped to same-business-day acknowledgement (§8.4)</li><li>Retired taglines absent</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 13 ============ -->
+<section id="s13">
+  <div class="wrap">
+    <div class="sec-num">SECTION 13</div>
+    <h2 class="sec-title">Governance</h2>
+    <p class="sec-intro">How this brief relates to its sources, and what changed in this revision.</p>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">Supersession &amp; hierarchy</h3></div>
+      <div class="panel locked"><span class="pl">Locked</span>Website Brief v3.1 supersedes Website Brief v3.0 and all earlier drafts. v3.1 re-bases the brief from Brand Guidelines v2.1 to <strong>Brand Guidelines v2.5</strong>, the current governing reference for every visual and verbal matter. Where any earlier brief conflicts with the Guidelines or with this document, this document — and above it, the Guidelines — wins.</div>
+      <table>
+        <tr><th>Tier</th><th>Authority</th></tr>
+        <tr><td class="k">1</td><td>Brand Guidelines v2.5 — governs all brand (visual + verbal) decisions.</td></tr>
+        <tr><td class="k">2</td><td>Website Brief v3.1 (this document) — governs website structure, content, and requirements.</td></tr>
+        <tr><td class="k">3</td><td>United Field Services — structural / IA reference only (no visual or copy cues).</td></tr>
+        <tr><td class="k">—</td><td>Earlier Website Brief drafts — archive only; not for production reference.</td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">v3.0 → v3.1 — realignment to Brand Guidelines v2.5</h3></div>
+      <p class="small">v2.5 was an internal-consistency overhaul of the Guidelines (no new source material); the decisions below resolved its open accessibility and asset questions on the safer option. This brief carries them onto the website surface.</p>
+      <table>
+        <tr><th>Area</th><th>v3.0 (aligned to v2.1)</th><th>v3.1 (aligned to v2.5)</th></tr>
+        <tr><td class="k">Primary CTA</td><td>Steel Blue fill, white text</td><td>Midnight fill, Cool White text. Steel Blue is no longer a button fill.</td></tr>
+        <tr><td class="k">Text links</td><td>Steel Blue on white</td><td>Steel Blue (Text) #3A6E91 on light (5.0:1 AA); on dark, Cool White + Steel Blue underline. #4A8BB5 fails AA for normal text.</td></tr>
+        <tr><td class="k">Production White</td><td>Not specified</td><td>#FFFFFF is a physical/single-ink exception only; never a digital surface. Brand white stays Cool White.</td></tr>
+        <tr><td class="k">Dark Field</td><td>Cool Slate supporting copy; Steel Blue exit divider</td><td>Steel Grey supporting copy (12.6:1); Cool White 100% exit divider.</td></tr>
+        <tr><td class="k">Cormorant scope</td><td>H1/H2 + wordmark only</td><td>Adds display-scale pull-quotes &amp; Dark-Field headlines (≥24px).</td></tr>
+        <tr><td class="k">Voice</td><td>"we" in FAQ/contact microcopy</td><td>FAQ &amp; Contact are first-person "we" correspondence modules; no mixing within a module.</td></tr>
+        <tr><td class="k">Logo</td><td>R3 reversed on dark generally; master SVG flagged; ten variants</td><td>R3 two-colour on Midnight only (10A elsewhere); master SVG deprecated for production; V07 locked; eleven assets.</td></tr>
+        <tr><td class="k">Residential gate</td><td>HVAC/electrical/plumbing gated</td><td>Broadened: no specialist-trade categories or code-regulated/licensed claims; launch-copy appendix added.</td></tr>
+        <tr><td class="k">Response time</td><td>"acknowledged the same business day"</td><td>"same-business-day acknowledgement"; no standard-request window claimable.</td></tr>
+        <tr><td class="k">Warranty</td><td>No terms/timeframes/conditions</td><td>Adds "or implied guarantees"; "30-day" reframed as internal planning language.</td></tr>
+        <tr><td class="k">Contrast figures</td><td>13.8:1 Midnight/Cool White</td><td>15.2:1 Midnight/Cool White; 12.6:1 Steel Grey/Midnight.</td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">Changelog — what changed from the old brief</h3></div>
+      <table>
+        <tr><th>Area</th><th>Old brief</th><th>v3.1 (aligned to Guidelines v2.5)</th></tr>
+        <tr><td class="k">Palette</td><td>Deep Navy #1B2E4B, Medium Blue #2E6DA4, Slate Grey, Off-White, Near-Black</td><td>Locked five: Midnight, Steel Blue, Cool Slate, Cool White, Steel Grey. "Adjust to match logo" note removed.</td></tr>
+        <tr><td class="k">Typography</td><td>Inter Bold 700 headings; Inter body; 48/32/24 scale</td><td>Cormorant 600 for H1/H2 only; Inter 400/500/600 elsewhere; locked web scale. Inter 700 prohibited.</td></tr>
+        <tr><td class="k">Tagline</td><td>"Well-Cared Homes. Well-Managed Properties."</td><td>Retired. Process-led brand line "Coordinated from intake to closeout." (no fixed tagline).</td></tr>
+        <tr><td class="k">Hero copy</td><td>"Well-Managed Properties Start with Reliable Maintenance" + "Nationwide coordination…"</td><td>Anchor-derived hero; "Property care, professionally managed" + anchor sub-line. No "nationwide."</td></tr>
+        <tr><td class="k">Visual feel</td><td>"Premium and tech-enabled"</td><td>Senior professional-services register; process-led. No tech/startup cues; "platform" prohibited.</td></tr>
+        <tr><td class="k">Experience claims</td><td>"12 years of experience" on About / in copy</td><td>Removed from website (D-01). Permitted only in proposals/credentials, attributed to the team.</td></tr>
+        <tr><td class="k">Warranty</td><td>"30-day workmanship warranty" stated as live copy + Warranty page linked</td><td>Gated (D-04): no terms, timeframes, conditions, or implied guarantees until counsel signs off; page shell unpublished.</td></tr>
+        <tr><td class="k">Coverage</td><td>"expanding nationwide"</td><td>Locked wording: "across the US and expanding… confirm your area." Never "nationwide coverage."</td></tr>
+        <tr><td class="k">Response time</td><td>"all enquiries within the same business day"</td><td>Scoped: "emergency and urgent requests receive a same-business-day acknowledgement"; no standard window claimable.</td></tr>
+        <tr><td class="k">Residential services</td><td>HVAC, electrical listed as confirmed</td><td>Specialist-trade categories &amp; code-regulated claims gated until ops confirms; general handyman/maintenance published; launch-copy appendix added.</td></tr>
+        <tr><td class="k">Platform</td><td>WordPress + named plugins</td><td>Build target Claude Design; requirements restated tool-agnostically.</td></tr>
+        <tr><td class="k">Design reference</td><td>UFS as "primary design reference"</td><td>Brand Guidelines v2.5 authoritative for all visual/verbal; UFS demoted to IA reference only.</td></tr>
+        <tr><td class="k">Added</td><td>—</td><td>Grid system, shapes/components kit, hero motif spec, logo usage on site, brand-compliance checklist.</td></tr>
+      </table>
+    </div>
+
+    <div class="block">
+      <div class="opener"><h3 class="h3">Document control</h3></div>
+      <table>
+        <tr><td class="k">Document</td><td>DwellWell Website Brief v3.1</td></tr>
+        <tr><td class="k">Date</td><td>June 2026</td></tr>
+        <tr><td class="k">Status</td><td>Active — Build Ready</td></tr>
+        <tr><td class="k">Governed by</td><td>Brand Guidelines v2.5</td></tr>
+        <tr><td class="k">Supersedes</td><td>All earlier Website Brief drafts</td></tr>
+        <tr><td class="k">Build target</td><td>Claude Design</td></tr>
+        <tr><td class="k">Contact</td><td>info@dwellwellpropertycare.com</td></tr>
+        <tr><td class="k">Domain</td><td>dwellwellpropertycare.com</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-line">DwellWell</div>
+    Coordinated from intake to closeout.<br><br>
+    <span class="small" style="color:var(--steel-grey)">DwellWell Property Care LLC · Website Brief v3.1 · June 2026 · Confidential — do not distribute without founding-team sign-off · info@dwellwellpropertycare.com</span>
+  </div>
+</footer>
+</body>
+</html>

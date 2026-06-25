@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="services" hint-size="100%,72px"></dc-import>
+  <dc-import name="ServiceDetail"
+    svc-name="{{ svcName }}" descr="{{ descr }}" who-needs="{{ whoNeeds }}"
+    line-label="{{ lineLabel }}" line-href="{{ lineHref }}" includes="{{ includes }}"
+    hint-size="100%,1000px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      svcName: "Residential & Common Area Cleaning",
+      lineLabel: "Residential maintenance",
+      lineHref: "Residential-Maintenance.dc.html",
+      descr: "Cleaning for individual units and the shared spaces of multi-unit residential property. DwellWell coordinates routine and turnover cleaning, keeping common areas presentable and recorded. Every visit is documented through to closeout.",
+      whoNeeds: "Landlords and property managers of multi-unit residential buildings who need units and common areas kept clean on a reliable schedule.",
+      includes: ["Unit cleaning and turnovers","Hallways and corridors","Lobbies and entryways","Stairwells and landings","Shared amenity spaces","Scheduled recurring service"]
+    };
+  }
+}
+</script>
+</body>
+</html>

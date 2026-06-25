@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="A standing seasonal maintenance checklist for property managers: what to inspect across the year on occupied properties, and what to hand off to a coordinated operator.">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="resources" hint-size="100%,72px"></dc-import>
+  <dc-import name="Article" category="{{ category }}" title="{{ title }}" dek="{{ dek }}" blocks="{{ blocks }}" related="{{ related }}" hint-size="100%,1400px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      category: "Residential maintenance",
+      title: "The property manager's maintenance checklist",
+      dek: "A standing checklist beats reactive repairs every time. Here is what we keep an eye on across an occupied portfolio, and what is worth handing off.",
+      blocks: [
+        { t: "p", c: "Most maintenance problems are cheap when you catch them early and expensive when you don't. A slow leak is a cartridge today and a ceiling next quarter. The point of a checklist isn't to teach you the work; it's to make sure nothing quietly slips while you're handling everything else." },
+        { t: "h2", c: "Run it by season, not by emergency" },
+        { t: "p", c: "Reactive maintenance is the most expensive way to run a property. Tie inspections to the calendar so the obvious failures get caught on your schedule instead of a tenant's. We coordinate recurring visits the same way, so the routine items never depend on someone remembering." },
+        { t: "h2", c: "The standing checklist" },
+        { t: "ul", c: ["Roof, gutters, and drainage before each wet season","HVAC filters and service ahead of summer and winter","Plumbing fixtures, shutoffs, and visible leaks","Smoke and CO detectors, and GFCI outlets","Exterior caulking, paint, and weather sealing","Common areas: lighting, handrails, and trip hazards","Landscaping and grading directed away from the foundation"] },
+        { t: "h2", c: "What to hand off" },
+        { t: "p", c: "The items that need a licensed trade, a paper trail, or a fast turnaround are the ones worth coordinating through a single operator. You send the work order; the assessment, the contractor, the documentation, and the closeout come back as one record." },
+        { t: "callout", c: "DwellWell coordinates recurring and one-off residential maintenance from intake to closeout, with every visit documented. Send a work order and we handle the rest." }
+      ],
+      related: [
+        { title: "Preventive maintenance for rental properties", href: "Article-Preventive-Maintenance.dc.html" },
+        { title: "Preparing a property for new tenants (turn / make-ready)", href: "Article-Make-Ready.dc.html" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

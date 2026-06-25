@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="services" hint-size="100%,72px"></dc-import>
+  <dc-import name="ServiceDetail"
+    svc-name="{{ svcName }}" descr="{{ descr }}" who-needs="{{ whoNeeds }}"
+    line-label="{{ lineLabel }}" line-href="{{ lineHref }}" includes="{{ includes }}"
+    hint-size="100%,1000px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      svcName: "Property Securing & Board-Up",
+      lineLabel: "Property preservation",
+      lineHref: "Property-Preservation.dc.html",
+      descr: "Securing vacant property against unauthorized entry and weather. DwellWell coordinates board-up and securing of doors, windows, and other points of entry. Every job is closed with a complete, documented record for lenders and asset managers.",
+      whoNeeds: "Lenders, investors, and asset managers responsible for vacant, foreclosed, or REO property that needs to be secured and documented.",
+      includes: ["Door and window board-up","Securing points of entry","Emergency securing","Damage and condition photos","Materials and labor coordination","Documented closeout record"]
+    };
+  }
+}
+</script>
+</body>
+</html>

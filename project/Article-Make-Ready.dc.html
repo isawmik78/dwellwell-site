@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="Preparing a rental property for new tenants: a make-ready turn that moves fast without cutting corners, in the right order, with the condition documented.">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{background:#F2F4F7;}
+    ::selection{background:#4A8BB5;color:#F2F4F7;}
+  </style>
+</helmet>
+
+<div style="background:#F2F4F7;min-height:100vh;position:relative;overflow-x:hidden;">
+  <dc-import name="SiteNav" active="resources" hint-size="100%,72px"></dc-import>
+  <dc-import name="Article" category="{{ category }}" title="{{ title }}" dek="{{ dek }}" blocks="{{ blocks }}" related="{{ related }}" hint-size="100%,1400px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,440px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      category: "Residential maintenance",
+      title: "Preparing a property for new tenants (turn / make-ready)",
+      dek: "A make-ready is a race against vacancy, but speed that cuts corners just becomes next month's work order. Here's the turn that holds up.",
+      blocks: [
+        { t: "p", c: "Every day a unit sits empty is rent you don't get back. The pressure is to turn it fast, and the trap is turning it twice because the first pass missed something. A make-ready that's coordinated and documented gets the unit leased without leaving problems for the new tenant to find." },
+        { t: "h2", c: "The make-ready, in order" },
+        { t: "ul", c: ["Cleanout and deep clean","Repairs: walls, floors, fixtures, and hardware","Paint and surface refinishing","Appliance and systems check","Final clean and photo record"] },
+        { t: "h2", c: "Sequence matters" },
+        { t: "p", c: "Paint after repairs, deep clean after paint, photograph after the final clean. Running the work out of order is how a unit gets touched twice. When it's coordinated through one operator, the sequence and the scheduling are handled for you." },
+        { t: "h2", c: "Document the starting condition" },
+        { t: "p", c: "The make-ready record isn't just a punch list. Photographs of the unit's condition at move-in protect you in any later deposit dispute. Every DwellWell turn closes with that documentation in hand." },
+        { t: "callout", c: "DwellWell coordinates make-ready turns end to end, repairs, paint, cleaning, and the photo record, on one work order. Send it once and we sequence the rest." }
+      ],
+      related: [
+        { title: "The property manager's maintenance checklist", href: "Article-Maintenance-Checklist.dc.html" },
+        { title: "Preventive maintenance for rental properties", href: "Article-Preventive-Maintenance.dc.html" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
