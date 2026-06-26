@@ -1,0 +1,127 @@
+---
+// Form 3 (Contractor Application) as an interactive island.
+// Required: Full name, Trade/specialty, States/areas covered, Email, Phone.
+// Optional: Experience/message. Honeypot included. Submit is a PLACEHOLDER
+// (FORM_ENDPOINT) wired with the form-backend decision (D-D); until then it
+// delivers nothing and says so in the console rather than faking it.
+// No payment claims, no specialist/regulated trades named.
+interface Props {
+  trades: string[];
+}
+const { trades } = Astro.props;
+---
+<div class="caf" data-contractor-form>
+  <form class="caf__form" novalidate data-form>
+    <div class="caf__hp" aria-hidden="true">
+      <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
+    </div>
+
+    <div class="caf__row">
+      <label class="caf__field">
+        <span class="caf__label">Full name <span class="caf__req">*</span></span>
+        <input class="caf__input" type="text" name="fullName" required autocomplete="name" />
+      </label>
+      <label class="caf__field">
+        <span class="caf__label">Trade / specialty <span class="caf__req">*</span></span>
+        <select class="caf__input caf__select" name="trade" required>
+          <option value="">Select a trade</option>
+          {trades.map((t) => <option value={t}>{t}</option>)}
+          <option value="Other">Other</option>
+        </select>
+      </label>
+    </div>
+
+    <label class="caf__field">
+      <span class="caf__label">States / areas covered <span class="caf__req">*</span></span>
+      <input class="caf__input" type="text" name="areas" required placeholder="e.g. TX, OK, and surrounding metros" />
+    </label>
+
+    <div class="caf__row">
+      <label class="caf__field">
+        <span class="caf__label">Email <span class="caf__req">*</span></span>
+        <input class="caf__input" type="email" name="email" required autocomplete="email" />
+      </label>
+      <label class="caf__field">
+        <span class="caf__label">Phone <span class="caf__req">*</span></span>
+        <input class="caf__input" type="tel" name="phone" required autocomplete="tel" />
+      </label>
+    </div>
+
+    <label class="caf__field">
+      <span class="caf__label">Experience / message <span class="caf__opt">(optional)</span></span>
+      <textarea class="caf__input caf__textarea" name="message" rows="4"></textarea>
+    </label>
+
+    <button class="caf__submit" type="submit">Submit application</button>
+  </form>
+
+  <!-- Inline confirmation (shown on successful submit) -->
+  <div class="caf__thanks" data-thanks hidden>
+    <div class="caf__check">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#4A8BB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 6.5"></path></svg>
+    </div>
+    <h3 class="caf__thanks-title">Application received.</h3>
+    <p class="caf__thanks-text">Thanks for applying to the DwellWell network. We review every application and will follow up by email or phone.</p>
+  </div>
+</div>
+
+<style>
+  .caf__form { border: 0.5px solid var(--steel-grey); border-radius: 8px; padding: clamp(24px, 4vw, 36px); background: var(--cool-white); display: flex; flex-direction: column; gap: 20px; }
+  .caf__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .caf__field { display: flex; flex-direction: column; gap: 7px; }
+  .caf__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+  .caf__label { font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cool-slate); }
+  .caf__req { color: var(--steel-blue-text); }
+  .caf__opt { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--cool-slate); }
+  .caf__input { font-family: var(--font-body); font-size: 15px; color: var(--midnight); background: var(--cool-white); border: 1px solid var(--steel-grey); border-radius: 4px; padding: 11px 13px; }
+  .caf__input:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 1px; border-color: var(--steel-blue); }
+  .caf__select { appearance: none; -webkit-appearance: none; }
+  .caf__textarea { line-height: 1.55; resize: vertical; }
+  .caf__submit { align-self: flex-start; font-family: var(--font-body); font-weight: 500; font-size: 14px; letter-spacing: 0.02em; color: var(--cool-white); background: var(--midnight); border: none; padding: 12px 26px; border-radius: 4px; cursor: pointer; transition: opacity 0.15s; }
+  .caf__submit:hover { opacity: 0.9; }
+  .caf__submit:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+
+  .caf__thanks { border: 0.5px solid var(--steel-blue); border-radius: 8px; padding: clamp(28px, 4vw, 40px); background: var(--cool-white); }
+  .caf__check { width: 52px; height: 52px; border-radius: 8px; background: var(--midnight); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .caf__thanks-title { font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1.25; color: var(--midnight); margin: 0 0 10px; }
+  .caf__thanks-text { font-size: 15px; line-height: 1.65; color: var(--cool-slate); margin: 0; }
+</style>
+
+<script>
+  // TODO (deploy): set FORM_ENDPOINT to the chosen backend (D-D) so applications
+  // email info@dwellwellpropertycare.com and store a backup record. While empty,
+  // nothing is delivered and that is reported to the console, not faked.
+  const FORM_ENDPOINT = '';
+
+  const root = document.querySelector('[data-contractor-form]');
+  if (root) {
+    const form = root.querySelector('[data-form]');
+    const thanks = root.querySelector('[data-thanks]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const hp = form.querySelector('[name="company_website"]');
+      if (hp && hp.value) {
+        console.warn('[DwellWell] Honeypot triggered; application ignored.');
+        return;
+      }
+      if (!form.reportValidity()) return;
+
+      if (FORM_ENDPOINT) {
+        try {
+          const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+          if (!res.ok) throw new Error('Submit failed: ' + res.status);
+        } catch (err) {
+          console.error('[DwellWell] Contractor application submit failed.', err);
+          return;
+        }
+      } else {
+        console.warn('[DwellWell] Application submitted, but FORM_ENDPOINT is not configured. No application was delivered. Set FORM_ENDPOINT in ContractorForm.astro to wire a backend.');
+      }
+
+      form.hidden = true;
+      thanks.hidden = false;
+      thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+</script>
