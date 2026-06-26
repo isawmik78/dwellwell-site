@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dwellwell-site.pages.dev/sitemap-index.xml

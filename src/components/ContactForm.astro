@@ -9,6 +9,12 @@
 ---
 <div class="cf" data-contact-form>
   <form class="cf__form" novalidate data-form>
+    {/* Honeypot: hidden from people; a bot that fills it gets rejected (C-04).
+        The invisible challenge (reCAPTCHA v3 or equivalent) and its server-side
+        token check are gated on the form-backend decision (D-D) and wired with C-03. */}
+    <div class="cf__hp" aria-hidden="true">
+      <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
+    </div>
     <label class="cf__field">
       <span class="cf__label">Full name <span class="cf__req">*</span></span>
       <input class="cf__input" type="text" name="fullName" required autocomplete="name" />
@@ -68,6 +74,7 @@
 
 <style>
   .cf__form { border: 0.5px solid var(--steel-grey); border-radius: 8px; padding: clamp(24px, 4vw, 36px); background: var(--cool-white); display: flex; flex-direction: column; gap: 20px; }
+  .cf__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .cf__field { display: flex; flex-direction: column; gap: 7px; }
   .cf__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
   .cf__label { font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cool-slate); }
@@ -139,6 +146,12 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      // Honeypot: a real person never sees or fills this field.
+      const hp = form.querySelector('[name="company_website"]');
+      if (hp && hp.value) {
+        console.warn('[DwellWell] Honeypot triggered; submission ignored.');
+        return;
+      }
       if (fileInvalid) return;
       if (!form.reportValidity()) return; // native required-field validation
 

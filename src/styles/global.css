@@ -87,3 +87,4 @@ body {
 .section-head__rule { width: 1px; align-self: stretch; min-height: 52px; background: var(--steel-blue); flex: 0 0 auto; }
 .h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(30px, 4.3vw, 40px); line-height: 1.2; color: var(--midnight); margin: 0; }
 .h3 { font-family: var(--font-body); font-weight: 600; font-size: 22px; line-height: 1.35; letter-spacing: -0.01em; color: var(--midnight); margin: 0; }
+@media (max-width: 600px) { .h3 { font-size: 20px; } }

@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Page not found · DwellWell Property Care"
+  description="The page you are looking for could not be found."
+  active=""
+  noindex={true}
+>
+  <main class="nf">
+    <section class="nf__inner">
+      <div class="nf__eyebrow">
+        <span class="nf__rule"></span>
+        <span class="nf__label">Error 404</span>
+        <span class="nf__rule"></span>
+      </div>
+      <h1 class="nf__title">This page could not be found.</h1>
+      <p class="nf__lead">The link may be out of date, or the page may have moved. Let us point you back to solid ground.</p>
+      <div class="nf__actions">
+        <a class="btn btn--primary" href="/">Back to home</a>
+        <a class="btn btn--secondary" href="/contact">Contact us</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .nf { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 72px); background: var(--cool-white); }
+  .nf__inner { max-width: 640px; width: 100%; margin: 0 auto; padding: clamp(64px, 12vw, 128px) clamp(20px, 5vw, 40px); text-align: center; }
+  .nf__eyebrow { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 18px; }
+  .nf__rule { width: 24px; height: 1px; background: var(--steel-blue); }
+  .nf__label { font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cool-slate); }
+  .nf__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 6vw, 52px); line-height: 1.15; color: var(--midnight); margin: 0 0 18px; }
+  .nf__lead { font-size: 16px; line-height: 1.65; color: var(--cool-slate); margin: 0 auto 32px; max-width: 52ch; }
+  .nf__actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+</style>
