@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceDetail from '../../components/ServiceDetail.astro';
+import { SERVICES } from '../../data/services';
+
+// Gated services (HVAC, Electrical) are excluded here: they are built in the
+// data layer but not published as routes and not linked from any overview/nav.
+export function getStaticPaths() {
+  return SERVICES.filter((s) => !s.gated).map((s) => ({
+    params: { slug: s.slug },
+    props: { service: s },
+  }));
+}
+
+const { service } = Astro.props;
+---
+<Layout title={`${service.name} · DwellWell Property Care`} description={service.descr} active="services">
+  <ServiceDetail service={service} />
+</Layout>

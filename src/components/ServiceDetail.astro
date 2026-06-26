@@ -1,0 +1,87 @@
+---
+import Cover from './Cover.astro';
+import { LINES, type Service } from '../data/services';
+
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+const ln = LINES[service.line];
+---
+<Cover
+  eyebrow={ln.label}
+  eyebrowHref={ln.href}
+  title={service.name}
+  titleWidth="18ch"
+  titleFontSize="clamp(36px, 5.6vw, 52px)"
+  minHeight="clamp(380px, 44vw, 480px)"
+  padTop="clamp(56px, 8vw, 96px)"
+  padBottom="clamp(72px, 10vw, 116px)"
+/>
+
+<main>
+  <section class="container sd-body">
+    <div class="sd-grid">
+      <!-- LEFT: description, who needs, how to request -->
+      <div>
+        <p class="sd-descr">{service.descr}</p>
+
+        <div style="margin-bottom:36px;">
+          <div class="eyebrow" style="margin-bottom:12px;"><span class="eyebrow__label">Who needs this</span></div>
+          <p class="sd-who">{service.whoNeeds}</p>
+        </div>
+
+        <div class="sd-request">
+          <div class="eyebrow" style="margin-bottom:12px;"><span class="eyebrow__label">How to request</span></div>
+          <p class="sd-request__text">Send a work order through Contact or request service directly. DwellWell scopes the job, confirms coverage for your area, and coordinates it from intake to closeout.</p>
+          <a class="sd-request__link" href="/contact">Go to Contact / Request service →</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: What's included -->
+      <div>
+        <div class="eyebrow" style="margin-bottom:20px;"><span class="eyebrow__label">What's included</span></div>
+        <ul class="sd-list">
+          {service.includes.map((item) => (
+            <li class="sd-list__item">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#4A8BB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top:3px;flex:0 0 auto;"><path d="M5 12.5 10 17.5 19 6.5"></path></svg>
+              <span class="sd-list__text">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- CTAs -->
+<section class="sd-cta">
+  <div class="container sd-cta__inner">
+    <p class="sd-cta__title">Ready to get this handled?</p>
+    <div class="sd-cta__btns">
+      <a class="btn btn--primary" href="/contact">Request service</a>
+      <a class="btn btn--secondary" href="/contact">Start a conversation</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sd-body { padding: clamp(56px, 9vw, 96px) var(--gutter); }
+  .sd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(36px, 6vw, 72px); align-items: start; }
+  .sd-descr { font-size: 17px; line-height: 1.6; color: var(--midnight); margin: 0 0 36px; max-width: 60ch; }
+  .sd-who { font-size: 15px; line-height: 1.65; color: var(--cool-slate); margin: 0; max-width: 58ch; }
+
+  .sd-request { border: 0.5px solid var(--steel-grey); border-radius: 8px; padding: 24px; }
+  .sd-request__text { font-size: 15px; line-height: 1.65; color: var(--midnight); margin: 0 0 16px; max-width: 54ch; }
+  .sd-request__link { font-weight: 500; font-size: 14px; color: var(--steel-blue-text); text-decoration: none; border-bottom: 1px solid var(--steel-blue); padding-bottom: 2px; }
+  .sd-request__link:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 3px; }
+
+  .sd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .sd-list__item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 0.5px solid var(--steel-grey); }
+  .sd-list__text { font-size: 15px; line-height: 1.5; color: var(--midnight); }
+
+  .sd-cta { background: var(--cool-white); border-top: 1px solid var(--steel-blue); }
+  .sd-cta__inner { padding: clamp(48px, 8vw, 80px) var(--gutter); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
+  .sd-cta__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 3.8vw, 36px); line-height: 1.2; color: var(--midnight); margin: 0; max-width: 18ch; }
+  .sd-cta__btns { display: flex; flex-wrap: wrap; gap: 14px; }
+</style>

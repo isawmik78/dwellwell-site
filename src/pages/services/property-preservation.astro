@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceOverview from '../../components/ServiceOverview.astro';
+import { LINES } from '../../data/services';
+const ln = LINES.preservation;
+---
+<Layout title="Property Preservation · DwellWell Property Care" description={ln.sub} active="services">
+  <ServiceOverview line="preservation" />
+</Layout>

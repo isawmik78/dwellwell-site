@@ -1,0 +1,93 @@
+---
+import Cover from './Cover.astro';
+import { LINES, publishedByLine, type LineKey } from '../data/services';
+
+interface Props {
+  line: LineKey;
+}
+const { line } = Astro.props;
+const ln = LINES[line];
+const tiles = publishedByLine(line);
+---
+<Cover
+  eyebrow={ln.eyebrow}
+  title={ln.title}
+  sub={ln.sub}
+  titleWidth="18ch"
+  subWidth="60ch"
+/>
+
+<main>
+  <!-- INTRO -->
+  <section class="container so-intro">
+    <div class="section-head" style="max-width:880px;">
+      <span class="section-head__rule" style="min-height:56px;"></span>
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px;"><span class="eyebrow__label">Who this is for</span></div>
+        <p class="so-intro__text">{ln.intro}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE TILES -->
+  <section class="container so-tiles">
+    <div class="so-grid">
+      {tiles.map((t) => (
+        <a class="so-tile" href={`/services/${t.slug}`}>
+          <div class="so-tile__icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#4A8BB5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h10"></path></svg>
+          </div>
+          <div style="flex:1 1 auto;">
+            <h3 class="h3" style="font-size:20px;margin-bottom:10px;">{t.name}</h3>
+            <p class="so-tile__desc">{t.tileDesc}</p>
+          </div>
+          <span class="link-arrow">View service →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- COVERAGE (one Steel Blue advisory border) -->
+  <section class="container so-coverage">
+    <div class="so-coverage__box">
+      <div class="eyebrow" style="margin-bottom:14px;"><span class="eyebrow__label">Coverage</span></div>
+      <p class="so-coverage__lead">Multi-state coverage across the US and expanding.</p>
+      <p class="so-coverage__sub">Service availability depends on location and contractor coverage. Contact us to confirm your area.</p>
+    </div>
+  </section>
+
+  <!-- CTAs -->
+  <section class="container so-cta">
+    <div class="so-cta__inner">
+      <p class="so-cta__title">Tell us what you need handled.</p>
+      <div class="so-cta__btns">
+        <a class="btn btn--primary" href="/contact">Request service</a>
+        <a class="btn btn--secondary" href="/contact">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  .so-intro { padding: clamp(56px, 9vw, 96px) var(--gutter) clamp(8px, 2vw, 16px); }
+  .so-intro__text { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.4vw, 30px); line-height: 1.28; color: var(--midnight); margin: 0; max-width: 30ch; }
+
+  .so-tiles { padding: clamp(36px, 5vw, 56px) var(--gutter) clamp(40px, 6vw, 64px); }
+  .so-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(264px, 1fr)); gap: 20px; }
+  .so-tile { display: flex; flex-direction: column; gap: 20px; padding: 28px; background: var(--cool-white); border: 1px solid var(--steel-grey); border-radius: 8px; text-decoration: none; transition: border-color 0.15s, transform 0.15s; }
+  .so-tile:hover { border-color: var(--steel-blue); transform: translateY(-2px); }
+  .so-tile:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+  .so-tile__icon { width: 56px; height: 56px; border-radius: 8px; background: var(--midnight); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .so-tile__desc { font-size: 14px; line-height: 1.6; color: var(--cool-slate); margin: 0; }
+  .link-arrow { font-weight: 500; font-size: 14px; color: var(--steel-blue-text); }
+
+  .so-coverage { padding: 0 var(--gutter) clamp(20px, 4vw, 40px); }
+  .so-coverage__box { border: 0.5px solid var(--steel-blue); border-radius: 8px; padding: clamp(24px, 4vw, 36px); }
+  .so-coverage__lead { font-family: var(--font-display); font-weight: 600; font-size: clamp(22px, 3vw, 28px); line-height: 1.28; color: var(--midnight); margin: 0 0 10px; max-width: 26ch; }
+  .so-coverage__sub { font-size: 15px; line-height: 1.6; color: var(--cool-slate); margin: 0; max-width: 56ch; }
+
+  .so-cta { padding: clamp(40px, 6vw, 64px) var(--gutter) clamp(64px, 9vw, 96px); }
+  .so-cta__inner { border-top: 1px solid var(--steel-blue); padding-top: clamp(32px, 5vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .so-cta__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.4vw, 32px); line-height: 1.2; color: var(--midnight); margin: 0; max-width: 20ch; }
+  .so-cta__btns { display: flex; flex-wrap: wrap; gap: 14px; }
+</style>

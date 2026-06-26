@@ -10,21 +10,26 @@
  */
 interface Props {
   eyebrow: string;
+  /** When set, the eyebrow label is a link back (e.g. a detail page to its line). */
+  eyebrowHref?: string;
   title: string;
   /** Optional sub-line. HTML allowed (e.g. <br>). */
   sub?: string;
   titleWidth?: string;
   subWidth?: string;
+  titleFontSize?: string;
   minHeight?: string;
   padTop?: string;
   padBottom?: string;
 }
 const {
   eyebrow,
+  eyebrowHref,
   title,
   sub,
   titleWidth = '16ch',
   subWidth = '58ch',
+  titleFontSize = 'clamp(36px, 6.2vw, 56px)',
   minHeight = 'clamp(420px, 50vw, 540px)',
   padTop = 'clamp(64px, 9vw, 104px)',
   padBottom = 'clamp(80px, 11vw, 128px)',
@@ -51,9 +56,11 @@ const hasCta = Astro.slots.has('default');
 
   <div class="cover__content container">
     <div class="eyebrow eyebrow--dark" style="margin-bottom:22px;">
-      <span class="eyebrow__label">{eyebrow}</span>
+      {eyebrowHref
+        ? <a class="eyebrow__label cover__eyebrow-link" href={eyebrowHref}>{eyebrow}</a>
+        : <span class="eyebrow__label">{eyebrow}</span>}
     </div>
-    <h1 class="cover__title" style={`max-width:${titleWidth};`}>{title}</h1>
+    <h1 class="cover__title" style={`max-width:${titleWidth};font-size:${titleFontSize};`}>{title}</h1>
     {sub && <p class="cover__sub" style={`max-width:${subWidth};margin-bottom:${hasCta ? '36px' : '0'};`} set:html={sub} />}
     {hasCta && <div class="cover__cta"><slot /></div>}
   </div>
@@ -91,6 +98,10 @@ const hasCta = Astro.slots.has('default');
     margin: 0;
   }
   .cover__cta { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  .cover__eyebrow-link { text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: border-color 0.15s; }
+  .cover__eyebrow-link:hover { border-color: var(--steel-blue); }
+  .cover__eyebrow-link:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 3px; }
 
   /* Base: 1px Steel Blue rule over an 18px Cool White bar (exit to body). */
   .cover__base { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; }
