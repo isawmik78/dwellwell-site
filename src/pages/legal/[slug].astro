@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LegalPage from '../../components/LegalPage.astro';
+import { LEGAL } from '../../data/legal';
+
+// Gated legal pages (Warranty & Rework) are excluded: built in the data layer
+// but unpublished as a route and unlinked, pending counsel sign-off.
+export function getStaticPaths() {
+  return LEGAL.filter((p) => !p.gated).map((p) => ({
+    params: { slug: p.slug },
+    props: { page: p },
+  }));
+}
+
+const { page } = Astro.props;
+---
+<Layout title={`${page.title} · DwellWell Property Care`} description={page.meta} active="">
+  <LegalPage page={page} />
+</Layout>

@@ -1,0 +1,47 @@
+---
+import Cover from './Cover.astro';
+import { FINALIZING, type LegalPage } from '../data/legal';
+
+interface Props {
+  page: LegalPage;
+}
+const { page } = Astro.props;
+const showNotice = !page.gated;
+---
+<Cover
+  eyebrow={page.eyebrow}
+  title={page.title}
+  titleWidth="20ch"
+  minHeight="clamp(300px, 36vw, 420px)"
+  padTop="clamp(56px, 8vw, 88px)"
+  padBottom="clamp(56px, 8vw, 96px)"
+/>
+
+<main>
+  <section class="lg-body">
+    <p class="lg-updated">{page.updated}</p>
+    <p class="lg-intro">{page.intro}</p>
+
+    {showNotice && (
+      <div class="lg-notice"><p>{FINALIZING}</p></div>
+    )}
+
+    {page.sections.map((s) => (
+      <div class="lg-section">
+        <h2 class="lg-h2">{s.heading}</h2>
+        {s.paras.map((p) => <p class="lg-p">{p}</p>)}
+      </div>
+    ))}
+  </section>
+</main>
+
+<style>
+  .lg-body { max-width: 760px; margin: 0 auto; padding: clamp(48px, 7vw, 80px) clamp(20px, 5vw, 40px) clamp(56px, 9vw, 96px); }
+  .lg-updated { font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cool-slate); margin: 0 0 18px; }
+  .lg-intro { font-size: 17px; line-height: 1.68; color: var(--midnight); margin: 0 0 24px; max-width: 64ch; }
+  .lg-notice { border: 0.5px solid var(--steel-grey); border-radius: 8px; padding: 18px 20px; margin: 0 0 8px; }
+  .lg-notice p { font-size: 14px; line-height: 1.6; color: var(--cool-slate); margin: 0; }
+  .lg-section { margin-top: 36px; }
+  .lg-h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.4vw, 30px); line-height: 1.25; color: var(--midnight); margin: 0 0 12px; max-width: 32ch; }
+  .lg-p { font-size: 16px; line-height: 1.68; color: var(--midnight); margin: 0 0 16px; max-width: 72ch; }
+</style>
