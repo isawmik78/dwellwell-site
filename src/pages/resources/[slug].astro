@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Article from '../../components/Article.astro';
+import { ARTICLES } from '../../data/articles';
+
+export function getStaticPaths() {
+  return ARTICLES.map((a) => ({ params: { slug: a.slug }, props: { article: a } }));
+}
+
+const { article } = Astro.props;
+---
+<Layout title={`${article.title} · DwellWell Property Care`} description={article.meta} active="resources">
+  <Article article={article} />
+</Layout>

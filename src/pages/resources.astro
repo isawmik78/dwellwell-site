@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cover from '../components/Cover.astro';
+import { ARTICLES } from '../data/articles';
+---
+<Layout
+  title="Resources · DwellWell Property Care"
+  description="Practical guidance on property maintenance and preservation from DwellWell: maintenance checklists, the work-order process, winterisation, make-ready turns, and preventive maintenance."
+  active="resources"
+>
+  <Cover
+    eyebrow="Resources"
+    title="Notes from the field."
+    sub="Practical guidance on maintaining and preserving property, written for the people who manage it. No theory, just how the work gets coordinated and documented."
+    titleWidth="18ch"
+    subWidth="58ch"
+    minHeight="clamp(380px, 46vw, 500px)"
+    padTop="clamp(64px, 9vw, 104px)"
+    padBottom="clamp(72px, 10vw, 116px)"
+  />
+
+  <main>
+    <section class="container res-grid-wrap">
+      <div class="res-grid">
+        {ARTICLES.map((a) => (
+          <a class="res-card" href={`/resources/${a.slug}`}>
+            <span class="res-card__cat">{a.category}</span>
+            <h2 class="res-card__title">{a.title}</h2>
+            <p class="res-card__excerpt">{a.excerpt}</p>
+            <span class="link-arrow">Read →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .res-grid-wrap { padding: clamp(56px, 9vw, 96px) var(--gutter) clamp(64px, 9vw, 96px); }
+  .res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .res-card { display: flex; flex-direction: column; gap: 18px; padding: 30px; background: var(--cool-white); border: 1px solid var(--steel-grey); border-radius: 8px; text-decoration: none; transition: border-color 0.15s, transform 0.15s; }
+  .res-card:hover { border-color: var(--steel-blue); transform: translateY(-2px); }
+  .res-card:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+  .res-card__cat { align-self: flex-start; font-weight: 500; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 9px; border-radius: 2px; background: var(--steel-grey); color: var(--midnight); }
+  .res-card__title { font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1.22; color: var(--midnight); margin: 0; }
+  .res-card__excerpt { font-size: 15px; line-height: 1.6; color: var(--cool-slate); margin: 0; flex: 1 1 auto; }
+  .link-arrow { font-weight: 500; font-size: 14px; color: var(--steel-blue-text); }
+</style>
