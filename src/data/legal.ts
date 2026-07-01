@@ -36,7 +36,7 @@ export const LEGAL: LegalPage[] = [
       { heading: 'Sharing', paras: ['To coordinate a job, we may share the details necessary to complete it with the vetted contractor assigned to your work order, and with service providers who help us operate (for example, email and hosting providers). We share only what is needed for the purpose.'] },
       { heading: 'Retention', paras: ['We keep submissions and job records for as long as needed to provide the service, maintain documentation, and meet our operating and legal obligations.'] },
       { heading: 'Your choices', paras: ['You can ask us what information we hold about you, or ask us to correct or delete it, by emailing info@dwellwellpropertycare.com. We will respond to reasonable requests.'] },
-      { heading: 'Contact', paras: ['Questions about this policy can be sent to info@dwellwellpropertycare.com.'] },
+      { heading: 'Contact', paras: ['Questions about this policy can be sent to info@dwellwellpropertycare.com.', 'DwellWell Property Care LLC, 10941 195th St, Saint Albans, NY 11412.'] },
     ],
   },
   {
@@ -51,7 +51,7 @@ export const LEGAL: LegalPage[] = [
       { heading: 'Information on the site', paras: ['The content on this site is provided for general information about our services. Service availability depends on location and contractor coverage, and is confirmed case by case.'] },
       { heading: 'Intellectual property', paras: ['The DwellWell name, logo, and site content are owned by DwellWell Property Care LLC and may not be used without permission.'] },
       { heading: 'Changes', paras: ['We may update these terms from time to time. Continued use of the site after an update means you accept the revised terms.'] },
-      { heading: 'Contact', paras: ['Questions about these terms can be sent to info@dwellwellpropertycare.com.'] },
+      { heading: 'Contact', paras: ['Questions about these terms can be sent to info@dwellwellpropertycare.com.', 'DwellWell Property Care LLC, 10941 195th St, Saint Albans, NY 11412.'] },
     ],
   },
   {
@@ -66,6 +66,7 @@ export const LEGAL: LegalPage[] = [
       { heading: 'Scope and approval', paras: ['Work is scoped per work order. We send a quote for your approval, and work proceeds once you have approved the cost.'] },
       { heading: 'Coverage', paras: ['Service availability depends on location and contractor coverage. We confirm coverage for your area before committing to a job.'] },
       { heading: 'Documentation', paras: ['Each job is closed with a record, including photos and written confirmation, as part of how we coordinate the work.'] },
+      { heading: 'Rework and resolution', paras: ['If something is not right after a completed job, tell us. DwellWell coordinates the fix and stays your single point of contact until the issue is resolved.'] },
       { heading: 'Contact', paras: ['Questions about these terms can be sent to info@dwellwellpropertycare.com.'] },
     ],
   },

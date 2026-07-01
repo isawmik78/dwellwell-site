@@ -1,20 +1,23 @@
 ---
 // Form 3 (Contractor Application) as an interactive island.
 // Required: Full name, Trade/specialty, States/areas covered, Email, Phone.
-// Optional: Experience/message. Honeypot included. Submit is a PLACEHOLDER
-// (FORM_ENDPOINT) wired with the form-backend decision (D-D); until then it
-// delivers nothing and says so in the console rather than faking it.
+// Optional: Experience/message. Honeypot included. Submit posts to the Cloudflare
+// Pages Function at /api/submit, which emails CONTRACTORS_EMAIL, verifies the
+// Turnstile token, and drops honeypot hits. On failure a graceful fallback
+// surfaces info@dwellwellpropertycare.com.
 // No payment claims, no specialist/regulated trades named.
 interface Props {
   trades: string[];
 }
 const { trades } = Astro.props;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
 ---
 <div class="caf" data-contractor-form>
   <form class="caf__form" novalidate data-form>
     <div class="caf__hp" aria-hidden="true">
       <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
     </div>
+    <input type="hidden" name="formType" value="contractor" />
 
     <div class="caf__row">
       <label class="caf__field">
@@ -52,6 +55,9 @@ const { trades } = Astro.props;
       <textarea class="caf__input caf__textarea" name="message" rows="4"></textarea>
     </label>
 
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+    <p class="caf__form-error" data-form-error hidden></p>
+
     <button class="caf__submit" type="submit">Submit application</button>
   </form>
 
@@ -64,6 +70,8 @@ const { trades } = Astro.props;
     <p class="caf__thanks-text">Thanks for applying to the DwellWell network. We review every application and will follow up by email or phone.</p>
   </div>
 </div>
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <style>
   .caf__form { border: 0.5px solid var(--steel-grey); border-radius: 8px; padding: clamp(24px, 4vw, 36px); background: var(--cool-white); display: flex; flex-direction: column; gap: 20px; }
@@ -79,7 +87,9 @@ const { trades } = Astro.props;
   .caf__textarea { line-height: 1.55; resize: vertical; }
   .caf__submit { align-self: flex-start; font-family: var(--font-body); font-weight: 500; font-size: 14px; letter-spacing: 0.02em; color: var(--cool-white); background: var(--midnight); border: none; padding: 12px 26px; border-radius: 4px; cursor: pointer; transition: opacity 0.15s; }
   .caf__submit:hover { opacity: 0.9; }
+  .caf__submit:disabled { opacity: 0.6; cursor: default; }
   .caf__submit:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
+  .caf__form-error { font-size: 14px; line-height: 1.55; color: var(--steel-blue-text); margin: 0; }
 
   .caf__thanks { border: 0.5px solid var(--steel-blue); border-radius: 8px; padding: clamp(28px, 4vw, 40px); background: var(--cool-white); }
   .caf__check { width: 52px; height: 52px; border-radius: 8px; background: var(--midnight); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
@@ -88,35 +98,39 @@ const { trades } = Astro.props;
 </style>
 
 <script>
-  // TODO (deploy): set FORM_ENDPOINT to the chosen backend (D-D) so applications
-  // email info@dwellwellpropertycare.com and store a backup record. While empty,
-  // nothing is delivered and that is reported to the console, not faked.
-  const FORM_ENDPOINT = '';
+  // Submits to the Cloudflare Pages Function at /api/submit. That Function emails
+  // the contractor inbox (CONTRACTORS_EMAIL), verifies the Turnstile token, and
+  // drops honeypot hits. On failure we surface info@dwellwellpropertycare.com.
+  const ENDPOINT = '/api/submit';
 
   const root = document.querySelector('[data-contractor-form]');
   if (root) {
     const form = root.querySelector('[data-form]');
     const thanks = root.querySelector('[data-thanks]');
+    const formError = root.querySelector('[data-form-error]');
+    const submitBtn = form.querySelector('.caf__submit');
+
+    const setFormError = (msg) => {
+      formError.textContent = msg;
+      formError.hidden = !msg;
+    };
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      setFormError('');
       const hp = form.querySelector('[name="company_website"]');
-      if (hp && hp.value) {
-        console.warn('[DwellWell] Honeypot triggered; application ignored.');
-        return;
-      }
+      if (hp && hp.value) return;
       if (!form.reportValidity()) return;
 
-      if (FORM_ENDPOINT) {
-        try {
-          const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-          if (!res.ok) throw new Error('Submit failed: ' + res.status);
-        } catch (err) {
-          console.error('[DwellWell] Contractor application submit failed.', err);
-          return;
-        }
-      } else {
-        console.warn('[DwellWell] Application submitted, but FORM_ENDPOINT is not configured. No application was delivered. Set FORM_ENDPOINT in ContractorForm.astro to wire a backend.');
+      if (submitBtn) submitBtn.disabled = true;
+      try {
+        const res = await fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error('Submit failed: ' + res.status);
+      } catch (err) {
+        console.error('[DwellWell] Contractor application submit failed.', err);
+        if (submitBtn) submitBtn.disabled = false;
+        setFormError('Something went wrong sending your application. Please email info@dwellwellpropertycare.com and we will pick it up from there.');
+        return;
       }
 
       form.hidden = true;

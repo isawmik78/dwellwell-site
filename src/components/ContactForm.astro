@@ -1,11 +1,12 @@
 ---
 // Form 2 (General / Contact) as an interactive island.
-// Required: Full name, Email, Message.
-// Optional: Phone, State/ZIP, Service category, Photos (max 3 files, 5MB each).
-// Validation and the inline thank-you behaviour are preserved here. Submit is
-// wired to a PLACEHOLDER handler (see FORM_ENDPOINT in the script below): until
-// a real backend is configured the form delivers nothing, and that state is
-// surfaced via a console warning rather than faked silently.
+// Required: Full name, Email, Urgency, Message.
+// Optional: Company, Phone, State/ZIP, Service category, Photos (max 3 files, 5MB each).
+// Validation and the inline thank-you behaviour are preserved here. Submit posts
+// to the Cloudflare Pages Function at /api/submit, which emails the lead, verifies
+// the Turnstile token, and drops honeypot hits. On failure a graceful fallback
+// surfaces info@dwellwellpropertycare.com instead of faking success.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
 ---
 <div class="cf" data-contact-form>
   <form class="cf__form" novalidate data-form>
@@ -15,6 +16,7 @@
     <div class="cf__hp" aria-hidden="true">
       <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
     </div>
+    <input type="hidden" name="formType" value="contact" />
     <label class="cf__field">
       <span class="cf__label">Full name <span class="cf__req">*</span></span>
       <input class="cf__input" type="text" name="fullName" required autocomplete="name" />
@@ -33,9 +35,16 @@
 
     <div class="cf__row">
       <label class="cf__field">
+        <span class="cf__label">Company <span class="cf__opt">(optional)</span></span>
+        <input class="cf__input" type="text" name="company" autocomplete="organization" />
+      </label>
+      <label class="cf__field">
         <span class="cf__label">State / ZIP <span class="cf__opt">(optional)</span></span>
         <input class="cf__input" type="text" name="stateZip" autocomplete="postal-code" />
       </label>
+    </div>
+
+    <div class="cf__row">
       <label class="cf__field">
         <span class="cf__label">Service category <span class="cf__opt">(optional)</span></span>
         <select class="cf__input cf__select" name="serviceCategory">
@@ -43,6 +52,14 @@
           <option value="Residential">Residential maintenance</option>
           <option value="Preservation">Property preservation</option>
           <option value="Not sure">Not sure</option>
+        </select>
+      </label>
+      <label class="cf__field">
+        <span class="cf__label">Urgency <span class="cf__req">*</span></span>
+        <select class="cf__input cf__select" name="urgency" required>
+          <option value="Routine" selected>Routine</option>
+          <option value="Urgent">Urgent</option>
+          <option value="Emergency">Emergency</option>
         </select>
       </label>
     </div>
@@ -58,6 +75,9 @@
       <textarea class="cf__input cf__textarea" name="message" rows="5" required></textarea>
     </label>
 
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+    <p class="cf__form-error" data-form-error hidden></p>
+
     <button class="cf__submit" type="submit">Send message</button>
   </form>
 
@@ -71,6 +91,8 @@
     <p class="muted">Emergency and urgent requests receive a same-business-day acknowledgement.</p>
   </div>
 </div>
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <style>
   .cf__form { border: 0.5px solid var(--steel-grey); border-radius: 8px; padding: clamp(24px, 4vw, 36px); background: var(--cool-white); display: flex; flex-direction: column; gap: 20px; }
@@ -90,6 +112,7 @@
   .cf__textarea { line-height: 1.55; resize: vertical; }
   .cf__file { font-size: 14px; color: var(--cool-slate); border-style: dashed; cursor: pointer; }
   .cf__error { font-size: 13px; color: var(--steel-blue-text); }
+  .cf__form-error { font-size: 14px; line-height: 1.55; color: var(--steel-blue-text); margin: 0; }
   .cf__input.is-invalid { border-color: var(--steel-blue-text); }
   .cf__submit {
     align-self: flex-start; font-family: var(--font-body); font-weight: 500; font-size: 14px;
@@ -97,6 +120,7 @@
     border: none; padding: 12px 26px; border-radius: 4px; cursor: pointer; transition: opacity 0.15s;
   }
   .cf__submit:hover { opacity: 0.9; }
+  .cf__submit:disabled { opacity: 0.6; cursor: default; }
   .cf__submit:focus-visible { outline: 2px solid var(--steel-blue); outline-offset: 2px; }
 
   .cf__thanks { border: 0.5px solid var(--steel-blue); border-radius: 8px; padding: clamp(28px, 4vw, 40px); background: var(--cool-white); }
@@ -106,12 +130,11 @@
 </style>
 
 <script>
-  // TODO (deploy): wire a real form backend here. Set FORM_ENDPOINT to your
-  // Formspree / Web3Forms endpoint (or a serverless function URL) that emails
-  // info@dwellwellpropertycare.com, stores a backup record, and runs spam
-  // protection. While this is empty, NOTHING is delivered: the submit is a
-  // placeholder and that is reported to the console (not faked silently).
-  const FORM_ENDPOINT = '';
+  // Submits to the Cloudflare Pages Function at /api/submit. That Function emails
+  // the lead (LEADS_EMAIL), verifies the Turnstile token, drops honeypot hits,
+  // and attaches any photos. On failure we surface info@dwellwellpropertycare.com
+  // rather than faking a delivery.
+  const ENDPOINT = '/api/submit';
 
   const root = document.querySelector('[data-contact-form]');
   if (root) {
@@ -119,6 +142,8 @@
     const thanks = root.querySelector('[data-thanks]');
     const fileInput = root.querySelector('[data-file]');
     const fileError = root.querySelector('[data-file-error]');
+    const formError = root.querySelector('[data-form-error]');
+    const submitBtn = form.querySelector('.cf__submit');
 
     const MAX_FILES = 3;
     const MAX_BYTES = 5 * 1024 * 1024;
@@ -129,6 +154,11 @@
       fileError.textContent = msg;
       fileError.hidden = !msg;
       fileInput.classList.toggle('is-invalid', !!msg);
+    };
+
+    const setFormError = (msg) => {
+      formError.textContent = msg;
+      formError.hidden = !msg;
     };
 
     fileInput.addEventListener('change', () => {
@@ -146,30 +176,22 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      setFormError('');
       // Honeypot: a real person never sees or fills this field.
       const hp = form.querySelector('[name="company_website"]');
-      if (hp && hp.value) {
-        console.warn('[DwellWell] Honeypot triggered; submission ignored.');
-        return;
-      }
+      if (hp && hp.value) return;
       if (fileInvalid) return;
       if (!form.reportValidity()) return; // native required-field validation
 
-      if (FORM_ENDPOINT) {
-        try {
-          const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-          if (!res.ok) throw new Error('Submit failed: ' + res.status);
-        } catch (err) {
-          console.error('[DwellWell] Contact form submit failed.', err);
-          setFileError('Something went wrong sending your message. Please email info@dwellwellpropertycare.com.');
-          return;
-        }
-      } else {
-        // No backend wired yet: do not pretend the message was delivered.
-        console.warn(
-          '[DwellWell] Contact form submitted, but FORM_ENDPOINT is not configured. ' +
-            'No message was delivered. Set FORM_ENDPOINT in ContactForm.astro to wire a backend.'
-        );
+      if (submitBtn) submitBtn.disabled = true;
+      try {
+        const res = await fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error('Submit failed: ' + res.status);
+      } catch (err) {
+        console.error('[DwellWell] Contact form submit failed.', err);
+        if (submitBtn) submitBtn.disabled = false;
+        setFormError('Something went wrong sending your message. Please email info@dwellwellpropertycare.com and we will pick it up from there.');
+        return;
       }
 
       // Inline thank-you (preserves the design behaviour).
