@@ -160,10 +160,10 @@ export const SERVICES: Service[] = [
     slug: 'winterisation',
     line: 'preservation',
     name: 'Winterisation',
-    tileDesc: 'Winterisation of plumbing and systems against seasonal damage.',
-    descr: 'Protecting vacant property systems against seasonal damage. DwellWell coordinates winterisation of plumbing and related systems. Every job is documented and closed with a complete record.',
+    tileDesc: 'Winterisation of water lines and systems against seasonal damage.',
+    descr: 'Protecting vacant property systems against seasonal damage. DwellWell coordinates winterisation of water lines and related systems. Every job is documented and closed with a complete record.',
     whoNeeds: 'Lenders and asset managers protecting vacant property from freeze and seasonal damage in colder regions.',
-    includes: ['Plumbing winterisation', 'Water shut-off and draining', 'System protection', 'Anti-freeze application', 'Condition photos', 'Documented closeout record'],
+    includes: ['Water-line winterisation', 'Water shut-off and draining', 'System protection', 'Anti-freeze application', 'Condition photos', 'Documented closeout record'],
   },
   {
     slug: 'property-repairs',
@@ -172,7 +172,7 @@ export const SERVICES: Service[] = [
     tileDesc: 'Repairs needed to protect and preserve the condition of the asset.',
     descr: 'Repairs that protect and preserve the condition of vacant assets. DwellWell coordinates the repair work needed to keep property in stable, marketable condition. Every job is documented and closed with a complete record.',
     whoNeeds: 'Lenders, investors, and asset managers who need vacant or REO property repaired and the work documented.',
-    includes: ['Structural and surface repairs', 'Roof and exterior repairs', 'Plumbing and basic systems', 'Damage mitigation', 'Before and after photos', 'Documented closeout record'],
+    includes: ['Structural and surface repairs', 'Roof and exterior repairs', 'Water lines and basic systems', 'Damage mitigation', 'Before and after photos', 'Documented closeout record'],
   },
   {
     slug: 'inspections-reporting',
